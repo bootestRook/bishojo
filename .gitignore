@@ -1,0 +1,17 @@
+# Godot 4+ generated files
+.godot/
+.import/
+
+# Godot export/build output
+/android/
+/build/
+/exports/
+export_credentials.cfg
+
+# Editor and OS noise
+.vscode/
+.idea/
+*.tmp
+*.log
+Thumbs.db
+Desktop.ini

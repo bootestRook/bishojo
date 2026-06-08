@@ -1,0 +1,4 @@
+interface:
+  display_name: "Godot API Query Required"
+  short_description: "Require verified Godot API lookups before use."
+  default_prompt: "Use $godot-api-query-required before writing, editing, or reviewing any Godot API usage."

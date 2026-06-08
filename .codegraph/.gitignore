@@ -1,0 +1,16 @@
+# CodeGraph volatile files
+# Keep codegraph.db commit-ready for this repository, but ignore runtime files.
+
+# SQLite runtime files
+*.db-wal
+*.db-shm
+
+# Cache
+cache/
+
+# Logs
+*.log
+daemon.pid
+
+# Hook markers
+.dirty

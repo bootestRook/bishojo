@@ -1,0 +1,4 @@
+interface:
+  display_name: "Godot API Check"
+  short_description: "Export and query Godot extension API JSON."
+  default_prompt: "Use $godot-api-check to export the Godot extension API and answer API lookup questions."
