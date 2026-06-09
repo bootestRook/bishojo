@@ -1,0 +1,19 @@
+#!/bin/sh
+set -eu
+
+# Check text encoding before commit.
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+if command -v pwsh >/dev/null 2>&1; then
+  powershell_bin="pwsh"
+elif command -v powershell.exe >/dev/null 2>&1; then
+  powershell_bin="powershell.exe"
+elif command -v powershell >/dev/null 2>&1; then
+  powershell_bin="powershell"
+else
+  echo "PowerShell was not found; cannot run UTF-8 encoding check." >&2
+  exit 1
+fi
+
+"$powershell_bin" -NoProfile -ExecutionPolicy Bypass -File tools/verify_text_encoding.ps1 -Staged

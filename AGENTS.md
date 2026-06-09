@@ -1,10 +1,27 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 ## 文件命名规范
 
 - 文档文件名统一使用 `[类别]_[主题]_[版本].md`。
 - 常用类别前缀：`总表`、`规则`、`系统`、`机制`、`内容`、`模板`、`规范`。
 - 初版统一使用 `v1`，大改再开 `v2`。
+
+## PowerShell 与 UTF-8 铁律
+
+- 本仓库所有中文文本、策划文档、脚本、配置和 Markdown 文件一律按 UTF-8 处理。
+- 在 PowerShell 中读取文本文件时，禁止使用不带编码参数的 `Get-Content`。必须显式使用 `Get-Content -LiteralPath '路径' -Raw -Encoding UTF8`，避免 Windows PowerShell 使用系统默认代码页把中文读成乱码。
+- 批量检索文本优先使用 `rg`。确需 PowerShell 管道输出中文前，先设置当前会话编码：
+
+```powershell
+[Console]::InputEncoding = [System.Text.UTF8Encoding]::new()
+[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
+$OutputEncoding = [System.Text.UTF8Encoding]::new()
+```
+
+- 写入或修改文本优先使用 `apply_patch`。确需 PowerShell 写文件时，必须使用无 BOM UTF-8，例如 `[System.IO.File]::WriteAllText($path, $text, [System.Text.UTF8Encoding]::new($false))`。
+- 需要兼容 Windows PowerShell 5.1 执行的 `.ps1` 自动化脚本必须保持 ASCII-only；Windows PowerShell 5.1 会把无 BOM `.ps1` 按系统代码页解析，脚本内中文字符串或中文注释会直接造成语法错误。中文说明写入 Markdown 文档，不写入这类 `.ps1` 脚本。
+- 任何读取结果只要出现 Unicode replacement character、常见 mojibake 标记或明显乱码，不得继续基于该输出分析或改写文件；必须立刻按 UTF-8 重新读取并说明前一次输出无效。
+- 提交前必须运行 `powershell -NoProfile -ExecutionPolicy Bypass -File tools/verify_text_encoding.ps1 -Staged`。本仓库已提供 `.githooks/pre-commit` 自动执行该检查，若 hook 未启用，运行 `powershell -NoProfile -ExecutionPolicy Bypass -File tools/install_git_hooks.ps1`。
 
 ## Godot API 铁律
 
