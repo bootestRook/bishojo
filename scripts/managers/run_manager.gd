@@ -13,11 +13,13 @@ const BRANCH_MANAGER = preload("res://scripts/systems/branch/branch_manager.gd")
 const NODE_CHOICE_MANAGER = preload("res://scripts/systems/node_choice/node_choice_manager.gd")
 const SHOP_MANAGER = preload("res://scripts/systems/shop/shop_manager.gd")
 const SYNTHESIS_RESOLVER = preload("res://scripts/systems/synthesis/synthesis_resolver.gd")
+const BATTLE_MANAGER = preload("res://scripts/systems/battle/battle_manager.gd")
+const V1_ENEMY_CATALOG = preload("res://scripts/data/enemies/v1_enemy_catalog.gd")
 
 # 文件职责：
 # - 管理一局 Run 的核心流程状态和最小运行数据骨架。
 # - 为后续 UI 层提供“当前应显示哪个 Page / RunBoardMode”的只读契约数据。
-# - 本阶段不接入场景、节点、Autoload、输入动作、战斗模拟器或外部 Manager，避免臆造项目符号。
+# - 本阶段接入纯逻辑战斗门面，但不接入场景、节点、Autoload、输入动作或表现层 Manager。
 
 const STATE_UNSET: int = -1
 const PAGE_TYPE_UNSET: int = -1
@@ -35,6 +37,8 @@ var branch_manager = BRANCH_MANAGER.new()
 var node_choice_manager = NODE_CHOICE_MANAGER.new()
 var shop_manager = SHOP_MANAGER.new()
 var synthesis_resolver = SYNTHESIS_RESOLVER.new()
+var battle_manager = BATTLE_MANAGER.new()
+var enemy_catalog = V1_ENEMY_CATALOG.new()
 
 var current_state: int = RUN_TYPES.RunState.BOOT
 var current_page_type: int = PAGE_TYPE_UNSET
@@ -56,6 +60,11 @@ var current_shop_stock: Array = []
 var last_node_choice_result: Dictionary = {}
 var last_shop_result: Dictionary = {}
 var last_formation_validation: Dictionary = {}
+var current_combat_branch_options: Array = []
+var current_combat_branch_id: String = ""
+var last_battle_result: Dictionary = {}
+var last_battle_timeline_log: Array = []
+var battle_seed: int = 1001
 
 # 当前流程临时数据。字符串取值会在后续数据配置阶段统一收口，当前只保留承接字段。
 var current_branch_id: String = ""
@@ -65,7 +74,7 @@ var last_combat_result: String = ""
 var defeat_reason: String = ""
 var next_state_after_result: int = STATE_UNSET
 
-# 后续系统的最小数据入口。本阶段只建容器，不实现背包、商店、合成、战斗或奖励规则。
+# 早期骨架兼容字段。真实背包、商店、合成、回路与战斗数据已由纯逻辑模型接管。
 var inventory_items: Array = []
 var formation_units: Dictionary = {}
 var locked_shop_stock: Array = []
@@ -92,6 +101,8 @@ func reset_run_data() -> void:
 	node_choice_manager = NODE_CHOICE_MANAGER.new()
 	shop_manager = SHOP_MANAGER.new()
 	synthesis_resolver = SYNTHESIS_RESOLVER.new()
+	battle_manager = BATTLE_MANAGER.new()
+	enemy_catalog = V1_ENEMY_CATALOG.new()
 	selected_character_id = ""
 	selected_starter_treasure_id = ""
 	gold = 0
@@ -106,6 +117,11 @@ func reset_run_data() -> void:
 	last_node_choice_result = {}
 	last_shop_result = {}
 	last_formation_validation = {}
+	current_combat_branch_options = []
+	current_combat_branch_id = ""
+	last_battle_result = {}
+	last_battle_timeline_log = []
+	battle_seed = 1001
 	current_branch_id = ""
 	current_branch_type = ""
 	current_battle_type = ""
@@ -361,6 +377,110 @@ func confirm_formation() -> void:
 		change_state(RUN_TYPES.RunState.COMBAT_BRANCH_SELECT)
 
 
+func generate_combat_branch_options() -> Array:
+	current_combat_branch_options = []
+	if normal_win_count >= normal_win_target:
+		current_combat_branch_options.append({
+			"combat_branch_id": "boss",
+			"battle_type": "boss",
+			"title": "最终 Boss",
+			"description": "挑战 V1 终局首领。",
+			"reward_gold": 0,
+		})
+		change_state(RUN_TYPES.RunState.BOSS_INTRO)
+		return current_combat_branch_options.duplicate(true)
+
+	current_combat_branch_options.append({
+		"combat_branch_id": "normal_safe",
+		"battle_type": "normal_safe",
+		"title": "稳妥战",
+		"description": "敌人较弱，奖励较少。",
+		"reward_gold": 1,
+	})
+	current_combat_branch_options.append({
+		"combat_branch_id": "normal_standard",
+		"battle_type": "normal_standard",
+		"title": "普通战",
+		"description": "标准敌人与标准奖励。",
+		"reward_gold": 2,
+	})
+	current_combat_branch_options.append({
+		"combat_branch_id": "normal_high_reward",
+		"battle_type": "normal_high_reward",
+		"title": "高奖励战",
+		"description": "敌人更危险，奖励更高。",
+		"reward_gold": 3,
+	})
+	change_state(RUN_TYPES.RunState.COMBAT_BRANCH_SELECT)
+	return current_combat_branch_options.duplicate(true)
+
+
+func select_combat_branch(combat_branch_id: String) -> bool:
+	var option: Dictionary = _get_combat_branch_option(combat_branch_id)
+	if option.is_empty():
+		return false
+
+	current_combat_branch_id = combat_branch_id
+	current_battle_type = option.get("battle_type", "normal_safe")
+	if current_battle_type == "boss":
+		change_state(RUN_TYPES.RunState.BOSS_COMBAT)
+	else:
+		change_state(RUN_TYPES.RunState.COMBAT)
+	return true
+
+
+func start_current_combat() -> Dictionary:
+	if current_battle_type == "":
+		current_battle_type = "normal_safe"
+
+	battle_seed += 1
+	if current_battle_type == "boss":
+		last_battle_result = battle_manager.start_boss_battle(formation_model, inventory_model, treasure_catalog, enemy_catalog, battle_seed)
+	else:
+		last_battle_result = battle_manager.start_normal_battle(formation_model, inventory_model, treasure_catalog, enemy_catalog, current_battle_type, battle_seed)
+
+	last_combat_result = last_battle_result.get("result", "")
+	last_battle_timeline_log = battle_manager.get_last_timeline_log()
+	change_state(RUN_TYPES.RunState.COMBAT_RESULT)
+	return last_battle_result.duplicate(true)
+
+
+func resolve_combat_result() -> void:
+	if current_battle_type == "boss":
+		if last_combat_result == "win":
+			next_state_after_result = RUN_TYPES.RunState.RUN_VICTORY
+		else:
+			defeat_reason = "boss_lose"
+			next_state_after_result = RUN_TYPES.RunState.RUN_DEFEAT
+		return
+
+	if last_combat_result == "win":
+		normal_win_count += 1
+		gold += _get_current_combat_reward_gold()
+		if normal_win_count >= normal_win_target:
+			next_state_after_result = RUN_TYPES.RunState.BOSS_INTRO
+		else:
+			next_state_after_result = RUN_TYPES.RunState.BRANCH_SELECT
+	else:
+		run_durability -= 1
+		if run_durability <= 0:
+			defeat_reason = "durability_zero"
+			next_state_after_result = RUN_TYPES.RunState.RUN_DEFEAT
+		else:
+			next_state_after_result = RUN_TYPES.RunState.BRANCH_SELECT
+
+
+func enter_boss_combat_requested() -> void:
+	current_combat_branch_options = [{
+		"combat_branch_id": "boss",
+		"battle_type": "boss",
+		"title": "最终 Boss",
+		"description": "挑战 V1 终局首领。",
+		"reward_gold": 0,
+	}]
+	select_combat_branch("boss")
+
+
 func record_selected_combat_branch(battle_type: String) -> void:
 	current_battle_type = battle_type
 	change_state(RUN_TYPES.RunState.COMBAT)
@@ -438,3 +558,21 @@ func _sync_view_contract_for_state(state: int) -> void:
 			current_page_type = RUN_TYPES.PageType.RUN_VICTORY_PAGE
 		RUN_TYPES.RunState.RUN_DEFEAT:
 			current_page_type = RUN_TYPES.PageType.RUN_DEFEAT_PAGE
+
+
+func _get_combat_branch_option(combat_branch_id: String) -> Dictionary:
+	var index: int = 0
+	while index < current_combat_branch_options.size():
+		if current_combat_branch_options[index].get("combat_branch_id", "") == combat_branch_id:
+			return current_combat_branch_options[index]
+		index += 1
+
+	return {}
+
+
+func _get_current_combat_reward_gold() -> int:
+	var option: Dictionary = _get_combat_branch_option(current_combat_branch_id)
+	if option.is_empty():
+		return 2
+
+	return option.get("reward_gold", 2)
