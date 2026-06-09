@@ -13,6 +13,7 @@ var branch_enemy_map: Dictionary = {
 	"normal_standard": ["goblin_attacker"],
 	"normal_high_reward": ["shield_guard"],
 	"normal": ["training_dummy"],
+	"boss_final": ["v1_final_boss"],
 	"boss": ["v1_final_boss"],
 }
 
@@ -88,4 +89,3 @@ func _setup_catalog() -> void:
 		"effect_list": [{"effect_type": "apply_burn_to_player", "value": 2}],
 		"battle_type": "boss",
 	})
-

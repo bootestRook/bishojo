@@ -49,6 +49,15 @@ func resolve_effect(context, source_unit, effect, config, cooldown_scheduler, da
 				player_status_resolver.apply_burn(context, effect.get_value(source_unit.rarity), logger, source_unit.instance_id)
 			"apply_dot_to_enemy":
 				generic_dot_resolver.apply_dot(context, source_unit, target, effect, config, logger)
+			"buff", "gold":
+				# `buff` 和 `gold` 当前是目录里的非战斗型数据承诺；战斗层只识别并记录，真实收益由后续 Run/奖励系统承接。
+				logger.log(context, {
+					"event_type": "EFFECT_NON_COMBAT_DATA",
+					"source_id": source_unit.instance_id,
+					"target_id": "non_combat_target",
+					"effect_type": effect.effect_type,
+					"cause": "recognized_non_battle_effect",
+				})
 			_:
 				logger.log(context, {
 					"event_type": "EFFECT_IGNORED",
@@ -105,4 +114,3 @@ func _apply_lifesteal_status(context, target_unit, effect, logger, source_id: St
 		"stack_after": target_unit.lifesteal_bp,
 		"cause": "effect",
 	})
-

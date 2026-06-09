@@ -28,10 +28,14 @@ func resolve_targets(context, source_unit, target_rule: String, logger) -> Array
 			return _same_col_units(context, source_unit)
 		"front_back_overlap":
 			return _front_back_overlap_units(context, source_unit)
+		"center_column":
+			return _center_column_units(context, source_unit)
 		"longest_cooldown_ally":
 			return _longest_cooldown_ally(context, source_unit)
 		"random_ally":
 			return _random_ally(context, source_unit, logger)
+		"run":
+			return ["run"]
 		_:
 			return []
 
@@ -97,6 +101,19 @@ func _front_back_overlap_units(context, source_unit) -> Array:
 	return result
 
 
+func _center_column_units(context, source_unit) -> Array:
+	var result: Array = []
+	var units: Array = context.get_alive_units()
+	var index: int = 0
+	while index < units.size():
+		var unit = units[index]
+		if unit.instance_id != source_unit.instance_id and unit.col_start <= 2 and unit.col_end >= 2:
+			result.append(unit)
+		index += 1
+
+	return result
+
+
 func _longest_cooldown_ally(context, source_unit) -> Array:
 	var result_unit = null
 	var best_remaining: int = -1
@@ -140,4 +157,3 @@ func _random_ally(context, source_unit, logger) -> Array:
 
 func _col_overlaps(left_unit, right_unit) -> bool:
 	return left_unit.col_start <= right_unit.col_end and left_unit.col_end >= right_unit.col_start
-
