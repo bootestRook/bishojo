@@ -5,10 +5,18 @@ const RUN_TYPES = preload("res://scripts/core/run_types.gd")
 const V1_CHARACTER_DATA = preload("res://scripts/data/v1_character_data.gd")
 const V1_INITIAL_RUN_CONFIG = preload("res://scripts/data/v1_initial_run_config.gd")
 const V1_STARTER_TREASURE_OPTIONS = preload("res://scripts/data/v1_starter_treasure_options.gd")
+const V1_TREASURE_CATALOG = preload("res://scripts/data/treasure/v1_treasure_catalog.gd")
+const V1_RARITY_CONFIG = preload("res://scripts/data/treasure/v1_rarity_config.gd")
+const INVENTORY_MODEL = preload("res://scripts/systems/inventory/inventory_model.gd")
+const FORMATION_MODEL = preload("res://scripts/systems/formation/formation_model.gd")
+const BRANCH_MANAGER = preload("res://scripts/systems/branch/branch_manager.gd")
+const NODE_CHOICE_MANAGER = preload("res://scripts/systems/node_choice/node_choice_manager.gd")
+const SHOP_MANAGER = preload("res://scripts/systems/shop/shop_manager.gd")
+const SYNTHESIS_RESOLVER = preload("res://scripts/systems/synthesis/synthesis_resolver.gd")
 
 # 文件职责：
 # - 管理一局 Run 的核心流程状态和最小运行数据骨架。
-# - 为后续 UIManager 提供“当前应显示哪个 Page / RunBoardMode”的只读契约数据。
+# - 为后续 UI 层提供“当前应显示哪个 Page / RunBoardMode”的只读契约数据。
 # - 本阶段不接入场景、节点、Autoload、输入动作、战斗模拟器或外部 Manager，避免臆造项目符号。
 
 const STATE_UNSET: int = -1
@@ -19,6 +27,14 @@ const DEFAULT_NORMAL_WIN_TARGET: int = 10
 var character_data = V1_CHARACTER_DATA.new()
 var initial_run_config = V1_INITIAL_RUN_CONFIG.new()
 var starter_treasure_data = V1_STARTER_TREASURE_OPTIONS.new()
+var treasure_catalog = V1_TREASURE_CATALOG.new()
+var rarity_config = V1_RARITY_CONFIG.new()
+var inventory_model = INVENTORY_MODEL.new()
+var formation_model = FORMATION_MODEL.new()
+var branch_manager = BRANCH_MANAGER.new()
+var node_choice_manager = NODE_CHOICE_MANAGER.new()
+var shop_manager = SHOP_MANAGER.new()
+var synthesis_resolver = SYNTHESIS_RESOLVER.new()
 
 var current_state: int = RUN_TYPES.RunState.BOOT
 var current_page_type: int = PAGE_TYPE_UNSET
@@ -34,6 +50,12 @@ var run_durability: int = 0
 var normal_win_target: int = 0
 var normal_win_count: int = 0
 var starter_treasure_options: Array = []
+var current_branch_options: Array = []
+var current_node_choices: Array = []
+var current_shop_stock: Array = []
+var last_node_choice_result: Dictionary = {}
+var last_shop_result: Dictionary = {}
+var last_formation_validation: Dictionary = {}
 
 # 当前流程临时数据。字符串取值会在后续数据配置阶段统一收口，当前只保留承接字段。
 var current_branch_id: String = ""
@@ -63,6 +85,13 @@ func change_state(next_state: int) -> void:
 
 
 func reset_run_data() -> void:
+	inventory_model = INVENTORY_MODEL.new()
+	formation_model = FORMATION_MODEL.new()
+	formation_model.setup_grid()
+	branch_manager = BRANCH_MANAGER.new()
+	node_choice_manager = NODE_CHOICE_MANAGER.new()
+	shop_manager = SHOP_MANAGER.new()
+	synthesis_resolver = SYNTHESIS_RESOLVER.new()
 	selected_character_id = ""
 	selected_starter_treasure_id = ""
 	gold = 0
@@ -71,6 +100,12 @@ func reset_run_data() -> void:
 	normal_win_target = 0
 	normal_win_count = 0
 	starter_treasure_options = []
+	current_branch_options = []
+	current_node_choices = []
+	current_shop_stock = []
+	last_node_choice_result = {}
+	last_shop_result = {}
+	last_formation_validation = {}
 	current_branch_id = ""
 	current_branch_type = ""
 	current_battle_type = ""
@@ -78,6 +113,7 @@ func reset_run_data() -> void:
 	defeat_reason = ""
 	next_state_after_result = STATE_UNSET
 	state_history = []
+	# 以下旧容器仅作为早期骨架兼容字段保留；真实实例和回路数据从本轮开始由 inventory_model / formation_model 管理。
 	inventory_items = []
 	formation_units = {}
 	locked_shop_stock = []
@@ -144,7 +180,7 @@ func select_starter_treasure(treasure_id: String) -> bool:
 		return false
 
 	selected_starter_treasure_id = treasure_id
-	# TODO: 后续 InventoryManager 创建后，在这里把所选秘宝加入背包或交给初始上阵引导。
+	inventory_model.add_treasure(treasure_id, "green", "starter_camp")
 	change_state(RUN_TYPES.RunState.BRANCH_SELECT)
 	return true
 
@@ -159,8 +195,84 @@ func record_selected_branch(branch_id: String, branch_type: String) -> void:
 	change_state(RUN_TYPES.RunState.BRANCH_RESOLVE)
 
 
+func generate_branch_options() -> Array:
+	current_branch_options = branch_manager.generate_branch_options(self)
+	change_state(RUN_TYPES.RunState.BRANCH_SELECT)
+	return current_branch_options.duplicate()
+
+
+func select_branch(branch_id: String) -> bool:
+	var option = branch_manager.get_option(branch_id)
+	if option == null:
+		return false
+
+	current_branch_id = branch_id
+	current_branch_type = option.branch_type
+	change_state(RUN_TYPES.RunState.BRANCH_RESOLVE)
+	match option.branch_type:
+		"shop":
+			enter_shop_node()
+		"supply":
+			change_state(RUN_TYPES.RunState.SUPPLY_NODE)
+		"gold":
+			change_state(RUN_TYPES.RunState.GOLD_NODE)
+		_:
+			return false
+
+	return true
+
+
 func enter_shop_node() -> void:
+	current_shop_stock = shop_manager.prepare_stock(treasure_catalog, current_shop_stock)
 	change_state(RUN_TYPES.RunState.SHOP_NODE)
+
+
+func get_current_node_choices() -> Array:
+	if current_state == RUN_TYPES.RunState.SUPPLY_NODE:
+		current_node_choices = node_choice_manager.generate_choices("supply", self)
+	elif current_state == RUN_TYPES.RunState.GOLD_NODE:
+		current_node_choices = node_choice_manager.generate_choices("gold", self)
+	else:
+		current_node_choices = []
+
+	return current_node_choices.duplicate()
+
+
+func apply_node_choice(option_id: String) -> Dictionary:
+	var option = node_choice_manager.get_choice(option_id)
+	last_node_choice_result = node_choice_manager.apply_choice(option, self)
+	if last_node_choice_result.get("ok", false):
+		change_state(RUN_TYPES.RunState.SYNTHESIS_CHECK)
+
+	return last_node_choice_result.duplicate(true)
+
+
+func shop_buy_item(shop_item_id: String) -> Dictionary:
+	last_shop_result = shop_manager.buy_item(shop_item_id, self, inventory_model)
+	return last_shop_result.duplicate(true)
+
+
+func shop_refresh() -> Dictionary:
+	last_shop_result = shop_manager.refresh_shop(self, treasure_catalog)
+	if last_shop_result.get("ok", false):
+		current_shop_stock = last_shop_result.get("stock", [])
+
+	return last_shop_result.duplicate(true)
+
+
+func shop_toggle_lock() -> bool:
+	return shop_manager.toggle_lock()
+
+
+func shop_sell_instance(instance_id: String) -> Dictionary:
+	last_shop_result = shop_manager.sell_instance(instance_id, self, inventory_model, formation_model, treasure_catalog)
+	return last_shop_result.duplicate(true)
+
+
+func shop_leave_requested() -> void:
+	shop_manager.leave_shop()
+	current_shop_stock = shop_manager.current_stock
+	change_state(RUN_TYPES.RunState.SYNTHESIS_CHECK)
 
 
 func enter_supply_node() -> void:
@@ -175,12 +287,78 @@ func finish_branch_node() -> void:
 	change_state(RUN_TYPES.RunState.SYNTHESIS_CHECK)
 
 
-func finish_synthesis_check() -> void:
+func run_synthesis_check() -> Array:
+	last_synthesis_results = synthesis_resolver.check_and_apply(inventory_model, formation_model, rarity_config)
+	enter_formation_edit()
+	return last_synthesis_results.duplicate(true)
+
+
+func enter_formation_edit() -> void:
+	formation_model.apply_unlocks(normal_win_count)
 	change_state(RUN_TYPES.RunState.FORMATION_EDIT)
 
 
+func finish_synthesis_check() -> void:
+	run_synthesis_check()
+
+
+func formation_place_instance(instance_id: String, anchor_slot_id: String) -> Dictionary:
+	var instance = inventory_model.get_instance(instance_id)
+	if instance == null:
+		return {"ok": false, "reason": "instance_not_found", "required_slot_ids": []}
+
+	var treasure_data = treasure_catalog.get_treasure_data(instance.treasure_id, instance.rarity)
+	var result: Dictionary = formation_model.can_place(instance_id, treasure_data, anchor_slot_id)
+	if not result.get("ok", false):
+		return result
+
+	formation_model.place_instance(instance_id, treasure_data, anchor_slot_id)
+	instance.is_in_inventory = false
+	instance.is_in_formation = true
+	instance.placed_order = formation_model.get_first_slot_sort_value(instance_id)
+	return result
+
+
+func formation_remove_instance(instance_id: String) -> bool:
+	var instance = inventory_model.get_instance(instance_id)
+	if instance == null:
+		return false
+
+	var removed: bool = formation_model.remove_instance(instance_id)
+	if removed:
+		instance.is_in_inventory = true
+		instance.is_in_formation = false
+		instance.placed_order = -1
+
+	return removed
+
+
+func formation_move_instance(instance_id: String, anchor_slot_id: String) -> Dictionary:
+	var instance = inventory_model.get_instance(instance_id)
+	if instance == null:
+		return {"ok": false, "reason": "instance_not_found", "required_slot_ids": []}
+
+	var treasure_data = treasure_catalog.get_treasure_data(instance.treasure_id, instance.rarity)
+	var result: Dictionary = formation_model.can_place(instance_id, treasure_data, anchor_slot_id)
+	if not result.get("ok", false):
+		return result
+
+	formation_model.place_instance(instance_id, treasure_data, anchor_slot_id)
+	instance.is_in_inventory = false
+	instance.is_in_formation = true
+	instance.placed_order = formation_model.get_first_slot_sort_value(instance_id)
+	return result
+
+
+func validate_formation() -> Dictionary:
+	last_formation_validation = formation_model.validate_formation()
+	return last_formation_validation.duplicate(true)
+
+
 func confirm_formation() -> void:
-	change_state(RUN_TYPES.RunState.COMBAT_BRANCH_SELECT)
+	var result: Dictionary = validate_formation()
+	if result.get("ok", false):
+		change_state(RUN_TYPES.RunState.COMBAT_BRANCH_SELECT)
 
 
 func record_selected_combat_branch(battle_type: String) -> void:
