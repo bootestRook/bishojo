@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://bvj84skxrpxb8"]
 
-[ext_resource type="Script" path="res://scripts/app/v1_app_controller.gd" id="1"]
+[ext_resource type="Script" uid="uid://cgrcsbgirs6ol" path="res://scripts/app/v1_app_controller.gd" id="1"]
 
-[node name="V1AppController" type="Control"]
+[node name="V1AppController" type="Control" unique_id=278263770]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1")

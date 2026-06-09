@@ -1,0 +1,489 @@
+{
+  "state_id": "main_menu",
+  "page_type": "MAIN_MENU_PAGE",
+  "design_width": 1080,
+  "design_height": 2340,
+  "safe_area": {
+    "x": 0,
+    "y": 120,
+    "width": 1080,
+    "height": 2130
+  },
+  "components": [
+    {
+      "component_id": "background_art",
+      "component_role": "background",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_background_v2.png",
+      "rect": { "x": 0, "y": 0, "w": 1080, "h": 2340 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 0,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "player_avatar",
+      "component_role": "avatar_art",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_avatar_observer_v1.png",
+      "rect": { "x": 41, "y": 55, "w": 168, "h": 168 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 20,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "player_avatar_frame",
+      "component_role": "avatar_frame",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_frame_avatar_normal.png",
+      "rect": { "x": 22, "y": 30, "w": 214, "h": 234 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 30,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "player_name_label",
+      "component_role": "text",
+      "node_type": "Label",
+      "prefab": "native:Label",
+      "rect": { "x": 224, "y": 82, "w": 440, "h": 60 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "title",
+      "text": "沉眠的观测者 3093",
+      "text_style": {
+        "font_size": 44,
+        "font_color": "#f4ddb0",
+        "outline_size": 5,
+        "outline_color": "#1a1020",
+        "shadow_size": 3,
+        "shadow_color": "#000000bb"
+      },
+      "interactions": []
+    },
+    {
+      "component_id": "progress_plate",
+      "component_role": "text_plate",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_plate_progress_normal.png",
+      "rect": { "x": 226, "y": 143, "w": 320, "h": 76 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 40,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "progress_icon",
+      "component_role": "icon",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/icons/main_menu/ui_main_menu_icon_progress_normal.png",
+      "rect": { "x": 574, "y": 70, "w": 82, "h": 102 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 50,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "progress_value_label",
+      "component_role": "text",
+      "node_type": "Label",
+      "prefab": "native:Label",
+      "rect": { "x": 255, "y": 150, "w": 260, "h": 58 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 55,
+      "visible": true,
+      "variant": "progress",
+      "text": "0/100",
+      "data_binding": {
+        "source": "profile_progress",
+        "fallback": "0/100"
+      },
+      "text_style": {
+        "font_size": 42,
+        "font_color": "#f7ddb0",
+        "outline_size": 4,
+        "outline_color": "#17101a",
+        "shadow_size": 2,
+        "shadow_color": "#000000aa"
+      },
+      "interactions": []
+    },
+    {
+      "component_id": "settings_button",
+      "component_role": "utility_button",
+      "node_type": "TextureButton",
+      "prefab": "native:TextureButton",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_frame_utility_normal.png",
+      "rect": { "x": 738, "y": 58, "w": 112, "h": 112 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 45,
+      "visible": true,
+      "variant": "normal",
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "settings_requested",
+          "target": "self",
+          "method": "_show_pending_message",
+          "payload": "设置功能后置"
+        }
+      ]
+    },
+    {
+      "component_id": "settings_icon",
+      "component_role": "icon",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/icons/main_menu/ui_main_menu_icon_settings_normal.png",
+      "rect": { "x": 750, "y": 53, "w": 88, "h": 88 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 55,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "settings_label",
+      "component_role": "text",
+      "node_type": "Label",
+      "prefab": "native:Label",
+      "rect": { "x": 708, "y": 154, "w": 172, "h": 52 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 55,
+      "visible": true,
+      "variant": "side_caption",
+      "text": "设置",
+      "text_style": {
+        "font_size": 31,
+        "font_color": "#f4ddb0",
+        "outline_size": 4,
+        "outline_color": "#17101a",
+        "shadow_size": 2,
+        "shadow_color": "#000000aa"
+      },
+      "interactions": []
+    },
+    {
+      "component_id": "exit_button",
+      "component_role": "utility_button",
+      "node_type": "TextureButton",
+      "prefab": "native:TextureButton",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_frame_utility_alt_normal.png",
+      "rect": { "x": 900, "y": 58, "w": 112, "h": 112 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 45,
+      "visible": true,
+      "variant": "normal",
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "quit_requested",
+          "target": "app_controller",
+          "method": "quit_requested"
+        }
+      ]
+    },
+    {
+      "component_id": "exit_icon",
+      "component_role": "icon",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/icons/main_menu/ui_main_menu_icon_exit_normal.png",
+      "rect": { "x": 911, "y": 54, "w": 90, "h": 90 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 55,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "exit_label",
+      "component_role": "text",
+      "node_type": "Label",
+      "prefab": "native:Label",
+      "rect": { "x": 870, "y": 154, "w": 172, "h": 52 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 55,
+      "visible": true,
+      "variant": "side_caption",
+      "text": "退出",
+      "text_style": {
+        "font_size": 31,
+        "font_color": "#f4ddb0",
+        "outline_size": 4,
+        "outline_color": "#17101a",
+        "shadow_size": 2,
+        "shadow_color": "#000000aa"
+      },
+      "interactions": []
+    },
+    {
+      "component_id": "achievement_button",
+      "component_role": "side_button",
+      "node_type": "TextureButton",
+      "prefab": "native:TextureButton",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_frame_side_achievement_normal.png",
+      "rect": { "x": 58, "y": 310, "w": 130, "h": 142 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 45,
+      "visible": true,
+      "variant": "normal",
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "achievement_requested",
+          "target": "self",
+          "method": "_show_pending_message",
+          "payload": "成就功能后置"
+        }
+      ]
+    },
+    {
+      "component_id": "achievement_icon",
+      "component_role": "icon",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/icons/main_menu/ui_main_menu_icon_achievement_normal.png",
+      "rect": { "x": 72, "y": 322, "w": 104, "h": 104 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 55,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "achievement_label",
+      "component_role": "text",
+      "node_type": "Label",
+      "prefab": "native:Label",
+      "rect": { "x": 50, "y": 438, "w": 150, "h": 54 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 55,
+      "visible": true,
+      "variant": "side_caption",
+      "text": "成就",
+      "text_style": {
+        "font_size": 32,
+        "font_color": "#f4ddb0",
+        "outline_size": 4,
+        "outline_color": "#17101a",
+        "shadow_size": 2,
+        "shadow_color": "#000000aa"
+      },
+      "interactions": []
+    },
+    {
+      "component_id": "collection_button",
+      "component_role": "side_button",
+      "node_type": "TextureButton",
+      "prefab": "native:TextureButton",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_frame_side_collection_normal.png",
+      "rect": { "x": 58, "y": 548, "w": 130, "h": 142 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 45,
+      "visible": true,
+      "variant": "normal",
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "collection_requested",
+          "target": "self",
+          "method": "_show_pending_message",
+          "payload": "图鉴功能后置"
+        }
+      ]
+    },
+    {
+      "component_id": "collection_icon",
+      "component_role": "icon",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/icons/main_menu/ui_main_menu_icon_collection_normal.png",
+      "rect": { "x": 73, "y": 560, "w": 104, "h": 104 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 55,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "collection_label",
+      "component_role": "text",
+      "node_type": "Label",
+      "prefab": "native:Label",
+      "rect": { "x": 50, "y": 676, "w": 150, "h": 54 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 55,
+      "visible": true,
+      "variant": "side_caption",
+      "text": "图鉴",
+      "text_style": {
+        "font_size": 32,
+        "font_color": "#f4ddb0",
+        "outline_size": 4,
+        "outline_color": "#17101a",
+        "shadow_size": 2,
+        "shadow_color": "#000000aa"
+      },
+      "interactions": []
+    },
+    {
+      "component_id": "task_button",
+      "component_role": "side_button",
+      "node_type": "TextureButton",
+      "prefab": "native:TextureButton",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_frame_side_task_normal.png",
+      "rect": { "x": 58, "y": 786, "w": 130, "h": 142 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 45,
+      "visible": true,
+      "variant": "normal",
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "task_requested",
+          "target": "self",
+          "method": "_show_pending_message",
+          "payload": "任务功能后置"
+        }
+      ]
+    },
+    {
+      "component_id": "task_icon",
+      "component_role": "icon",
+      "node_type": "TextureRect",
+      "prefab": "native:TextureRect",
+      "asset": "res://assets/ui/icons/main_menu/ui_main_menu_icon_task_normal.png",
+      "rect": { "x": 73, "y": 798, "w": 104, "h": 104 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 55,
+      "visible": true,
+      "variant": "normal",
+      "interactions": []
+    },
+    {
+      "component_id": "task_label",
+      "component_role": "text",
+      "node_type": "Label",
+      "prefab": "native:Label",
+      "rect": { "x": 50, "y": 914, "w": 150, "h": 54 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 55,
+      "visible": true,
+      "variant": "side_caption",
+      "text": "任务",
+      "text_style": {
+        "font_size": 32,
+        "font_color": "#f4ddb0",
+        "outline_size": 4,
+        "outline_color": "#17101a",
+        "shadow_size": 2,
+        "shadow_color": "#000000aa"
+      },
+      "interactions": []
+    },
+    {
+      "component_id": "last_message_label",
+      "component_role": "text",
+      "node_type": "Label",
+      "prefab": "native:Label",
+      "rect": { "x": 170, "y": 1882, "w": 740, "h": 74 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 70,
+      "visible": true,
+      "variant": "message",
+      "text": "",
+      "data_binding": {
+        "source": "app_controller.last_ui_message"
+      },
+      "text_style": {
+        "font_size": 32,
+        "font_color": "#e6f8ff",
+        "outline_size": 5,
+        "outline_color": "#051018",
+        "shadow_size": 2,
+        "shadow_color": "#000000cc"
+      },
+      "interactions": []
+    },
+    {
+      "component_id": "start_button",
+      "component_role": "primary_button",
+      "node_type": "TextureButton",
+      "prefab": "native:TextureButton",
+      "asset": "res://assets/ui/components/main_menu/ui_main_menu_button_primary_normal.png",
+      "rect": { "x": 250, "y": 2000, "w": 580, "h": 210 },
+      "anchor": "top_left",
+      "pivot": "center",
+      "z_index": 80,
+      "visible": true,
+      "variant": "normal",
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "start_new_run_requested",
+          "target": "app_controller",
+          "method": "start_new_run_requested"
+        }
+      ]
+    },
+    {
+      "component_id": "start_button_label",
+      "component_role": "text",
+      "node_type": "Label",
+      "prefab": "native:Label",
+      "rect": { "x": 306, "y": 2042, "w": 468, "h": 108 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 90,
+      "visible": true,
+      "variant": "button_text",
+      "text": "进入游戏",
+      "text_style": {
+        "font_size": 74,
+        "font_color": "#f4ddb0",
+        "outline_size": 6,
+        "outline_color": "#251527",
+        "shadow_size": 3,
+        "shadow_color": "#000000cc"
+      },
+      "interactions": []
+    }
+  ]
+}
