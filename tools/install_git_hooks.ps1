@@ -17,6 +17,8 @@ try {
     git config core.quotepath false
     Write-Host 'Git hooks enabled: core.hooksPath=.githooks'
     Write-Host 'Git path output configured: core.quotepath=false'
+
+    & powershell -NoProfile -ExecutionPolicy Bypass -File tools/sync_codegraph.ps1
 } finally {
     Pop-Location
 }
