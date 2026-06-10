@@ -36,8 +36,6 @@ echo.
 git add -A
 if errorlevel 1 goto :fail
 
-git reset -q -- .codegraph >nul 2>nul
-
 git diff --cached --quiet
 if errorlevel 2 goto :fail
 if not errorlevel 1 (

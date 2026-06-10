@@ -2,6 +2,9 @@
 .godot/
 .import/
 
+# Local code intelligence index
+.codegraph/
+
 # Godot export/build output
 /android/
 /build/
