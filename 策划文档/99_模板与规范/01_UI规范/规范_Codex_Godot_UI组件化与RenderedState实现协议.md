@@ -6,7 +6,7 @@
 目标平台：手机竖屏  
 主设计尺寸：1080 × 2340  
 文档状态：执行规范定稿版  
-最后更新：2026-06-09
+最后更新：2026-06-10
 
 ---
 
@@ -162,6 +162,42 @@ UI 不得在运行时根据规则自动计算核心布局。
 按 visible 字段显示 / 隐藏组件
 按 variant 字段切换组件皮肤状态
 按 Godot 全局 Stretch 做等比缩放
+```
+
+### 2.5 极简交互层优先
+
+后续所有 UI 默认采用“极简交互层”原则：先保证最低限度的功能逻辑交互，再逐步增加次级入口和装饰。
+
+必须遵守：
+
+```text
+核心页面只展示当前阶段必须点击、必须读取、必须反馈的控件。
+未实现、后置或非当前阶段必要的入口默认不显示，不用占位按钮堆叠界面。
+参考图中的视觉复杂度只用于确认布局比例和风格方向，不等于必须复刻所有入口。
+按钮、图标、文本、状态条优先使用低噪声、清晰、可读的极简组件。
+主菜单、角色选择、初始营地等局外页面默认不做复杂装饰边框，除非该控件承载明确交互。
+```
+
+### 2.6 主视觉与背景必须拆分
+
+背景图只能承载不可交互环境底图，不得把角色、可替换主视觉、队伍剪影、NPC、可点击对象烘进背景。
+
+必须拆分为独立组件：
+
+```text
+Background：纯背景 / 环境 / 纸面 / 光影，不包含角色主视觉。
+CharacterArt：角色立绘、角色剪影、队伍剪影、NPC、怪物、宠物、机器人等。
+Button / Icon / Text：所有交互控件与文本。
+```
+
+角色剪影类资产也必须是独立透明 PNG，并在 Rendered State 中以单独 `component_id` 写入 rect 和 z_index。
+
+禁止：
+
+```text
+把主菜单角色队伍直接画进 background_art。
+把角色剪影和按钮合成一张不可拆 UI 图。
+把多个未来会单独隐藏 / 替换 / 动画的角色合成到同一张运行时背景里。
 ```
 
 ---
@@ -370,6 +406,195 @@ locked，可选
 不要把卡牌头像、边框、稀有度、文字合成一张不可拆图
 可缩放面板必须提供 9-slice 参数
 纯装饰可以合并，但不得覆盖可交互区域
+```
+
+### 5.5 极简剪影风格生图规范
+
+后续 UI 资产默认采用“极简浅色背景 + 独立纯剪影主视觉 + 低噪声线框控件”的生图规范。
+
+所有美术资源必须使用 Codex 的 `gpt-image-2` 生图能力产出。代码只允许负责接入、切片、透明通道清理、压缩、格式转换、资源登记和运行时加载，不得用代码直接生成最终美术图。
+
+#### 5.5.1 总体风格
+
+```text
+风格关键词：极简、克制、浅色、低噪声、细腻纸感、轻微雾化、独立透明组件。
+主色：暖白、浅灰、炭灰。
+辅助色：只允许极少量低饱和强调色，用于细线、轮廓或状态提示。
+视觉密度：页面留白优先，控件数量优先服从最低功能交互。
+控件语言：细线框、轻阴影、清晰图标、无重装饰、无复杂金属边框。
+角色语言：纯剪影或近纯剪影，不做高饱和彩色立绘，不做夸张表情。
+```
+
+默认不追求华丽感。参考图只用于确认布局比例和气质，不复制复杂装饰数量。
+
+#### 5.5.2 背景图生图规范
+
+背景图必须只承载环境底色和氛围，不得包含任何角色、NPC、队伍、怪物、宠物、按钮、图标或文字。
+
+推荐提示词方向：
+
+```text
+minimal off-white parchment background, subtle paper texture, soft grey vignette,
+faint abstract mist, no characters, no people, no icons, no text, no UI buttons,
+clean vertical mobile game background, high detail, low contrast
+```
+
+必须满足：
+
+```text
+背景为独立 PNG。
+背景可铺满 1080×2340 竖屏。
+背景只在边缘或局部提供轻微纹理，中部必须保留足够留白承载独立组件。
+背景不得把主视觉对象画进去。
+```
+
+禁止：
+
+```text
+背景里出现角色剪影。
+背景里出现整队人物。
+背景里出现可点击按钮。
+背景里出现文字、Logo、图标或状态条。
+背景图承担页面最终构图中可替换对象的职责。
+```
+
+#### 5.5.3 CharacterArt 生图规范
+
+角色、队伍、NPC、怪物、宠物、机器人等主视觉必须作为独立 `CharacterArt` 透明 PNG 生成和接入。
+
+角色剪影默认要求：
+
+```text
+纯剪影或近纯剪影。
+正面或接近正面，面向屏幕。
+姿态稳定、轮廓可读，不做过度动态斜视。
+灰黑主体，允许极细低饱和轮廓光。
+不出现表情细节，不出现彩色脸部，不出现复杂服装配色。
+每个角色单独一张透明 PNG，除非该组永远不会拆分、隐藏、替换或动画。
+```
+
+推荐提示词方向：
+
+```text
+front-facing character silhouette, pure dark grey silhouette, transparent background,
+clean readable outline, subtle thin rim light, high detail edge quality,
+no facial details, no color costume, no background, no text, isolated game UI asset
+```
+
+剪影资产验收：
+
+```text
+透明背景干净，无色块残留。
+角色边缘无其它角色碎片。
+单个 PNG 只包含一个逻辑角色或一个明确不可拆的逻辑组。
+角色不与背景、按钮、文本合并。
+Rendered State 中必须以独立 component_id、rect、z_index 接入。
+```
+
+#### 5.5.4 按钮、图标、状态条生图规范
+
+按钮、图标、文本底牌、状态条属于功能控件资产，必须低噪声、可读、可复用。
+
+默认要求：
+
+```text
+按钮底图不得烘焙文字。
+图标不得烘焙文字标签。
+状态条不得烘焙数值。
+线条清晰，边框简洁，不使用复杂宝石、金属、齿轮堆叠装饰。
+普通按钮、主按钮、图标按钮都必须能在浅色背景上清楚识别。
+按钮至少预留 normal；需要状态反馈时补 pressed / disabled / selected。
+```
+
+推荐提示词方向：
+
+```text
+minimal mobile game UI button frame, thin charcoal line art, off-white fill,
+transparent background, no text, clean edges, subtle shadow, reusable component
+```
+
+禁止：
+
+```text
+把“进入游戏”“设置”“退出”等文字直接画进按钮底图。
+把多个按钮合成一张整图。
+把按钮和背景合成。
+为了装饰而增加大量无法交互的边框、宝石、纹章。
+```
+
+#### 5.5.5 槽位框轻量灰白基准
+
+战斗槽位、阵型槽位、背包槽位、奖励槽位等固定槽位框默认采用“灰白轻量线框”方向。参考 UI 只能用于确认尺寸、外轮廓比例、圆角半径和槽位间距，不得复刻参考图中的深色厚边、内部纹章、裂纹、复杂阴影或重装饰。
+
+当前已确认合格的基础战斗空槽位资产：
+
+```text
+res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png
+```
+
+该资产作为后续同类槽位生成与验收的视觉基准：
+
+```text
+尺寸：228 × 318 px
+形状：竖向圆角矩形，直边为主，小圆角，不做大胶囊圆角。
+配色：暖白 / 浅灰为主，低对比浅灰边线。
+视觉重量：轻、薄、留白充足，不使用深色厚框。
+背景：透明 PNG。
+内容：空槽位不得包含图案、纹章、文字、数字、角色、卡牌图或状态图标。
+```
+
+槽位框必须满足：
+
+```text
+同一页面内所有同类槽位使用一致尺寸和圆角语言。
+empty variant 默认使用灰白轻量版。
+locked / occupied / valid_preview / invalid_preview / highlight 只能在该轻量基准上叠加明确状态层，不得重新变成厚重深色框。
+状态图标、锁头、卡牌头像、占用高亮必须作为独立组件或独立叠加层，不得烘焙进 empty 槽位底图。
+```
+
+禁止：
+
+```text
+把参考图里的深红 / 深棕厚重槽位框直接作为默认风格。
+使用大面积暗色填充导致页面重新变厚重。
+为了表现可用槽位而加入内部旋涡、裂纹、徽章或角色剪影。
+把锁定图标、卡牌图、状态数字和槽位底框合成单张不可拆图片。
+```
+
+推荐提示词方向：
+
+```text
+minimal light grey-white mobile game slot frame, vertical rounded rectangle,
+small corner radius, thin pale grey outline, warm off-white fill,
+transparent background, no icon, no emblem, no text, no pattern,
+lightweight reusable UI component, crisp edges, low contrast
+```
+
+#### 5.5.6 生图与切图流程
+
+Codex 处理 UI 生图时必须按以下流程执行：
+
+```text
+01 先确认页面最低功能交互清单。
+02 按 Background / CharacterArt / Button / Icon / TextPlate 分类列出资产清单。
+03 分别生图，不生成整页运行时 UI。
+04 对需要透明的组件使用纯色抠图背景或透明背景生成。
+05 切图后清理透明通道、边缘残片和多余留白。
+06 写入 assets/ui 对应目录。
+07 在 Rendered State 中逐个组件显式接入。
+08 生成临时预览只用于验收，不得作为运行时 UI 资产保留。
+```
+
+生图输出必须能回答：
+
+```text
+哪些是背景资产？
+哪些是 CharacterArt？
+哪些是按钮 / 图标 / 文本底牌？
+哪些组件是可交互的？
+哪些组件只是装饰或主视觉？
+是否存在整页 UI 图被用于运行时？
+是否存在角色被烘进背景？
 ```
 
 ---

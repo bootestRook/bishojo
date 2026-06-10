@@ -17,6 +17,8 @@
 - 处理UI相关的需求前必须先阅读…\策划文档\99_模板与规范\01_UI规范\规范_Codex_Godot_UI组件化与RenderedState实现协议.md
 - 所有 UI 相关实现、重构、验收和评审均以该 UI 协议为最高优先级；任何旧策划文档、旧原型代码或临时实现规则与协议冲突时，必须先同步更新对应规则说明，再修改实现。
 - UI 核心界面不得继续沿用 `HBoxContainer` / `VBoxContainer` / `GridContainer` 自动排版原型；必须使用 Rendered State 显式坐标驱动的组件化 Godot Control 拼接。
+- 后续 UI 默认走极简交互层：只保留当前阶段最低限度的功能逻辑交互控件，未实现或非必要入口不显示。
+- 背景与主视觉必须拆分：背景不得烘入角色、NPC、队伍剪影或可替换对象；这些内容必须作为独立 `CharacterArt` / 组件资产接入 Rendered State。
 
 ## PowerShell 与 UTF-8 铁律
 

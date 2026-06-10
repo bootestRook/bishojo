@@ -1,0 +1,455 @@
+{
+  "state_id": "start_camp_card_choice",
+  "page_type": "RUN_BOARD_PAGE",
+  "run_board_mode": "START_CAMP_CARD_CHOICE",
+  "source_scene": "res://scenes/ui/pages/start_camp_card_choice_layout_page.tscn",
+  "reference_image": "res://UI_reference/初始营地3选1界面.jpg",
+  "design_width": 1280,
+  "design_height": 2769,
+  "safe_area": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 2769
+  },
+  "layout_rules": {
+    "full_page_image_used_as_runtime_ui": false,
+    "computed_layout_used": false,
+    "copied_scene": "res://scenes/ui/pages/combat_layout_page.tscn",
+    "unchanged_regions": [
+      "top_left_resource_hud",
+      "top_right_menu_hud",
+      "bottom_half_player_formation_and_hud"
+    ],
+    "runtime_note": "本状态只描述固定坐标拼接结果；卡牌头像槽位预留给独立 CharacterArt 资产，不使用临时预览图。"
+  },
+  "components": [
+    {
+      "component_id": "background",
+      "component_role": "background",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/backgrounds/combat/ui_combat_background_light.png",
+      "rect": { "x": 0, "y": 0, "w": 1280, "h": 2769 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 0,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "top_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_top_hud_light.png",
+      "rect": { "x": 0, "y": 0, "w": 1280, "h": 548 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "bottom_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_bottom_hud_light.png",
+      "rect": { "x": 0, "y": 2238, "w": 1280, "h": 531 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "gold_display",
+      "component_role": "resource_display",
+      "prefab": "TextureRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_plate_resource_light.png",
+      "rect": { "x": 39, "y": 32, "w": 210, "h": 62 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "text": "14 +7",
+      "binding": { "source": "run_resources", "key": "gold_and_income" }
+    },
+    {
+      "component_id": "menu_button",
+      "component_role": "menu_button",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/icons/combat/ui_combat_icon_menu_light.png",
+      "rect": { "x": 1135, "y": 31, "w": 70, "h": 54 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "interactions": [
+        { "event": "pressed", "emit": "menu_requested" }
+      ]
+    },
+    {
+      "component_id": "top_skill_slot_left_01",
+      "component_role": "persistent_top_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 158, "y": 114, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive"
+    },
+    {
+      "component_id": "top_skill_slot_left_02",
+      "component_role": "persistent_top_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 78, "y": 266, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "active"
+    },
+    {
+      "component_id": "top_skill_slot_left_03",
+      "component_role": "persistent_top_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 248, "y": 266, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive"
+    },
+    {
+      "component_id": "top_skill_slot_right_01",
+      "component_role": "persistent_top_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 982, "y": 114, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive"
+    },
+    {
+      "component_id": "top_skill_slot_right_02",
+      "component_role": "persistent_top_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 892, "y": 266, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive"
+    },
+    {
+      "component_id": "top_skill_slot_right_03",
+      "component_role": "persistent_top_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 1062, "y": 266, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive"
+    },
+    {
+      "component_id": "camp_card_choice_area",
+      "component_role": "mode_content_background",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 0, "y": 548, "w": 1280, "h": 959 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 15,
+      "visible": true,
+      "variant": "light_tint"
+    },
+    {
+      "component_id": "reward_option_01",
+      "component_role": "reward_option_card",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png",
+      "rect": { "x": 44, "y": 608, "w": 380, "h": 722 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "active_skill",
+      "data_binding": { "source": "start_camp_reward_options", "index": 0 },
+      "text": {
+        "title": "扇贝",
+        "cost": "10",
+        "value": "2",
+        "type": "中型",
+        "cooldown": "6秒",
+        "active": "对敌人造成 10 点伤害",
+        "passive": "获得等于当前护盾值的伤害"
+      },
+      "subcomponents": [
+        { "component_id": "reward_option_01_title_banner", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_title_banner_light.png", "rect": { "x": 92, "y": 632, "w": 285, "h": 82 } },
+        { "component_id": "reward_option_01_portrait_frame", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_portrait_frame_light.png", "rect": { "x": 148, "y": 726, "w": 171, "h": 238 }, "binding": { "source": "CharacterArt", "key": "portrait_asset" } },
+        { "component_id": "reward_option_01_cost_badge", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_badge_cost_light.png", "rect": { "x": 195, "y": 708, "w": 78, "h": 49 } },
+        { "component_id": "reward_option_01_value_badge", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_badge_value_light.png", "rect": { "x": 96, "y": 897, "w": 65, "h": 51 } },
+        { "component_id": "reward_option_01_type_plate", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_type_plate_light.png", "rect": { "x": 179, "y": 938, "w": 110, "h": 44 } },
+        { "component_id": "reward_option_01_divider", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_divider_ornament_light.png", "rect": { "x": 68, "y": 974, "w": 333, "h": 40 } },
+        { "component_id": "reward_option_01_active_panel", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_active_panel_light.png", "rect": { "x": 75, "y": 1020, "w": 325, "h": 120 } },
+        { "component_id": "reward_option_01_cooldown_plate", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_cooldown_plate_light.png", "rect": { "x": 77, "y": 1022, "w": 74, "h": 116 } }
+      ],
+      "interactions": [
+        { "event": "pressed", "emit": "start_camp_reward_option_selected", "payload": { "option_index": 0 } }
+      ]
+    },
+    {
+      "component_id": "reward_option_02",
+      "component_role": "reward_option_card",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png",
+      "rect": { "x": 450, "y": 608, "w": 380, "h": 722 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "passive_only",
+      "data_binding": { "source": "start_camp_reward_options", "index": 1 },
+      "text": {
+        "title": "猫头鹰法师",
+        "value": "2",
+        "type": "中型",
+        "passive": "右侧相邻伙伴激活时赋予其加速状态；右侧相邻伤害伙伴激活时使其伤害增加"
+      },
+      "subcomponents": [
+        { "component_id": "reward_option_02_title_banner", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_title_banner_light.png", "rect": { "x": 498, "y": 632, "w": 285, "h": 82 } },
+        { "component_id": "reward_option_02_portrait_frame", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_portrait_frame_light.png", "rect": { "x": 554, "y": 726, "w": 171, "h": 238 }, "binding": { "source": "CharacterArt", "key": "portrait_asset" } },
+        { "component_id": "reward_option_02_value_badge", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_badge_value_light.png", "rect": { "x": 502, "y": 897, "w": 65, "h": 51 } },
+        { "component_id": "reward_option_02_type_plate", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_type_plate_light.png", "rect": { "x": 585, "y": 938, "w": 110, "h": 44 } },
+        { "component_id": "reward_option_02_divider", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_divider_ornament_light.png", "rect": { "x": 474, "y": 974, "w": 333, "h": 40 } }
+      ],
+      "interactions": [
+        { "event": "pressed", "emit": "start_camp_reward_option_selected", "payload": { "option_index": 1 } }
+      ]
+    },
+    {
+      "component_id": "reward_option_03",
+      "component_role": "reward_option_card",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png",
+      "rect": { "x": 856, "y": 608, "w": 380, "h": 722 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "active_skill",
+      "data_binding": { "source": "start_camp_reward_options", "index": 2 },
+      "text": {
+        "title": "幽灵狼",
+        "cost": "3",
+        "value": "3",
+        "type": "小型",
+        "cooldown": "7秒",
+        "active": "对敌人释放 3 层毒",
+        "passive": "相邻伙伴激活时获得加速状态"
+      },
+      "subcomponents": [
+        { "component_id": "reward_option_03_title_banner", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_title_banner_light.png", "rect": { "x": 904, "y": 632, "w": 285, "h": 82 } },
+        { "component_id": "reward_option_03_portrait_frame", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_portrait_frame_light.png", "rect": { "x": 960, "y": 726, "w": 171, "h": 238 }, "binding": { "source": "CharacterArt", "key": "portrait_asset" } },
+        { "component_id": "reward_option_03_cost_badge", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_badge_cost_light.png", "rect": { "x": 1007, "y": 708, "w": 78, "h": 49 } },
+        { "component_id": "reward_option_03_value_badge", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_badge_value_light.png", "rect": { "x": 908, "y": 897, "w": 65, "h": 51 } },
+        { "component_id": "reward_option_03_type_plate", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_type_plate_light.png", "rect": { "x": 991, "y": 938, "w": 110, "h": 44 } },
+        { "component_id": "reward_option_03_divider", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_divider_ornament_light.png", "rect": { "x": 880, "y": 974, "w": 333, "h": 40 } },
+        { "component_id": "reward_option_03_active_panel", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_active_panel_light.png", "rect": { "x": 887, "y": 1020, "w": 325, "h": 120 } },
+        { "component_id": "reward_option_03_cooldown_plate", "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_cooldown_plate_light.png", "rect": { "x": 889, "y": 1022, "w": 74, "h": 116 } }
+      ],
+      "interactions": [
+        { "event": "pressed", "emit": "start_camp_reward_option_selected", "payload": { "option_index": 2 } }
+      ]
+    },
+    {
+      "component_id": "start_camp_exit_button",
+      "component_role": "mode_action_button",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png",
+      "rect": { "x": 165, "y": 1387, "w": 320, "h": 102 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "normal",
+      "text": "退出",
+      "icon_text": "↗",
+      "interactions": [
+        { "event": "pressed", "emit": "start_camp_leave_requested" }
+      ]
+    },
+    {
+      "component_id": "start_camp_free_refresh_button",
+      "component_role": "mode_action_button",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png",
+      "rect": { "x": 795, "y": 1387, "w": 320, "h": 102 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "normal",
+      "text": "免费",
+      "icon_text": "↻",
+      "interactions": [
+        { "event": "pressed", "emit": "start_camp_free_refresh_requested" }
+      ]
+    },
+    {
+      "component_id": "formation_slot_front_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 26, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_front_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 276, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 526, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 776, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 1026, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 26, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 276, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 526, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 776, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 1026, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "player_hp_bar",
+      "component_role": "player_hp_display",
+      "prefab": "ColorRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png",
+      "rect": { "x": 30, "y": 2158, "w": 1220, "h": 50 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light",
+      "text": "250"
+    },
+    {
+      "component_id": "bottom_player_status_hud",
+      "component_role": "player_status_hud",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/combat/ui_combat_frame_portrait_light.png",
+      "rect": { "x": 494, "y": 2269, "w": 293, "h": 476 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light"
+    }
+  ]
+}

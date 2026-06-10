@@ -11,8 +11,70 @@ $StrictUtf8 = [System.Text.UTF8Encoding]::new($false, $true)
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
 $OutputEncoding = [System.Text.UTF8Encoding]::new()
 
+function Invoke-GitUtf8 {
+    param([string[]]$Arguments)
+
+    $startInfo = New-Object System.Diagnostics.ProcessStartInfo
+    $startInfo.FileName = 'git'
+    $startInfo.Arguments = $Arguments -join ' '
+    $startInfo.UseShellExecute = $false
+    $startInfo.CreateNoWindow = $true
+    $startInfo.RedirectStandardOutput = $true
+    $startInfo.RedirectStandardError = $true
+    $startInfo.StandardOutputEncoding = $StrictUtf8
+    $startInfo.StandardErrorEncoding = $StrictUtf8
+
+    $process = New-Object System.Diagnostics.Process
+    $process.StartInfo = $startInfo
+    $exitCode = $null
+
+    try {
+        [void]$process.Start()
+        $stdout = $process.StandardOutput.ReadToEnd()
+        $stderr = $process.StandardError.ReadToEnd()
+        $process.WaitForExit()
+        $exitCode = $process.ExitCode
+    } finally {
+        $process.Dispose()
+    }
+
+    if ($exitCode -ne 0) {
+        throw ("git {0} failed with exit code {1}: {2}" -f ($Arguments -join ' '), $exitCode, $stderr.Trim())
+    }
+
+    return $stdout
+}
+
+function Split-NulSeparatedOutput {
+    param([string]$Text)
+
+    if ([string]::IsNullOrEmpty($Text)) {
+        return @()
+    }
+
+    return $Text.Split([char[]]@([char]0), [System.StringSplitOptions]::RemoveEmptyEntries)
+}
+
+function Test-HasSuspiciousMarker {
+    param([string]$Text)
+
+    $markers = @(
+        ([string][char]0xFFFD),
+        ([string]::Concat([char]0x951F, [char]0x65A4, [char]0x62F7)),
+        ([string]::Concat([char]0x00EF, [char]0x00BB, [char]0x00BF))
+    )
+
+    foreach ($marker in $markers) {
+        if ($Text.Contains($marker)) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
 function Get-RepoRoot {
-    $root = (& git rev-parse --show-toplevel).Trim()
+    $root = (Invoke-GitUtf8 @('rev-parse', '--show-toplevel')).Trim()
     if ([string]::IsNullOrWhiteSpace($root)) {
         throw 'Cannot find Git repository root.'
     }
@@ -65,11 +127,12 @@ function Test-IsTextPath {
 
 function Get-CandidatePaths {
     if ($Staged) {
-        $paths = & git -c core.quotepath=false diff --cached --name-only --diff-filter=ACMR
+        $output = Invoke-GitUtf8 @('-c', 'core.quotepath=false', 'diff', '--cached', '--name-only', '-z', '--diff-filter=ACMR')
     } else {
-        $paths = & git -c core.quotepath=false ls-files --cached --others --exclude-standard
+        $output = Invoke-GitUtf8 @('-c', 'core.quotepath=false', 'ls-files', '-z', '--cached', '--others', '--exclude-standard')
     }
 
+    $paths = Split-NulSeparatedOutput -Text $output
     return $paths | Where-Object {
         -not [string]::IsNullOrWhiteSpace($_) -and
         (Test-IsTextPath -Path $_)
@@ -81,6 +144,10 @@ function Test-TextFileEncoding {
         [string]$RepoRoot,
         [string]$RelativePath
     )
+
+    if (Test-HasSuspiciousMarker -Text $RelativePath) {
+        return "${RelativePath}: suspicious mojibake marker found in file path."
+    }
 
     $fullPath = Join-Path $RepoRoot $RelativePath
     if (-not (Test-Path -LiteralPath $fullPath -PathType Leaf)) {
@@ -98,15 +165,8 @@ function Test-TextFileEncoding {
         return "${RelativePath}: invalid UTF-8 text."
     }
 
-    $mojibakeMarkers = @(
-        ([string][char]0xFFFD),
-        ([string]::Concat([char]0x951F, [char]0x65A4, [char]0x62F7)),
-        ([string]::Concat([char]0x00EF, [char]0x00BB, [char]0x00BF))
-    )
-    foreach ($marker in $mojibakeMarkers) {
-        if ($text.Contains($marker)) {
-            return "${RelativePath}: suspicious mojibake marker found."
-        }
+    if (Test-HasSuspiciousMarker -Text $text) {
+        return "${RelativePath}: suspicious mojibake marker found."
     }
 
     return $null

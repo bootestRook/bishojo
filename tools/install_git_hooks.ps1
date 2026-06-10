@@ -14,7 +14,9 @@ if ([string]::IsNullOrWhiteSpace($repoRoot)) {
 Push-Location $repoRoot
 try {
     git config core.hooksPath .githooks
+    git config core.quotepath false
     Write-Host 'Git hooks enabled: core.hooksPath=.githooks'
+    Write-Host 'Git path output configured: core.quotepath=false'
 } finally {
     Pop-Location
 }
