@@ -37,19 +37,14 @@ echo [git_push] Remote origin:
 git remote get-url origin
 echo.
 
-echo [git_push] Working tree status:
-git status --short
+echo [git_push] Working tree status before staging:
+git -c core.quotepath=false status --short
 echo.
-
-set "CONFIRM="
-set /p "CONFIRM=Stage all changes, commit if needed, and push to origin/%BRANCH%? [y/N] "
-if /i not "%CONFIRM%"=="y" (
-    echo [git_push] Aborted.
-    goto :done
-)
 
 git add -A
 if errorlevel 1 goto :fail
+
+git reset -q -- .codegraph >nul 2>nul
 
 git diff --cached --quiet
 if errorlevel 2 goto :fail
@@ -59,9 +54,16 @@ echo [git_push] No staged changes. Pushing existing commits only.
 goto :push_changes
 
 :commit_changes
-set "COMMIT_MSG="
-set /p "COMMIT_MSG=Commit message (leave empty for automatic message): "
+set "COMMIT_MSG=%~1"
 if not defined COMMIT_MSG set "COMMIT_MSG=auto: update %DATE% %TIME%"
+
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/verify_text_encoding.ps1 -Staged
+if errorlevel 1 goto :fail
+
+echo.
+echo [git_push] Staged files:
+git -c core.quotepath=false diff --cached --name-status
+echo.
 
 git commit -m "%COMMIT_MSG%"
 if errorlevel 1 goto :fail
@@ -77,10 +79,10 @@ goto :done
 :fail
 echo.
 echo [git_push] Failed. Please check the message above.
-pause
+ping -n 11 127.0.0.1 >nul
 exit /b 1
 
 :done
 echo.
-pause
+ping -n 4 127.0.0.1 >nul
 exit /b 0
