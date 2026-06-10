@@ -1,0 +1,951 @@
+[gd_scene format=3 uid="uid://cuvik7mthq0d1"]
+
+[ext_resource type="Texture2D" uid="uid://bxn6q3pyv001o" path="res://assets/ui/backgrounds/combat/ui_combat_background_light.png" id="1_81g7c"]
+
+[ext_resource type="Texture2D" uid="uid://ujkmm1h8yb7o" path="res://assets/ui/components/combat/ui_combat_panel_top_hud_light.png" id="2_yeu46"]
+
+[ext_resource type="Texture2D" uid="uid://cpvisgttmcb5c" path="res://assets/ui/components/combat/ui_combat_panel_bottom_hud_light.png" id="3_kxff5"]
+
+[ext_resource type="Texture2D" uid="uid://20pox18hcyup" path="res://assets/ui/components/combat/ui_combat_plate_resource_light.png" id="4_fwqfj"]
+
+[ext_resource type="Texture2D" uid="uid://c77iv23k2oual" path="res://assets/ui/icons/combat/ui_combat_icon_resource_light.png" id="5_0sv42"]
+
+[ext_resource type="Texture2D" uid="uid://cj6gcv3pvd81s" path="res://assets/ui/icons/combat/ui_combat_icon_menu_light.png" id="6_gd7uc"]
+
+[ext_resource type="Texture2D" uid="uid://pdvs5pral7vd" path="res://assets/ui/components/combat/ui_combat_button_skill_round_light.png" id="7_j72pe"]
+
+[ext_resource type="Texture2D" uid="uid://cov4lha3qh0gv" path="res://assets/ui/components/combat/ui_combat_frame_portrait_light.png" id="8_hgaux"]
+
+[ext_resource type="Texture2D" uid="uid://bb5fi7wvqnwfq" path="res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png" id="9_snbqy"]
+
+[ext_resource type="Texture2D" uid="uid://dwxtlxj641j3n" path="res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png" id="10_yh65x"]
+
+[ext_resource type="Texture2D" uid="uid://dkgf0ynnn14fl" path="res://assets/ui/components/combat/ui_combat_slot_overlay_locked_light.png" id="11_0rdms"]
+
+[ext_resource type="Texture2D" uid="uid://dnr7pg7wqrvnb" path="res://assets/ui/components/combat/ui_combat_slot_lock_icon_light.png" id="12_jnnv7"]
+
+[ext_resource type="Texture2D" uid="uid://18fa4ub4b3sy" path="res://assets/ui/components/combat/ui_combat_button_chest_light.png" id="13_wkiik"]
+
+[ext_resource type="Texture2D" uid="uid://cwfcn7rscgq1o" path="res://assets/ui/components/combat/ui_combat_badge_energy_light.png" id="14_vm4nq"]
+
+[ext_resource type="Texture2D" uid="uid://c5glgcha5vaq" path="res://assets/ui/components/combat/ui_combat_bar_charge_frame_light.png" id="15_3nfsb"]
+
+[ext_resource type="Texture2D" uid="uid://dlhvjfa8saeei" path="res://assets/ui/components/combat/ui_combat_badge_shield_light.png" id="16_u5apn"]
+
+[ext_resource type="Texture2D" uid="uid://b5akvk8qot72d" path="res://assets/ui/components/combat/ui_combat_button_trophy_light.png" id="17_egapu"]
+
+[ext_resource type="Texture2D" uid="uid://bj60npksb0h3g" path="res://assets/ui/components/level_up_skill/ui_level_up_skill_card_frame_normal.png" id="18_card"]
+
+[ext_resource type="Texture2D" uid="uid://bevu3ts5aw0o2" path="res://assets/ui/components/level_up_skill/ui_level_up_skill_badge_frame_light.png" id="19_badge"]
+
+[ext_resource type="Texture2D" uid="uid://cnc3ccdjao1n8" path="res://assets/ui/components/level_up_skill/ui_level_up_skill_title_brush_green.png" id="20_brush"]
+
+[ext_resource type="Texture2D" uid="uid://1md33x67o1as" path="res://assets/ui/components/level_up_skill/ui_level_up_skill_button_select_red_normal.png" id="21_select"]
+
+[ext_resource type="Texture2D" uid="uid://fcwfs6majgxw" path="res://assets/ui/components/level_up_skill/ui_level_up_skill_prompt_band_light.png" id="22_prompt"]
+
+[ext_resource type="Texture2D" uid="uid://3lfkt4xc57eu" path="res://assets/ui/icons/skills/ui_skill_icon_blade_slash_light.png" id="23_slash"]
+
+[ext_resource type="Texture2D" uid="uid://rmahu5icfels" path="res://assets/ui/icons/skills/ui_skill_icon_heal_staff_light.png" id="24_heal"]
+
+[ext_resource type="Texture2D" uid="uid://d1v2jpmowuhu3" path="res://assets/ui/icons/skills/ui_skill_icon_shield_light.png" id="25_shield"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 40
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2"]
+font_size = 34
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3"]
+font_size = 31
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4"]
+font_size = 36
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5"]
+font_size = 20
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_LevelTitle"]
+font_size = 58
+font_color = Color(0.196078, 0.188235, 0.160784, 1)
+outline_size = 3
+outline_color = Color(1, 0.960784, 0.823529, 0.85)
+
+[sub_resource type="LabelSettings" id="LabelSettings_LevelNumber"]
+font_size = 92
+font_color = Color(0.2, 0.184314, 0.141176, 1)
+outline_size = 4
+outline_color = Color(1, 0.972549, 0.819608, 0.92)
+
+[sub_resource type="LabelSettings" id="LabelSettings_Prompt"]
+font_size = 44
+font_color = Color(0.231373, 0.219608, 0.192157, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.75)
+
+[sub_resource type="LabelSettings" id="LabelSettings_CardTitle"]
+font_size = 36
+font_color = Color(0.941176, 0.92549, 0.772549, 1)
+outline_size = 2
+outline_color = Color(0.0588235, 0.14902, 0.137255, 0.78)
+
+[sub_resource type="LabelSettings" id="LabelSettings_CardBody"]
+font_size = 32
+font_color = Color(0.305882, 0.286275, 0.235294, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.58)
+
+[sub_resource type="LabelSettings" id="LabelSettings_Button"]
+font_size = 34
+font_color = Color(1, 0.956863, 0.815686, 1)
+outline_size = 2
+outline_color = Color(0.345098, 0.0784314, 0.0588235, 0.82)
+
+[node name="RunBoardLevelUpSkillChoiceLayoutPage" type="Control"]
+custom_minimum_size = Vector2(1280, 2769)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 2769.0
+
+[node name="Background" type="TextureRect" parent="." unique_id=2086904685]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 2769.0
+mouse_filter = 2
+texture = ExtResource("1_81g7c")
+expand_mode = 1
+
+[node name="TopHudPanel" type="TextureRect" parent="." unique_id=392015778]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 548.0
+mouse_filter = 2
+texture = ExtResource("2_yeu46")
+expand_mode = 1
+
+[node name="BottomHudPanel" type="TextureRect" parent="." unique_id=1350098471]
+layout_mode = 0
+offset_top = 2238.0
+offset_right = 1280.0
+offset_bottom = 2769.0
+mouse_filter = 2
+texture = ExtResource("3_kxff5")
+expand_mode = 1
+
+[node name="LevelUpHeaderWarmWash" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 96.0
+offset_right = 1280.0
+offset_bottom = 548.0
+mouse_filter = 2
+color = Color(0.972549, 0.866667, 0.513726, 0.18)
+
+[node name="LevelUpChoiceSoftVeil" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 548.0
+offset_right = 1280.0
+offset_bottom = 1507.0
+mouse_filter = 2
+color = Color(0.976471, 0.964706, 0.917647, 0.78)
+
+[node name="LevelUpTitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 126.0
+offset_right = 920.0
+offset_bottom = 218.0
+text = "等级提升至"
+label_settings = SubResource("LabelSettings_LevelTitle")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpBadgeFrame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 246.0
+offset_right = 720.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("19_badge")
+expand_mode = 1
+
+[node name="LevelUpBadgeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 266.0
+offset_right = 690.0
+offset_bottom = 384.0
+text = "2"
+label_settings = SubResource("LabelSettings_LevelNumber")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpPromptBand" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 520.0
+offset_right = 1110.0
+offset_bottom = 576.0
+mouse_filter = 2
+texture = ExtResource("22_prompt")
+expand_mode = 1
+
+[node name="LevelUpPromptLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 452.0
+offset_right = 1010.0
+offset_bottom = 570.0
+text = "请选择一个技能"
+label_settings = SubResource("LabelSettings_Prompt")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkill_CardDamage_Frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 650.0
+offset_right = 424.0
+offset_bottom = 1340.0
+mouse_filter = 2
+texture = ExtResource("18_card")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardDamage_Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 712.0
+offset_right = 290.0
+offset_bottom = 832.0
+mouse_filter = 2
+texture = ExtResource("23_slash")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardDamage_TitleBrush" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 882.0
+offset_right = 374.0
+offset_bottom = 952.0
+mouse_filter = 2
+texture = ExtResource("20_brush")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardDamage_TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 888.0
+offset_right = 350.0
+offset_bottom = 944.0
+text = "斩击强化"
+label_settings = SubResource("LabelSettings_CardTitle")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkill_CardDamage_EffectLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 1008.0
+offset_right = 386.0
+offset_bottom = 1156.0
+text = "你第 1 个伤害伙伴\n+20 点伤害。"
+label_settings = SubResource("LabelSettings_CardBody")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkill_CardDamage_SelectButton" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 1210.0
+offset_right = 364.0
+offset_bottom = 1296.0
+mouse_filter = 2
+texture = ExtResource("21_select")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardDamage_SelectLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 1218.0
+offset_right = 314.0
+offset_bottom = 1288.0
+text = "选择"
+label_settings = SubResource("LabelSettings_Button")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkill_CardHeal_Frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 650.0
+offset_right = 830.0
+offset_bottom = 1340.0
+mouse_filter = 2
+texture = ExtResource("18_card")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardHeal_Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 712.0
+offset_right = 696.0
+offset_bottom = 832.0
+mouse_filter = 2
+texture = ExtResource("24_heal")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardHeal_TitleBrush" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 882.0
+offset_right = 780.0
+offset_bottom = 952.0
+mouse_filter = 2
+texture = ExtResource("20_brush")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardHeal_TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 888.0
+offset_right = 756.0
+offset_bottom = 944.0
+text = "治疗法杖"
+label_settings = SubResource("LabelSettings_CardTitle")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkill_CardHeal_EffectLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 1008.0
+offset_right = 792.0
+offset_bottom = 1156.0
+text = "上阵治疗伙伴\n暴击率 +5%。"
+label_settings = SubResource("LabelSettings_CardBody")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkill_CardHeal_SelectButton" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 1210.0
+offset_right = 770.0
+offset_bottom = 1296.0
+mouse_filter = 2
+texture = ExtResource("21_select")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardHeal_SelectLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 1218.0
+offset_right = 720.0
+offset_bottom = 1288.0
+text = "选择"
+label_settings = SubResource("LabelSettings_Button")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkill_CardShield_Frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 650.0
+offset_right = 1236.0
+offset_bottom = 1340.0
+mouse_filter = 2
+texture = ExtResource("18_card")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardShield_Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 990.0
+offset_top = 712.0
+offset_right = 1102.0
+offset_bottom = 832.0
+mouse_filter = 2
+texture = ExtResource("25_shield")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardShield_TitleBrush" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 906.0
+offset_top = 882.0
+offset_right = 1186.0
+offset_bottom = 952.0
+mouse_filter = 2
+texture = ExtResource("20_brush")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardShield_TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 930.0
+offset_top = 888.0
+offset_right = 1162.0
+offset_bottom = 944.0
+text = "后屏蔽"
+label_settings = SubResource("LabelSettings_CardTitle")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkill_CardShield_EffectLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 1008.0
+offset_right = 1198.0
+offset_bottom = 1156.0
+text = "最后 1 个护盾伙伴\n+20 护盾。"
+label_settings = SubResource("LabelSettings_CardBody")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkill_CardShield_SelectButton" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 916.0
+offset_top = 1210.0
+offset_right = 1176.0
+offset_bottom = 1296.0
+mouse_filter = 2
+texture = ExtResource("21_select")
+expand_mode = 1
+
+[node name="LevelUpSkill_CardShield_SelectLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 966.0
+offset_top = 1218.0
+offset_right = 1126.0
+offset_bottom = 1288.0
+text = "选择"
+label_settings = SubResource("LabelSettings_Button")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelUpSkillSkipButton" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 1384.0
+offset_right = 800.0
+offset_bottom = 1480.0
+mouse_filter = 2
+texture = ExtResource("21_select")
+expand_mode = 1
+
+[node name="LevelUpSkillSkipLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 1398.0
+offset_right = 720.0
+offset_bottom = 1466.0
+text = "跳过"
+label_settings = SubResource("LabelSettings_Button")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PlayerSlotAreaTint" type="ColorRect" parent="." unique_id=1284396505]
+layout_mode = 0
+offset_top = 1507.0
+offset_right = 1280.0
+offset_bottom = 2137.0
+mouse_filter = 2
+color = Color(0.964706, 0.964706, 0.956863, 0.15)
+
+[node name="PlayerSlot_front_01" type="TextureRect" parent="." unique_id=437663203]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 1507.0
+offset_right = 254.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_front_02" type="TextureRect" parent="." unique_id=91503415]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 1507.0
+offset_right = 504.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_front_03" type="TextureRect" parent="." unique_id=87986571]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 1507.0
+offset_right = 754.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_front_04" type="TextureRect" parent="." unique_id=631540512]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 1507.0
+offset_right = 1004.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_front_05" type="TextureRect" parent="." unique_id=863131002]
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 1507.0
+offset_right = 1254.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_01" type="TextureRect" parent="." unique_id=884047524]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 1855.0
+offset_right = 254.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_02" type="TextureRect" parent="." unique_id=307969288]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 1855.0
+offset_right = 504.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_03" type="TextureRect" parent="." unique_id=839177599]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 1855.0
+offset_right = 754.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_04" type="TextureRect" parent="." unique_id=1756317110]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 1855.0
+offset_right = 1004.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_05" type="TextureRect" parent="." unique_id=3174045]
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 1855.0
+offset_right = 1254.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlotLock_front_01_Overlay" type="TextureRect" parent="." unique_id=2000214226]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 1511.0
+offset_right = 249.0
+offset_bottom = 1821.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_front_01_Icon" type="TextureRect" parent="." unique_id=358383648]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1619.0
+offset_right = 180.0
+offset_bottom = 1713.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_front_05_Overlay" type="TextureRect" parent="." unique_id=1523886538]
+layout_mode = 0
+offset_left = 1031.0
+offset_top = 1511.0
+offset_right = 1249.0
+offset_bottom = 1821.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_front_05_Icon" type="TextureRect" parent="." unique_id=1858094122]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 1619.0
+offset_right = 1180.0
+offset_bottom = 1713.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_01_Overlay" type="TextureRect" parent="." unique_id=266690962]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 1859.0
+offset_right = 249.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_01_Icon" type="TextureRect" parent="." unique_id=1978785795]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1967.0
+offset_right = 180.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_02_Overlay" type="TextureRect" parent="." unique_id=784904642]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 1859.0
+offset_right = 499.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_02_Icon" type="TextureRect" parent="." unique_id=1888016052]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 1967.0
+offset_right = 430.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_03_Overlay" type="TextureRect" parent="." unique_id=57444648]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 1859.0
+offset_right = 749.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_03_Icon" type="TextureRect" parent="." unique_id=547725259]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 1967.0
+offset_right = 680.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_04_Overlay" type="TextureRect" parent="." unique_id=1221411569]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 1859.0
+offset_right = 999.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_04_Icon" type="TextureRect" parent="." unique_id=315076288]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 1967.0
+offset_right = 930.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_05_Overlay" type="TextureRect" parent="." unique_id=1462960520]
+layout_mode = 0
+offset_left = 1031.0
+offset_top = 1859.0
+offset_right = 1249.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_05_Icon" type="TextureRect" parent="." unique_id=439185858]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 1967.0
+offset_right = 1180.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerHpFillPreview" type="ColorRect" parent="." unique_id=1031353920]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 2194.0
+offset_right = 1226.0
+offset_bottom = 2212.0
+mouse_filter = 2
+color = Color(0.745098, 0.839216, 0.721569, 0.75)
+
+[node name="PlayerHpBarFrame" type="TextureRect" parent="." unique_id=986737135]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 2178.0
+offset_right = 1250.0
+offset_bottom = 2228.0
+mouse_filter = 2
+texture = ExtResource("9_snbqy")
+expand_mode = 1
+
+[node name="PlayerHpLabel" type="Label" parent="." unique_id=1492181870]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 2178.0
+offset_right = 690.0
+offset_bottom = 2228.0
+text = "250"
+label_settings = SubResource("LabelSettings_2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerSkillSlotLeft01" type="TextureRect" parent="." unique_id=949226562]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 92.0
+offset_top = 2362.0
+offset_right = 232.0
+offset_bottom = 2502.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotLeft02" type="TextureRect" parent="." unique_id=462721459]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 258.0
+offset_top = 2362.0
+offset_right = 398.0
+offset_bottom = 2502.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotLeft03" type="TextureRect" parent="." unique_id=1239596163]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 178.0
+offset_top = 2520.0
+offset_right = 318.0
+offset_bottom = 2660.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotRight01" type="TextureRect" parent="." unique_id=1494032175]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 882.0
+offset_top = 2362.0
+offset_right = 1022.0
+offset_bottom = 2502.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotRight02" type="TextureRect" parent="." unique_id=340541026]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 2362.0
+offset_right = 1188.0
+offset_bottom = 2502.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotRight03" type="TextureRect" parent="." unique_id=1448945940]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 962.0
+offset_top = 2520.0
+offset_right = 1102.0
+offset_bottom = 2660.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="ChestButton" type="TextureRect" parent="." unique_id=2040494272]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 2664.0
+offset_right = 429.0
+offset_bottom = 2749.8071
+mouse_filter = 2
+texture = ExtResource("13_wkiik")
+expand_mode = 1
+
+[node name="PlayerPortraitFrame" type="TextureRect" parent="." unique_id=1067442657]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 2269.0
+offset_right = 787.0
+offset_bottom = 2745.0
+mouse_filter = 2
+texture = ExtResource("8_hgaux")
+expand_mode = 1
+
+[node name="RunLevelFrame" type="TextureRect" parent="." unique_id=1003664380]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 2669.0
+offset_right = 537.0
+offset_bottom = 2759.0967
+mouse_filter = 2
+texture = ExtResource("14_vm4nq")
+expand_mode = 1
+
+[node name="RunLevelLabel" type="Label" parent="." unique_id=1503420748]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 2663.0
+offset_right = 541.0
+offset_bottom = 2761.0
+text = "1"
+label_settings = SubResource("LabelSettings_3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RunExpBarFrame" type="TextureRect" parent="." unique_id=20314565]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 2695.0
+offset_right = 732.5102
+offset_bottom = 2740.0
+mouse_filter = 2
+texture = ExtResource("15_3nfsb")
+expand_mode = 1
+
+[node name="RunDurabilityIcon" type="TextureRect" parent="." unique_id=2121584461]
+layout_mode = 0
+offset_left = 742.0
+offset_top = 2673.0
+offset_right = 807.0
+offset_bottom = 2757.1667
+mouse_filter = 2
+texture = ExtResource("16_u5apn")
+expand_mode = 1
+
+[node name="RunDurabilityLabel" type="Label" parent="." unique_id=1724144085]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 2663.0
+offset_right = 814.0
+offset_bottom = 2764.0
+text = "5"
+label_settings = SubResource("LabelSettings_4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrophyButton" type="TextureRect" parent="." unique_id=2027527216]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 2656.0
+offset_right = 954.0
+offset_bottom = 2747.754
+mouse_filter = 2
+texture = ExtResource("17_egapu")
+expand_mode = 1
+
+[node name="TrophyCountLabel" type="Label" parent="." unique_id=2130754933]
+layout_mode = 0
+offset_left = 887.0
+offset_top = 2725.0
+offset_right = 937.0
+offset_bottom = 2763.0
+text = "0"
+label_settings = SubResource("LabelSettings_5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResourcePlate" type="TextureRect" parent="." unique_id=1722574919]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 32.0
+offset_right = 249.0
+offset_bottom = 94.0
+mouse_filter = 2
+texture = ExtResource("4_fwqfj")
+expand_mode = 1
+
+[node name="ResourceIcon" type="TextureRect" parent="." unique_id=1205446887]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 34.0
+offset_right = 111.0
+offset_bottom = 86.0
+mouse_filter = 2
+texture = ExtResource("5_0sv42")
+expand_mode = 1
+
+[node name="ResourceValueLabel" type="Label" parent="." unique_id=1503867853]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 30.0
+offset_right = 237.0
+offset_bottom = 98.0
+text = "14 +7"
+label_settings = SubResource("LabelSettings_1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtonIcon" type="TextureRect" parent="." unique_id=365838544]
+layout_mode = 0
+offset_left = 1135.0
+offset_top = 31.0
+offset_right = 1205.0
+offset_bottom = 85.0
+mouse_filter = 2
+texture = ExtResource("6_gd7uc")
+expand_mode = 1

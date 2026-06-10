@@ -1,0 +1,255 @@
+{
+  "state_id": "run_board_route_single_branch",
+  "page_type": "RUN_BOARD_PAGE",
+  "run_board_mode": "BRANCH_SELECT",
+  "state_scope": "full_page",
+  "source_scene": "res://scenes/ui/pages/run_board_route_single_branch_layout_page.tscn",
+  "reference_image": "res://UI_reference/路线-单分支.jpg",
+  "design_width": 1280,
+  "design_height": 2769,
+  "safe_area": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 2769
+  },
+  "component_analysis": {
+    "page_name": "路线-单分支",
+    "reference_image_path": "res://UI_reference/路线-单分支.jpg",
+    "main_visual_style": "参考图上半区为蓝绿色路线背景上的单个路线事件卡、下方事件类型圆标、当前节点岛与固定纵向连接线。本实现沿用项目轻量灰白组件风格，不复刻整图。",
+    "canvas_ratio": "1280x2769 mobile portrait",
+    "major_regions": [
+      "top_left_resource_hud_reused",
+      "top_right_menu_hud_reused",
+      "upper_single_branch_route_content_new",
+      "bottom_player_formation_and_hud_reused"
+    ],
+    "components_to_reuse": [
+      "res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png",
+      "res://assets/ui/components/start_camp/ui_start_camp_card_title_banner_light.png",
+      "res://assets/ui/components/start_camp/ui_start_camp_card_portrait_frame_light.png",
+      "res://assets/ui/components/start_camp/ui_start_camp_card_badge_cost_light.png",
+      "res://assets/ui/components/start_camp/ui_start_camp_card_badge_value_light.png",
+      "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "res://assets/ui/components/combat/ui_combat_button_trophy_light.png"
+    ],
+    "component_split_rules": [
+      "单分支事件卡作为一个固定交互槽位 route_option_single_01，不根据 branch_options 数量重排。",
+      "角色图、节点岛图、标题、等级、耐久和奖励标记均拆为独立组件或绑定槽位，不烘焙进卡框。",
+      "当前节点到下一节点的连接线使用显式 dash 组件，不在运行时按公式生成。",
+      "左上资源、右上菜单和下半区回路/HUD 已存在，本状态只描述上半区域新增组件。"
+    ],
+    "full_page_image_risk_checked": true,
+    "full_page_image_used_as_runtime_ui": false
+  },
+  "layout_rules": {
+    "full_page_image_used_as_runtime_ui": false,
+    "computed_layout_used": false,
+    "scene_composition_rule": "完整 page 由 res://scenes/ui/pages/combat_layout_page.tscn 复制得到，保留 PlayerSlot_front_01 之后的下半区节点；上半区替换为本状态显式描述的单分支路线组件。",
+    "fixed_slot_rule": "route_option_single_01 固定承接 branch_options[0] 或 route_next_node，不允许因为只有一个分支而改用运行时居中计算。",
+    "unchanged_regions": [
+      "top_left_resource_hud",
+      "top_right_menu_hud",
+      "bottom_half_player_formation_and_hud"
+    ],
+    "new_regions": [
+      "upper_single_branch_route_content"
+    ],
+    "runtime_note": "本状态只描述单分支上半区固定拼接结果；正式角色和节点岛资源必须作为独立透明 PNG 接入，不得把参考图整张接入运行时。"
+  },
+  "generated_route_assets": [
+    {
+      "asset_role": "route_single_branch_character_art",
+      "path": "res://assets/ui/characters/route/ui_route_single_branch_character_silhouette_light.png",
+      "note": "独立透明 CharacterArt，不和背景、卡框或参考图合并。"
+    },
+    {
+      "asset_role": "route_single_branch_node_island",
+      "path": "res://assets/ui/components/route/ui_route_node_island_single_light.png",
+      "note": "独立透明当前节点岛组件，不和路线连接线、背景或卡片合并。"
+    },
+    {
+      "asset_role": "route_single_branch_event_type_combat",
+      "path": "res://assets/ui/components/route/ui_route_event_type_combat_light.png",
+      "note": "独立事件类型圆标底图；中心文字仍由 Label 绑定，不烘焙运行时文本。"
+    }
+  ],
+  "components": [
+    {
+      "component_id": "route_single_branch_content_area",
+      "component_role": "mode_content_background",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 0, "y": 108, "w": 1280, "h": 1399 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 15,
+      "visible": true,
+      "variant": "light_tint"
+    },
+    {
+      "component_id": "route_option_single_01",
+      "component_role": "route_branch_option",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png",
+      "rect": { "x": 388, "y": 250, "w": 504, "h": 650 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "single_branch",
+      "data_binding": { "source": "branch_options", "index": 0 },
+      "interactions": [
+        { "event": "pressed", "emit": "branch_selected", "payload": { "branch_id": "single_01", "option_index": 0 } }
+      ]
+    },
+    {
+      "component_id": "route_single_character_slot",
+      "component_role": "route_event_character_art_slot",
+      "prefab": "TextureRect+TextureRect",
+      "asset": "res://assets/ui/characters/route/ui_route_single_branch_character_silhouette_light.png",
+      "rect": { "x": 430, "y": 292, "w": 420, "h": 420 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 45,
+      "visible": true,
+      "variant": "placeholder",
+      "binding": { "source": "branch_options", "index": 0, "key": "character_art_asset" },
+      "runtime_asset_rule": "正式角色必须作为独立 CharacterArt 透明 PNG 接入，不得和背景、卡框或参考图合并。"
+    },
+    {
+      "component_id": "route_single_reward_marker",
+      "component_role": "route_reward_marker",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_trophy_light.png",
+      "rect": { "x": 330, "y": 407, "w": 104, "h": 114 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 60,
+      "visible": true,
+      "variant": "trophy"
+    },
+    {
+      "component_id": "route_single_level_badge",
+      "component_role": "route_event_level_badge",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_badge_value_light.png",
+      "rect": { "x": 350, "y": 755, "w": 92, "h": 126 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 65,
+      "visible": true,
+      "variant": "level",
+      "text": "1",
+      "binding": { "source": "branch_options", "index": 0, "key": "level" }
+    },
+    {
+      "component_id": "route_single_durability_badge",
+      "component_role": "route_event_durability_badge",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_badge_cost_light.png",
+      "rect": { "x": 795, "y": 765, "w": 128, "h": 110 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 65,
+      "visible": true,
+      "variant": "durability",
+      "text": "5",
+      "binding": { "source": "branch_options", "index": 0, "key": "durability_cost" }
+    },
+    {
+      "component_id": "route_single_title_plate",
+      "component_role": "route_event_title_plate",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_title_banner_light.png",
+      "rect": { "x": 431, "y": 789, "w": 418, "h": 90 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 70,
+      "visible": true,
+      "variant": "light",
+      "text": "青山边苇孤独",
+      "binding": { "source": "branch_options", "index": 0, "key": "title" }
+    },
+    {
+      "component_id": "route_single_event_type_node",
+      "component_role": "route_event_type_node",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/route/ui_route_event_type_combat_light.png",
+      "rect": { "x": 570, "y": 900, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 60,
+      "visible": true,
+      "variant": "combat",
+      "text": "战",
+      "binding": { "source": "branch_options", "index": 0, "key": "route_type" },
+      "interactions": [
+        { "event": "pressed", "emit": "route_next_node_preview_requested", "payload": { "option_index": 0 } }
+      ]
+    },
+    {
+      "component_id": "route_single_connector_main",
+      "component_role": "route_path_connector",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 637, "y": 1035, "w": 6, "h": 115 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 35,
+      "visible": true,
+      "variant": "muted_line"
+    },
+    {
+      "component_id": "route_single_path_dash_01",
+      "component_role": "route_dotted_path",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 637, "y": 1183, "w": 6, "h": 44 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 35,
+      "visible": true,
+      "variant": "dash"
+    },
+    {
+      "component_id": "route_single_path_dash_02",
+      "component_role": "route_dotted_path",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 637, "y": 1257, "w": 6, "h": 44 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 35,
+      "visible": true,
+      "variant": "dash"
+    },
+    {
+      "component_id": "route_single_current_node_art_slot",
+      "component_role": "route_current_node_art",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/route/ui_route_node_island_single_light.png",
+      "rect": { "x": 500, "y": 1132, "w": 280, "h": 178 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 45,
+      "visible": true,
+      "variant": "placeholder",
+      "text": "当前节点图槽",
+      "binding": { "source": "route_current_node", "key": "node_art_asset" },
+      "runtime_asset_rule": "正式节点岛必须作为独立透明 PNG 接入，不得和路线连接线、背景或参考图合并。"
+    },
+    {
+      "component_id": "route_single_current_node_shadow",
+      "component_role": "route_current_node_ground_shadow",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 460, "y": 1288, "w": 360, "h": 58 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 38,
+      "visible": true,
+      "variant": "soft_shadow"
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+[gd_scene format=3 uid="uid://route_single_branch_upper"]
+
+[ext_resource type="Texture2D" uid="uid://pdvs5pral7vd" path="res://assets/ui/components/combat/ui_combat_button_skill_round_light.png" id="1_event_round"]
+[ext_resource type="Texture2D" uid="uid://b5akvk8qot72d" path="res://assets/ui/components/combat/ui_combat_button_trophy_light.png" id="2_trophy"]
+[ext_resource type="Texture2D" uid="uid://l14lkuui1d3w" path="res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png" id="3_card_base"]
+[ext_resource type="Texture2D" uid="uid://oiivbmju5hli" path="res://assets/ui/components/start_camp/ui_start_camp_card_title_banner_light.png" id="4_card_title"]
+[ext_resource type="Texture2D" uid="uid://cmras4g75u5yl" path="res://assets/ui/components/start_camp/ui_start_camp_card_portrait_frame_light.png" id="5_card_portrait"]
+[ext_resource type="Texture2D" uid="uid://vis3x8p5uryx" path="res://assets/ui/components/start_camp/ui_start_camp_card_badge_cost_light.png" id="6_card_cost"]
+[ext_resource type="Texture2D" uid="uid://vnhq6s0rimll" path="res://assets/ui/components/start_camp/ui_start_camp_card_badge_value_light.png" id="7_card_value"]
+[ext_resource type="Texture2D" path="res://assets/ui/characters/route/ui_route_single_branch_character_silhouette_light.png" id="8_route_character"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/route/ui_route_node_island_single_light.png" id="9_route_node_island"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/route/ui_route_event_type_combat_light.png" id="10_route_event_type"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 36
+font_color = Color(0.96, 0.96, 0.9, 1)
+outline_size = 2
+outline_color = Color(0.24, 0.29, 0.22, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_badge"]
+font_size = 44
+font_color = Color(0.96, 0.96, 0.9, 1)
+outline_size = 3
+outline_color = Color(0.18, 0.13, 0.1, 0.85)
+
+[sub_resource type="LabelSettings" id="LabelSettings_node"]
+font_size = 30
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_small"]
+font_size = 24
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 1
+outline_color = Color(1, 1, 1, 0.55)
+
+[node name="RunBoardRouteSingleBranchUpperPanel" type="Control"]
+custom_minimum_size = Vector2(1280, 1507)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 1507.0
+
+[node name="RouteSingleBranchContentTint" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 108.0
+offset_right = 1280.0
+offset_bottom = 1507.0
+mouse_filter = 2
+color = Color(0.964706, 0.964706, 0.956863, 0.14)
+
+[node name="RouteSingleBranchCardSoftShadow" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 274.0
+offset_right = 920.0
+offset_bottom = 918.0
+mouse_filter = 2
+color = Color(0.090196, 0.094118, 0.090196, 0.12)
+
+[node name="RouteOptionSingle01_Frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 250.0
+offset_right = 892.0
+offset_bottom = 900.0
+mouse_filter = 2
+texture = ExtResource("3_card_base")
+expand_mode = 1
+
+[node name="RouteSingleCharacterFrame" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 455.0
+offset_top = 315.0
+offset_right = 825.0
+offset_bottom = 690.0
+mouse_filter = 2
+texture = ExtResource("5_card_portrait")
+expand_mode = 1
+
+[node name="RouteSingleCharacterArt" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 292.0
+offset_right = 850.0
+offset_bottom = 712.0
+mouse_filter = 2
+texture = ExtResource("8_route_character")
+expand_mode = 1
+
+[node name="RouteSingleRewardMarker" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 407.0
+offset_right = 434.0
+offset_bottom = 521.0
+mouse_filter = 2
+texture = ExtResource("2_trophy")
+expand_mode = 1
+
+[node name="RouteSingleLevelBadge" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 755.0
+offset_right = 442.0
+offset_bottom = 881.0
+mouse_filter = 2
+texture = ExtResource("7_card_value")
+expand_mode = 1
+
+[node name="RouteSingleLevelLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 766.0
+offset_right = 434.0
+offset_bottom = 864.0
+text = "1"
+label_settings = SubResource("LabelSettings_badge")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RouteSingleDurabilityBadge" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 765.0
+offset_right = 923.0
+offset_bottom = 875.0
+mouse_filter = 2
+texture = ExtResource("6_card_cost")
+expand_mode = 1
+
+[node name="RouteSingleDurabilityLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 817.0
+offset_top = 772.0
+offset_right = 901.0
+offset_bottom = 861.0
+text = "5"
+label_settings = SubResource("LabelSettings_badge")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RouteSingleTitlePlate" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 789.0
+offset_right = 849.0
+offset_bottom = 879.0
+mouse_filter = 2
+texture = ExtResource("4_card_title")
+expand_mode = 1
+
+[node name="RouteSingleTitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 800.0
+offset_right = 812.0
+offset_bottom = 868.0
+text = "青山边苇孤独"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="RouteSingleEventTypeNodeFrame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 900.0
+offset_right = 710.0
+offset_bottom = 1040.0
+mouse_filter = 2
+texture = ExtResource("10_route_event_type")
+expand_mode = 1
+
+[node name="RouteSingleEventTypeNodeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 596.0
+offset_top = 914.0
+offset_right = 684.0
+offset_bottom = 1028.0
+text = "战"
+label_settings = SubResource("LabelSettings_node")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RouteSingleConnectorMain" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 1035.0
+offset_right = 643.0
+offset_bottom = 1150.0
+mouse_filter = 2
+color = Color(0.305882, 0.388235, 0.360784, 0.42)
+
+[node name="RouteSinglePathDash01" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 1183.0
+offset_right = 643.0
+offset_bottom = 1227.0
+mouse_filter = 2
+color = Color(0.305882, 0.388235, 0.360784, 0.42)
+
+[node name="RouteSinglePathDash02" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 1257.0
+offset_right = 643.0
+offset_bottom = 1301.0
+mouse_filter = 2
+color = Color(0.305882, 0.388235, 0.360784, 0.42)
+
+[node name="RouteSingleCurrentNodeArt" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 1132.0
+offset_right = 780.0
+offset_bottom = 1310.0
+mouse_filter = 2
+texture = ExtResource("9_route_node_island")
+expand_mode = 1
+
+[node name="RouteSingleCurrentNodeShadow" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 1288.0
+offset_right = 820.0
+offset_bottom = 1346.0
+mouse_filter = 2
+color = Color(0.176471, 0.160784, 0.133333, 0.14)
+
+[node name="RouteOptionSingle01_Hotspot" type="Control" parent="."]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 250.0
+offset_right = 923.0
+offset_bottom = 1040.0
+mouse_filter = 1

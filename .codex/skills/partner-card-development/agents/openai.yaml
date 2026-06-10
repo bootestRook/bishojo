@@ -1,0 +1,4 @@
+interface:
+  display_name: "Partner Card Development"
+  short_description: "Dispatch A/B/C agents for partner card development"
+  default_prompt: "Use $partner-card-development to develop partner cards through real A/B/C sub-agents."

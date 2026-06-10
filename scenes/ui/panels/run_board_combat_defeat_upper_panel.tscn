@@ -1,0 +1,540 @@
+[gd_scene format=3 uid="uid://combat_defeat_upper"]
+
+[ext_resource type="Texture2D" uid="uid://pdvs5pral7vd" path="res://assets/ui/components/combat/ui_combat_button_skill_round_light.png" id="1_round"]
+[ext_resource type="Texture2D" uid="uid://cov4lha3qh0gv" path="res://assets/ui/components/combat/ui_combat_frame_portrait_light.png" id="2_portrait"]
+[ext_resource type="Texture2D" uid="uid://bb5fi7wvqnwfq" path="res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png" id="3_hp_bar"]
+[ext_resource type="Texture2D" uid="uid://dwxtlxj641j3n" path="res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png" id="4_slot"]
+[ext_resource type="Texture2D" uid="uid://l14lkuui1d3w" path="res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png" id="5_card_base"]
+[ext_resource type="Texture2D" uid="uid://bq2xwt5cxcyr0" path="res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png" id="6_action_button"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/combat_result/ui_combat_result_banner_defeat_light.png" id="7_banner"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/combat_result/ui_combat_result_spotlight_defeat_light.png" id="8_spotlight"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/combat_result/ui_combat_result_bat_decoration_light.png" id="9_bats"]
+[ext_resource type="Texture2D" path="res://assets/ui/characters/combat/ui_enemy_core_silhouette_light.png" id="10_enemy_core"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hp"]
+font_size = 34
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_small"]
+font_size = 24
+font_color = Color(0.76, 0.76, 0.72, 1)
+outline_size = 1
+outline_color = Color(1, 1, 1, 0.45)
+
+[sub_resource type="LabelSettings" id="LabelSettings_data"]
+font_size = 26
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_result_title"]
+font_size = 104
+font_color = Color(0.78, 0.91, 0.96, 1)
+outline_size = 6
+outline_color = Color(0.12, 0.16, 0.24, 0.92)
+shadow_size = 8
+shadow_color = Color(0.6, 0.83, 0.96, 0.32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_result_body"]
+font_size = 32
+font_color = Color(0.84, 0.88, 0.9, 0.95)
+outline_size = 3
+outline_color = Color(0.08, 0.1, 0.14, 0.9)
+
+[sub_resource type="LabelSettings" id="LabelSettings_button_icon"]
+font_size = 54
+font_color = Color(0.96, 0.86, 0.48, 1)
+outline_size = 4
+outline_color = Color(0.16, 0.08, 0.05, 0.9)
+
+[sub_resource type="LabelSettings" id="LabelSettings_button_text"]
+font_size = 44
+font_color = Color(0.96, 0.91, 0.72, 1)
+outline_size = 4
+outline_color = Color(0.16, 0.08, 0.05, 0.9)
+
+[node name="RunBoardCombatDefeatUpperPanel" type="Control"]
+custom_minimum_size = Vector2(1280, 1507)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 1507.0
+
+[node name="CombatDefeatUpperContentTint" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 1280.0
+offset_bottom = 1507.0
+mouse_filter = 2
+color = Color(0.964706, 0.964706, 0.956863, 0.12)
+
+[node name="EnemySkillSlotLeft01" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.48)
+layout_mode = 0
+offset_left = 158.0
+offset_top = 114.0
+offset_right = 298.0
+offset_bottom = 254.0
+mouse_filter = 2
+texture = ExtResource("1_round")
+expand_mode = 1
+
+[node name="EnemySkillSlotLeft02Active" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 266.0
+offset_right = 218.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("1_round")
+expand_mode = 1
+
+[node name="EnemySkillSlotLeft03" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.48)
+layout_mode = 0
+offset_left = 248.0
+offset_top = 266.0
+offset_right = 388.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("1_round")
+expand_mode = 1
+
+[node name="EnemySkillSlotRight01" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.48)
+layout_mode = 0
+offset_left = 982.0
+offset_top = 114.0
+offset_right = 1122.0
+offset_bottom = 254.0
+mouse_filter = 2
+texture = ExtResource("1_round")
+expand_mode = 1
+
+[node name="EnemySkillSlotRight02" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.48)
+layout_mode = 0
+offset_left = 892.0
+offset_top = 266.0
+offset_right = 1032.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("1_round")
+expand_mode = 1
+
+[node name="EnemySkillSlotRight03" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.48)
+layout_mode = 0
+offset_left = 1062.0
+offset_top = 266.0
+offset_right = 1202.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("1_round")
+expand_mode = 1
+
+[node name="EnemyPortraitArtSlot" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.72)
+layout_mode = 0
+offset_left = 525.0
+offset_top = 78.0
+offset_right = 741.0
+offset_bottom = 360.0
+mouse_filter = 2
+texture = ExtResource("10_enemy_core")
+expand_mode = 1
+
+[node name="EnemyPortraitFrame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 6.0
+offset_right = 780.0
+offset_bottom = 482.0
+mouse_filter = 2
+texture = ExtResource("2_portrait")
+expand_mode = 1
+
+[node name="EnemyHpFill" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 564.0
+offset_right = 1226.0
+offset_bottom = 582.0
+mouse_filter = 2
+color = Color(0.745098, 0.839216, 0.721569, 0.72)
+
+[node name="EnemyHpBarFrame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 548.0
+offset_right = 1250.0
+offset_bottom = 598.0
+mouse_filter = 2
+texture = ExtResource("3_hp_bar")
+expand_mode = 1
+
+[node name="EnemyHpLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 548.0
+offset_right = 720.0
+offset_bottom = 598.0
+text = "1750"
+label_settings = SubResource("LabelSettings_hp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemySlotAreaTint" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 598.0
+offset_right = 1280.0
+offset_bottom = 1266.0
+mouse_filter = 2
+color = Color(0.964706, 0.964706, 0.956863, 0.12)
+
+[node name="EnemySlot_front_01" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 600.0
+offset_right = 254.0
+offset_bottom = 918.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemySlot_front_02" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.52)
+layout_mode = 0
+offset_left = 276.0
+offset_top = 600.0
+offset_right = 504.0
+offset_bottom = 918.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemySlot_front_03" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 600.0
+offset_right = 754.0
+offset_bottom = 918.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemySlot_front_04" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.52)
+layout_mode = 0
+offset_left = 776.0
+offset_top = 600.0
+offset_right = 1004.0
+offset_bottom = 918.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemySlot_front_05" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 600.0
+offset_right = 1254.0
+offset_bottom = 918.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemySlot_back_01" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.42)
+layout_mode = 0
+offset_left = 26.0
+offset_top = 948.0
+offset_right = 254.0
+offset_bottom = 1266.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemySlot_back_02" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.42)
+layout_mode = 0
+offset_left = 276.0
+offset_top = 948.0
+offset_right = 504.0
+offset_bottom = 1266.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemySlot_back_03" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.42)
+layout_mode = 0
+offset_left = 526.0
+offset_top = 948.0
+offset_right = 754.0
+offset_bottom = 1266.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemySlot_back_04" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.42)
+layout_mode = 0
+offset_left = 776.0
+offset_top = 948.0
+offset_right = 1004.0
+offset_bottom = 1266.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemySlot_back_05" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.42)
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 948.0
+offset_right = 1254.0
+offset_bottom = 1266.0
+mouse_filter = 2
+texture = ExtResource("4_slot")
+expand_mode = 1
+
+[node name="EnemyUnitPreviewFront01" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.72)
+layout_mode = 0
+offset_left = 38.0
+offset_top = 624.0
+offset_right = 242.0
+offset_bottom = 894.0
+mouse_filter = 2
+texture = ExtResource("5_card_base")
+expand_mode = 1
+
+[node name="EnemyUnitPreviewFront01ArtSlot" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 665.0
+offset_right = 216.0
+offset_bottom = 837.0
+mouse_filter = 2
+color = Color(0.16, 0.18, 0.2, 0.34)
+
+[node name="EnemyUnitPreviewFront01CostLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 626.0
+offset_right = 190.0
+offset_bottom = 680.0
+text = "10"
+label_settings = SubResource("LabelSettings_data")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyUnitPreviewFront03" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 276.0
+offset_top = 654.0
+offset_right = 786.0
+offset_bottom = 894.0
+mouse_filter = 2
+texture = ExtResource("5_card_base")
+expand_mode = 1
+
+[node name="EnemyUnitPreviewFront03ArtSlot" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 322.0
+offset_top = 690.0
+offset_right = 740.0
+offset_bottom = 850.0
+mouse_filter = 2
+color = Color(0.16, 0.18, 0.2, 0.28)
+
+[node name="EnemyUnitPreviewFront05" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.72)
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 624.0
+offset_right = 1242.0
+offset_bottom = 894.0
+mouse_filter = 2
+texture = ExtResource("5_card_base")
+expand_mode = 1
+
+[node name="EnemyUnitPreviewFront05ArtSlot" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1064.0
+offset_top = 665.0
+offset_right = 1216.0
+offset_bottom = 837.0
+mouse_filter = 2
+color = Color(0.16, 0.18, 0.2, 0.34)
+
+[node name="CombatResultDataButtonFrame" type="TextureRect" parent="."]
+z_index = 80
+layout_mode = 0
+offset_left = 1082.0
+offset_top = 640.0
+offset_right = 1210.0
+offset_bottom = 768.0
+mouse_filter = 2
+texture = ExtResource("1_round")
+expand_mode = 1
+
+[node name="CombatResultDataButtonGlyph" type="Label" parent="."]
+z_index = 80
+layout_mode = 0
+offset_left = 1110.0
+offset_top = 653.0
+offset_right = 1182.0
+offset_bottom = 728.0
+text = "数"
+label_settings = SubResource("LabelSettings_data")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultDataButtonLabel" type="Label" parent="."]
+z_index = 80
+layout_mode = 0
+offset_left = 1088.0
+offset_top = 762.0
+offset_right = 1204.0
+offset_bottom = 814.0
+text = "数据"
+label_settings = SubResource("LabelSettings_data")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultDataHotspot" type="Control" parent="."]
+z_index = 80
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 628.0
+offset_right = 1222.0
+offset_bottom = 824.0
+mouse_filter = 1
+
+[node name="CombatDefeatScrim" type="ColorRect" parent="."]
+z_index = 70
+layout_mode = 0
+offset_top = 548.0
+offset_right = 1280.0
+offset_bottom = 1507.0
+mouse_filter = 2
+color = Color(0.055, 0.06, 0.09, 0.62)
+
+[node name="CombatDefeatSpotlightVertical" type="TextureRect" parent="."]
+z_index = 72
+modulate = Color(1, 1, 1, 0.92)
+layout_mode = 0
+offset_left = 370.0
+offset_top = 570.0
+offset_right = 910.0
+offset_bottom = 1258.0
+mouse_filter = 2
+texture = ExtResource("8_spotlight")
+expand_mode = 1
+
+[node name="CombatDefeatGlowBand" type="ColorRect" parent="."]
+z_index = 73
+layout_mode = 0
+offset_left = 180.0
+offset_top = 930.0
+offset_right = 1100.0
+offset_bottom = 1082.0
+mouse_filter = 2
+color = Color(0.62, 0.82, 0.96, 0.18)
+
+[node name="CombatDefeatBannerPlate" type="TextureRect" parent="."]
+z_index = 74
+layout_mode = 0
+offset_left = 300.0
+offset_top = 888.0
+offset_right = 980.0
+offset_bottom = 1126.0
+mouse_filter = 2
+texture = ExtResource("7_banner")
+expand_mode = 1
+
+[node name="CombatDefeatBatDecoration" type="TextureRect" parent="."]
+z_index = 76
+modulate = Color(1, 1, 1, 0.72)
+layout_mode = 0
+offset_left = 82.0
+offset_top = 842.0
+offset_right = 642.0
+offset_bottom = 1172.0
+mouse_filter = 2
+texture = ExtResource("9_bats")
+expand_mode = 1
+
+[node name="CombatDefeatTitleLabel" type="Label" parent="."]
+z_index = 78
+layout_mode = 0
+offset_left = 392.0
+offset_top = 926.0
+offset_right = 888.0
+offset_bottom = 1048.0
+text = "失败"
+label_settings = SubResource("LabelSettings_result_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatDefeatSubtitleLabel" type="Label" parent="."]
+z_index = 78
+layout_mode = 0
+offset_left = 330.0
+offset_top = 1112.0
+offset_right = 950.0
+offset_bottom = 1186.0
+text = "本场战斗失败，局内耐久 -1"
+label_settings = SubResource("LabelSettings_result_body")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="CombatDefeatContinueButtonFrame" type="TextureRect" parent="."]
+z_index = 90
+layout_mode = 0
+offset_left = 480.0
+offset_top = 1368.0
+offset_right = 800.0
+offset_bottom = 1470.0
+mouse_filter = 2
+texture = ExtResource("6_action_button")
+expand_mode = 1
+
+[node name="CombatDefeatContinueButtonIcon" type="Label" parent="."]
+z_index = 90
+layout_mode = 0
+offset_left = 526.0
+offset_top = 1380.0
+offset_right = 596.0
+offset_bottom = 1456.0
+text = "<"
+label_settings = SubResource("LabelSettings_button_icon")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatDefeatContinueButtonLabel" type="Label" parent="."]
+z_index = 90
+layout_mode = 0
+offset_left = 604.0
+offset_top = 1380.0
+offset_right = 754.0
+offset_bottom = 1456.0
+text = "继续"
+label_settings = SubResource("LabelSettings_button_text")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatDefeatContinueHotspot" type="Control" parent="."]
+z_index = 90
+layout_mode = 0
+offset_left = 458.0
+offset_top = 1348.0
+offset_right = 822.0
+offset_bottom = 1490.0
+mouse_filter = 1

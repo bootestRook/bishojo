@@ -1,0 +1,836 @@
+[gd_scene format=3 uid="uid://dkwq48n6a85x7"]
+
+[ext_resource type="Texture2D" uid="uid://bxn6q3pyv001o" path="res://assets/ui/backgrounds/combat/ui_combat_background_light.png" id="1_81g7c"]
+[ext_resource type="Texture2D" uid="uid://ujkmm1h8yb7o" path="res://assets/ui/components/combat/ui_combat_panel_top_hud_light.png" id="2_yeu46"]
+[ext_resource type="Texture2D" uid="uid://cpvisgttmcb5c" path="res://assets/ui/components/combat/ui_combat_panel_bottom_hud_light.png" id="3_kxff5"]
+[ext_resource type="Texture2D" uid="uid://20pox18hcyup" path="res://assets/ui/components/combat/ui_combat_plate_resource_light.png" id="4_fwqfj"]
+[ext_resource type="Texture2D" uid="uid://c77iv23k2oual" path="res://assets/ui/icons/combat/ui_combat_icon_resource_light.png" id="5_0sv42"]
+[ext_resource type="Texture2D" uid="uid://cj6gcv3pvd81s" path="res://assets/ui/icons/combat/ui_combat_icon_menu_light.png" id="6_gd7uc"]
+[ext_resource type="Texture2D" uid="uid://pdvs5pral7vd" path="res://assets/ui/components/combat/ui_combat_button_skill_round_light.png" id="7_j72pe"]
+[ext_resource type="Texture2D" uid="uid://cov4lha3qh0gv" path="res://assets/ui/components/combat/ui_combat_frame_portrait_light.png" id="8_hgaux"]
+[ext_resource type="Texture2D" uid="uid://bb5fi7wvqnwfq" path="res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png" id="9_snbqy"]
+[ext_resource type="Texture2D" uid="uid://dwxtlxj641j3n" path="res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png" id="10_yh65x"]
+[ext_resource type="Texture2D" uid="uid://dkgf0ynnn14fl" path="res://assets/ui/components/combat/ui_combat_slot_overlay_locked_light.png" id="11_0rdms"]
+[ext_resource type="Texture2D" uid="uid://dnr7pg7wqrvnb" path="res://assets/ui/components/combat/ui_combat_slot_lock_icon_light.png" id="12_jnnv7"]
+[ext_resource type="Texture2D" uid="uid://18fa4ub4b3sy" path="res://assets/ui/components/combat/ui_combat_button_chest_light.png" id="13_wkiik"]
+[ext_resource type="Texture2D" uid="uid://cwfcn7rscgq1o" path="res://assets/ui/components/combat/ui_combat_badge_energy_light.png" id="14_vm4nq"]
+[ext_resource type="Texture2D" uid="uid://c5glgcha5vaq" path="res://assets/ui/components/combat/ui_combat_bar_charge_frame_light.png" id="15_3nfsb"]
+[ext_resource type="Texture2D" uid="uid://dlhvjfa8saeei" path="res://assets/ui/components/combat/ui_combat_badge_shield_light.png" id="16_u5apn"]
+[ext_resource type="Texture2D" uid="uid://b5akvk8qot72d" path="res://assets/ui/components/combat/ui_combat_button_trophy_light.png" id="17_egapu"]
+[ext_resource type="Texture2D" uid="uid://du37t8eryplhe" path="res://assets/ui/components/route/ui_route_branch_card_frame_light.png" id="18_route_card"]
+[ext_resource type="Texture2D" uid="uid://vtw8gg03etnu" path="res://assets/ui/components/route/ui_route_branch_title_banner_light.png" id="19_route_title"]
+[ext_resource type="Texture2D" uid="uid://cdhi6lqw0gnsm" path="res://assets/ui/components/route/ui_route_branch_preview_shop_light.png" id="20_preview_shop"]
+[ext_resource type="Texture2D" uid="uid://7gqgp006gaqw" path="res://assets/ui/components/route/ui_route_branch_preview_rest_light.png" id="21_preview_rest"]
+[ext_resource type="Texture2D" uid="uid://c5kpvlapkywl6" path="res://assets/ui/components/route/ui_route_node_shop_light.png" id="22_node_shop"]
+[ext_resource type="Texture2D" uid="uid://dsittpxy7ocij" path="res://assets/ui/components/route/ui_route_node_rest_light.png" id="23_node_rest"]
+[ext_resource type="Texture2D" uid="uid://cl3be4nqexnue" path="res://assets/ui/components/route/ui_route_branch_badge_frame_light.png" id="24_badge"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 40
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_branch_title"]
+font_size = 36
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_branch_body"]
+font_size = 28
+font_color = Color(0.96, 0.96, 0.9, 1)
+outline_size = 2
+outline_color = Color(0.16, 0.13, 0.11, 0.85)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4"]
+font_size = 36
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2"]
+font_size = 34
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3"]
+font_size = 31
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5"]
+font_size = 20
+font_color = Color(0.305882, 0.305882, 0.290196, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.7)
+
+[node name="RunBoardBranchSelectLayoutPage" type="Control" unique_id=183786469]
+custom_minimum_size = Vector2(1280, 2769)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 2769.0
+
+[node name="Background" type="TextureRect" parent="." unique_id=2086904685]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 2769.0
+mouse_filter = 2
+texture = ExtResource("1_81g7c")
+expand_mode = 1
+
+[node name="TopHudPanel" type="TextureRect" parent="." unique_id=392015778]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 548.0
+mouse_filter = 2
+texture = ExtResource("2_yeu46")
+expand_mode = 1
+
+[node name="BottomHudPanel" type="TextureRect" parent="." unique_id=1350098471]
+layout_mode = 0
+offset_top = 2238.0
+offset_right = 1280.0
+offset_bottom = 2769.0
+mouse_filter = 2
+texture = ExtResource("3_kxff5")
+expand_mode = 1
+
+[node name="ResourcePlate" type="TextureRect" parent="." unique_id=1722574919]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 32.0
+offset_right = 249.0
+offset_bottom = 94.0
+mouse_filter = 2
+texture = ExtResource("4_fwqfj")
+expand_mode = 1
+
+[node name="ResourceIcon" type="TextureRect" parent="." unique_id=1205446887]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 34.0
+offset_right = 111.0
+offset_bottom = 86.0
+mouse_filter = 2
+texture = ExtResource("5_0sv42")
+expand_mode = 1
+
+[node name="ResourceValueLabel" type="Label" parent="." unique_id=1503867853]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 30.0
+offset_right = 237.0
+offset_bottom = 98.0
+text = "14 +7"
+label_settings = SubResource("LabelSettings_1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtonIcon" type="TextureRect" parent="." unique_id=365838544]
+layout_mode = 0
+offset_left = 1135.0
+offset_top = 31.0
+offset_right = 1205.0
+offset_bottom = 85.0
+mouse_filter = 2
+texture = ExtResource("6_gd7uc")
+expand_mode = 1
+
+[node name="BranchSelectAreaTint" type="ColorRect" parent="." unique_id=300000005]
+layout_mode = 0
+offset_top = 548.0
+offset_right = 1280.0
+offset_bottom = 1507.0
+mouse_filter = 2
+color = Color(0.964706, 0.964706, 0.956863, 0.2)
+
+[node name="BranchSelectBottomFade" type="ColorRect" parent="." unique_id=300000006]
+layout_mode = 0
+offset_top = 1372.0
+offset_right = 1280.0
+offset_bottom = 1507.0
+mouse_filter = 2
+color = Color(0.870588, 0.870588, 0.862745, 0.3)
+
+[node name="BranchOptionShopCardFrame" type="TextureRect" parent="." unique_id=300000012]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 540.0
+offset_right = 596.0
+offset_bottom = 1150.0
+mouse_filter = 2
+texture = ExtResource("18_route_card")
+expand_mode = 1
+
+[node name="BranchOptionShopTitleBanner" type="TextureRect" parent="." unique_id=300000013]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 558.0
+offset_right = 544.0
+offset_bottom = 648.0
+mouse_filter = 2
+texture = ExtResource("19_route_title")
+expand_mode = 1
+
+[node name="BranchOptionShopTitleLabel" type="Label" parent="." unique_id=300000014]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 565.0
+offset_right = 530.0
+offset_bottom = 638.0
+text = "??????"
+label_settings = SubResource("LabelSettings_branch_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BranchOptionShopPreviewArt" type="TextureRect" parent="." unique_id=300000015]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 670.0
+offset_right = 548.0
+offset_bottom = 965.0
+mouse_filter = 2
+texture = ExtResource("20_preview_shop")
+expand_mode = 1
+
+[node name="BranchOptionShopDescriptionShade" type="ColorRect" parent="." unique_id=300000018]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 984.0
+offset_right = 542.0
+offset_bottom = 1084.0
+mouse_filter = 2
+color = Color(0.090196, 0.094118, 0.090196, 0.28)
+
+[node name="BranchOptionShopDescriptionLabel" type="Label" parent="." unique_id=300000019]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 993.0
+offset_right = 520.0
+offset_bottom = 1074.0
+text = "?????
+????"
+label_settings = SubResource("LabelSettings_branch_body")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="BranchOptionShopBadgeFrame" type="TextureRect" parent="." unique_id=300000021]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 1120.0
+offset_right = 404.0
+offset_bottom = 1252.0
+mouse_filter = 2
+texture = ExtResource("24_badge")
+expand_mode = 1
+
+[node name="BranchOptionShopBadgeLabel" type="Label" parent="." unique_id=300000022]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 1133.0
+offset_right = 380.0
+offset_bottom = 1240.0
+text = "?"
+label_settings = SubResource("LabelSettings_4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BranchOptionShopConnector" type="ColorRect" parent="." unique_id=300000020]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 1248.0
+offset_right = 342.0
+offset_bottom = 1288.0
+mouse_filter = 2
+color = Color(0.305882, 0.388235, 0.360784, 0.42)
+
+[node name="BranchOptionShopNodeArt" type="TextureRect" parent="." unique_id=300000023]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 1270.0
+offset_right = 520.0
+offset_bottom = 1420.0
+mouse_filter = 2
+texture = ExtResource("22_node_shop")
+expand_mode = 1
+
+[node name="RouteShopDash01" type="ColorRect" parent="." unique_id=300000026]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 1436.0
+offset_right = 342.0
+offset_bottom = 1478.0
+mouse_filter = 2
+color = Color(0.305882, 0.388235, 0.360784, 0.42)
+
+[node name="RouteShopDash02" type="ColorRect" parent="." unique_id=300000027]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 1498.0
+offset_right = 342.0
+offset_bottom = 1540.0
+mouse_filter = 2
+color = Color(0.305882, 0.388235, 0.360784, 0.42)
+
+[node name="BranchOptionRestCardFrame" type="TextureRect" parent="." unique_id=300000028]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 540.0
+offset_right = 1188.0
+offset_bottom = 1150.0
+mouse_filter = 2
+texture = ExtResource("18_route_card")
+expand_mode = 1
+
+[node name="BranchOptionRestTitleBanner" type="TextureRect" parent="." unique_id=300000029]
+layout_mode = 0
+offset_left = 732.0
+offset_top = 558.0
+offset_right = 1136.0
+offset_bottom = 648.0
+mouse_filter = 2
+texture = ExtResource("19_route_title")
+expand_mode = 1
+
+[node name="BranchOptionRestTitleLabel" type="Label" parent="." unique_id=300000030]
+layout_mode = 0
+offset_left = 746.0
+offset_top = 565.0
+offset_right = 1122.0
+offset_bottom = 638.0
+text = "????"
+label_settings = SubResource("LabelSettings_branch_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BranchOptionRestPreviewArt" type="TextureRect" parent="." unique_id=300000031]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 670.0
+offset_right = 1140.0
+offset_bottom = 965.0
+mouse_filter = 2
+texture = ExtResource("21_preview_rest")
+expand_mode = 1
+
+[node name="BranchOptionRestDescriptionShade" type="ColorRect" parent="." unique_id=300000034]
+layout_mode = 0
+offset_left = 734.0
+offset_top = 984.0
+offset_right = 1134.0
+offset_bottom = 1084.0
+mouse_filter = 2
+color = Color(0.090196, 0.094118, 0.090196, 0.28)
+
+[node name="BranchOptionRestDescriptionLabel" type="Label" parent="." unique_id=300000035]
+layout_mode = 0
+offset_left = 756.0
+offset_top = 993.0
+offset_right = 1112.0
+offset_bottom = 1074.0
+text = "????????
+?????"
+label_settings = SubResource("LabelSettings_branch_body")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="BranchOptionRestBadgeFrame" type="TextureRect" parent="." unique_id=300000037]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 1120.0
+offset_right = 996.0
+offset_bottom = 1252.0
+mouse_filter = 2
+texture = ExtResource("24_badge")
+expand_mode = 1
+
+[node name="BranchOptionRestBadgeLabel" type="Label" parent="." unique_id=300000038]
+layout_mode = 0
+offset_left = 888.0
+offset_top = 1133.0
+offset_right = 972.0
+offset_bottom = 1240.0
+text = "?"
+label_settings = SubResource("LabelSettings_4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BranchOptionRestConnector" type="ColorRect" parent="." unique_id=300000036]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 1248.0
+offset_right = 934.0
+offset_bottom = 1288.0
+mouse_filter = 2
+color = Color(0.305882, 0.388235, 0.360784, 0.42)
+
+[node name="BranchOptionRestNodeArt" type="TextureRect" parent="." unique_id=300000039]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 1270.0
+offset_right = 1070.0
+offset_bottom = 1420.0
+mouse_filter = 2
+texture = ExtResource("23_node_rest")
+expand_mode = 1
+
+[node name="RouteRestDash01" type="ColorRect" parent="." unique_id=300000042]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 1436.0
+offset_right = 934.0
+offset_bottom = 1478.0
+mouse_filter = 2
+color = Color(0.305882, 0.388235, 0.360784, 0.42)
+
+[node name="RouteRestDash02" type="ColorRect" parent="." unique_id=300000043]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 1498.0
+offset_right = 934.0
+offset_bottom = 1540.0
+mouse_filter = 2
+color = Color(0.305882, 0.388235, 0.360784, 0.42)
+
+[node name="PlayerSlotAreaTint" type="ColorRect" parent="." unique_id=1284396505]
+layout_mode = 0
+offset_top = 1507.0
+offset_right = 1280.0
+offset_bottom = 2137.0
+mouse_filter = 2
+color = Color(0.964706, 0.964706, 0.956863, 0.15)
+
+[node name="PlayerSlot_front_01" type="TextureRect" parent="." unique_id=437663203]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 1507.0
+offset_right = 254.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_front_02" type="TextureRect" parent="." unique_id=91503415]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 1507.0
+offset_right = 504.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_front_03" type="TextureRect" parent="." unique_id=87986571]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 1507.0
+offset_right = 754.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_front_04" type="TextureRect" parent="." unique_id=631540512]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 1507.0
+offset_right = 1004.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_front_05" type="TextureRect" parent="." unique_id=863131002]
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 1507.0
+offset_right = 1254.0
+offset_bottom = 1825.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_01" type="TextureRect" parent="." unique_id=884047524]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 1855.0
+offset_right = 254.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_02" type="TextureRect" parent="." unique_id=307969288]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 1855.0
+offset_right = 504.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_03" type="TextureRect" parent="." unique_id=839177599]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 1855.0
+offset_right = 754.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_04" type="TextureRect" parent="." unique_id=1756317110]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 1855.0
+offset_right = 1004.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlot_back_05" type="TextureRect" parent="." unique_id=3174045]
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 1855.0
+offset_right = 1254.0
+offset_bottom = 2173.0
+mouse_filter = 2
+texture = ExtResource("10_yh65x")
+expand_mode = 1
+
+[node name="PlayerSlotLock_front_01_Overlay" type="TextureRect" parent="." unique_id=2000214226]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 1511.0
+offset_right = 249.0
+offset_bottom = 1821.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_front_01_Icon" type="TextureRect" parent="." unique_id=358383648]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1619.0
+offset_right = 180.0
+offset_bottom = 1713.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_front_05_Overlay" type="TextureRect" parent="." unique_id=1523886538]
+layout_mode = 0
+offset_left = 1031.0
+offset_top = 1511.0
+offset_right = 1249.0
+offset_bottom = 1821.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_front_05_Icon" type="TextureRect" parent="." unique_id=1858094122]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 1619.0
+offset_right = 1180.0
+offset_bottom = 1713.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_01_Overlay" type="TextureRect" parent="." unique_id=266690962]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 1859.0
+offset_right = 249.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_01_Icon" type="TextureRect" parent="." unique_id=1978785795]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1967.0
+offset_right = 180.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_02_Overlay" type="TextureRect" parent="." unique_id=784904642]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 1859.0
+offset_right = 499.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_02_Icon" type="TextureRect" parent="." unique_id=1888016052]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 1967.0
+offset_right = 430.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_03_Overlay" type="TextureRect" parent="." unique_id=57444648]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 1859.0
+offset_right = 749.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_03_Icon" type="TextureRect" parent="." unique_id=547725259]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 1967.0
+offset_right = 680.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_04_Overlay" type="TextureRect" parent="." unique_id=1221411569]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 1859.0
+offset_right = 999.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_04_Icon" type="TextureRect" parent="." unique_id=315076288]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 1967.0
+offset_right = 930.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_05_Overlay" type="TextureRect" parent="." unique_id=1462960520]
+layout_mode = 0
+offset_left = 1031.0
+offset_top = 1859.0
+offset_right = 1249.0
+offset_bottom = 2169.0
+mouse_filter = 2
+texture = ExtResource("11_0rdms")
+expand_mode = 1
+
+[node name="PlayerSlotLock_back_05_Icon" type="TextureRect" parent="." unique_id=439185858]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 1967.0
+offset_right = 1180.0
+offset_bottom = 2061.0
+mouse_filter = 2
+texture = ExtResource("12_jnnv7")
+expand_mode = 1
+
+[node name="PlayerHpFillPreview" type="ColorRect" parent="." unique_id=1031353920]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 2194.0
+offset_right = 1226.0
+offset_bottom = 2212.0
+mouse_filter = 2
+color = Color(0.745098, 0.839216, 0.721569, 0.75)
+
+[node name="PlayerHpBarFrame" type="TextureRect" parent="." unique_id=986737135]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 2178.0
+offset_right = 1250.0
+offset_bottom = 2228.0
+mouse_filter = 2
+texture = ExtResource("9_snbqy")
+expand_mode = 1
+
+[node name="PlayerHpLabel" type="Label" parent="." unique_id=1492181870]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 2178.0
+offset_right = 690.0
+offset_bottom = 2228.0
+text = "250"
+label_settings = SubResource("LabelSettings_2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerSkillSlotLeft01" type="TextureRect" parent="." unique_id=949226562]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 92.0
+offset_top = 2362.0
+offset_right = 232.0
+offset_bottom = 2502.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotLeft02" type="TextureRect" parent="." unique_id=462721459]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 258.0
+offset_top = 2362.0
+offset_right = 398.0
+offset_bottom = 2502.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotLeft03" type="TextureRect" parent="." unique_id=1239596163]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 178.0
+offset_top = 2520.0
+offset_right = 318.0
+offset_bottom = 2660.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotRight01" type="TextureRect" parent="." unique_id=1494032175]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 882.0
+offset_top = 2362.0
+offset_right = 1022.0
+offset_bottom = 2502.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotRight02" type="TextureRect" parent="." unique_id=340541026]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 2362.0
+offset_right = 1188.0
+offset_bottom = 2502.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="PlayerSkillSlotRight03" type="TextureRect" parent="." unique_id=1448945940]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 962.0
+offset_top = 2520.0
+offset_right = 1102.0
+offset_bottom = 2660.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="ChestButton" type="TextureRect" parent="." unique_id=2040494272]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 2664.0
+offset_right = 429.0
+offset_bottom = 2749.8071
+mouse_filter = 2
+texture = ExtResource("13_wkiik")
+expand_mode = 1
+
+[node name="PlayerPortraitFrame" type="TextureRect" parent="." unique_id=1067442657]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 2269.0
+offset_right = 787.0
+offset_bottom = 2745.0
+mouse_filter = 2
+texture = ExtResource("8_hgaux")
+expand_mode = 1
+
+[node name="RunLevelFrame" type="TextureRect" parent="." unique_id=1003664380]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 2669.0
+offset_right = 537.0
+offset_bottom = 2759.0967
+mouse_filter = 2
+texture = ExtResource("14_vm4nq")
+expand_mode = 1
+
+[node name="RunLevelLabel" type="Label" parent="." unique_id=1503420748]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 2663.0
+offset_right = 541.0
+offset_bottom = 2761.0
+text = "1"
+label_settings = SubResource("LabelSettings_3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RunExpBarFrame" type="TextureRect" parent="." unique_id=20314565]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 2695.0
+offset_right = 732.5102
+offset_bottom = 2740.0
+mouse_filter = 2
+texture = ExtResource("15_3nfsb")
+expand_mode = 1
+
+[node name="RunDurabilityIcon" type="TextureRect" parent="." unique_id=2121584461]
+layout_mode = 0
+offset_left = 742.0
+offset_top = 2673.0
+offset_right = 807.0
+offset_bottom = 2757.1667
+mouse_filter = 2
+texture = ExtResource("16_u5apn")
+expand_mode = 1
+
+[node name="RunDurabilityLabel" type="Label" parent="." unique_id=1724144085]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 2663.0
+offset_right = 814.0
+offset_bottom = 2764.0
+text = "5"
+label_settings = SubResource("LabelSettings_4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrophyButton" type="TextureRect" parent="." unique_id=2027527216]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 2656.0
+offset_right = 954.0
+offset_bottom = 2747.754
+mouse_filter = 2
+texture = ExtResource("17_egapu")
+expand_mode = 1
+
+[node name="TrophyCountLabel" type="Label" parent="." unique_id=2130754933]
+layout_mode = 0
+offset_left = 887.0
+offset_top = 2725.0
+offset_right = 937.0
+offset_bottom = 2763.0
+text = "0"
+label_settings = SubResource("LabelSettings_5")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,352 @@
+{
+  "state_id": "run_board_combat_result_victory",
+  "page_type": "RUN_BOARD_PAGE",
+  "run_board_mode": "COMBAT_RESULT",
+  "state_scope": "full_page",
+  "source_scene": "res://scenes/ui/pages/run_board_combat_result_victory_layout_page.tscn",
+  "source_upper_panel_scene": "res://scenes/ui/panels/run_board_combat_result_victory_upper_panel.tscn",
+  "reference_image": "res://UI_reference/战斗胜利.jpg",
+  "design_width": 1280,
+  "design_height": 2769,
+  "safe_area": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 2769
+  },
+  "reference_analysis": {
+    "page_name": "RunBoardPage / CombatResultOverlay / Victory",
+    "reference_image_path": "res://UI_reference/战斗胜利.jpg",
+    "main_visual_style": "参考图在战斗画面上叠加深色遮罩、暖金光效、居中胜利标题、战绩分隔标题和继续按钮。本实现沿用项目轻量灰白组件风格，先用已有独立组件拼接，不复刻整图。",
+    "canvas_role": "手机竖屏局内战斗胜利结算覆盖层",
+    "major_regions": [
+      "top_left_resource_hud_reused",
+      "top_right_menu_hud_reused",
+      "upper_combat_result_overlay_new",
+      "bottom_player_formation_and_hud_reused"
+    ],
+    "components_to_reuse": [
+      "res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png",
+      "res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png"
+    ],
+    "component_split_rules": [
+      "胜利标题拆为遮罩、独立光束、独立丝带底图和可替换 Label，不把文字烘进贴图。",
+      "战绩标题拆为独立文本、独立分隔线、固定奖杯槽位和固定爱心槽位；具体卡牌/生命等下半区域内容复用现有 combat 骨架，不在本状态重排。",
+      "继续按钮拆为按钮底图、文字 Label 和固定点击热区，只发出 combat_result_confirmed 事件。",
+      "左上资源、右上菜单、下半区玩家回路/HUD 不在本上半区状态内重复声明。"
+    ],
+    "full_page_image_risk_checked": true,
+    "full_page_image_used_as_runtime_ui": false
+  },
+  "layout_rules": {
+    "full_page_image_used_as_runtime_ui": false,
+    "computed_layout_used": false,
+    "copied_scene": "res://scenes/ui/pages/combat_layout_page.tscn",
+    "fixed_slot_rule": "本状态只声明胜利结算覆盖层固定组件，不根据战绩条目或奖励数量运行时计算布局。",
+    "unchanged_regions": [
+      "top_left_resource_hud",
+      "top_right_menu_hud",
+      "bottom_half_player_formation_and_hud"
+    ],
+    "new_regions": [
+      "upper_combat_result_overlay"
+    ],
+    "upper_area_rect": {
+      "x": 0,
+      "y": 108,
+      "w": 1280,
+      "h": 1399
+    },
+    "runtime_note": "本状态使用 gpt-image-2 生成的独立透明组件资产拼接；参考图只作为风格和比例参考，不得裁切参考图或生成整页 UI。"
+  },
+  "generated_result_assets": [
+    {
+      "asset_role": "combat_result_victory_ribbon_logo",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_victory_ribbon_light.png",
+      "note": "透明 PNG，只包含胜利丝带/徽章底图，不包含可变文字。"
+    },
+    {
+      "asset_role": "combat_result_victory_light_rays",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_victory_light_rays_light.png",
+      "note": "透明 PNG，只包含暖金光束和少量星点，不包含背景、角色、按钮或文字。"
+    },
+    {
+      "asset_role": "combat_result_record_divider",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_divider_light.png",
+      "note": "透明 PNG，只包含战绩标题分隔线装饰，不包含文字。"
+    },
+    {
+      "asset_role": "combat_result_record_trophy_icon",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_trophy_light.png",
+      "note": "透明 PNG，只包含战绩奖杯图标，不包含数字或文字。"
+    },
+    {
+      "asset_role": "combat_result_record_heart_icon",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_heart_light.png",
+      "note": "透明 PNG，只包含战绩生命/爱心图标，不包含数字或文字。"
+    }
+  ],
+  "components": [
+    {
+      "component_id": "combat_result_upper_overlay_dim",
+      "component_role": "result_overlay_dim_layer",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 0, "y": 108, "w": 1280, "h": 1399 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 80,
+      "visible": true,
+      "variant": "warm_dim"
+    },
+    {
+      "component_id": "combat_result_victory_light_rays",
+      "component_role": "victory_light_rays",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_victory_light_rays_light.png",
+      "rect": { "x": 120, "y": 420, "w": 1040, "h": 620 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 86,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "combat_result_victory_ribbon",
+      "component_role": "victory_ribbon_emblem",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_victory_ribbon_light.png",
+      "rect": { "x": 210, "y": 600, "w": 860, "h": 360 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 100,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "combat_result_victory_title_plate",
+      "component_role": "victory_title_plate",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_title_banner_light.png",
+      "rect": { "x": 314, "y": 760, "w": 652, "h": 148 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 100,
+      "visible": false,
+      "variant": "fallback_light_gold"
+    },
+    {
+      "component_id": "combat_result_victory_title_label",
+      "component_role": "victory_title_text",
+      "prefab": "Label",
+      "asset": "",
+      "rect": { "x": 390, "y": 700, "w": 500, "h": 135 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 110,
+      "visible": true,
+      "variant": "gold_title",
+      "text": "胜利",
+      "binding": { "source": "combat_result", "key": "result_title" }
+    },
+    {
+      "component_id": "combat_result_victory_subtitle_label",
+      "component_role": "victory_subtitle_text",
+      "prefab": "Label",
+      "asset": "",
+      "rect": { "x": 390, "y": 930, "w": 500, "h": 64 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 110,
+      "visible": true,
+      "variant": "muted_caption",
+      "text": "奖励已结算",
+      "binding": { "source": "combat_result", "key": "summary_caption" }
+    },
+    {
+      "component_id": "combat_result_record_divider",
+      "component_role": "record_title_divider",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_divider_light.png",
+      "rect": { "x": 230, "y": 1148, "w": 820, "h": 90 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 92,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "combat_result_record_title_label",
+      "component_role": "record_title_text",
+      "prefab": "Label",
+      "asset": "",
+      "rect": { "x": 458, "y": 1134, "w": 364, "h": 88 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 110,
+      "visible": true,
+      "variant": "record_title",
+      "text": "本回合战绩"
+    },
+    {
+      "component_id": "combat_result_record_trophy_01",
+      "component_role": "combat_record_trophy_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_trophy_light.png",
+      "rect": { "x": 290, "y": 1238, "w": 86, "h": 86 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "earned"
+    },
+    {
+      "component_id": "combat_result_record_trophy_02",
+      "component_role": "combat_record_trophy_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_trophy_light.png",
+      "rect": { "x": 410, "y": 1238, "w": 86, "h": 86 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "earned"
+    },
+    {
+      "component_id": "combat_result_record_trophy_03",
+      "component_role": "combat_record_trophy_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_trophy_light.png",
+      "rect": { "x": 530, "y": 1238, "w": 86, "h": 86 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "earned"
+    },
+    {
+      "component_id": "combat_result_record_trophy_04",
+      "component_role": "combat_record_trophy_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_trophy_light.png",
+      "rect": { "x": 650, "y": 1238, "w": 86, "h": 86 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "earned"
+    },
+    {
+      "component_id": "combat_result_record_trophy_05",
+      "component_role": "combat_record_trophy_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_trophy_light.png",
+      "rect": { "x": 770, "y": 1238, "w": 86, "h": 86 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "earned"
+    },
+    {
+      "component_id": "combat_result_record_heart_01",
+      "component_role": "combat_record_heart_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_heart_light.png",
+      "rect": { "x": 298, "y": 1304, "w": 72, "h": 72 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "remaining"
+    },
+    {
+      "component_id": "combat_result_record_heart_02",
+      "component_role": "combat_record_heart_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_heart_light.png",
+      "rect": { "x": 418, "y": 1304, "w": 72, "h": 72 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "remaining"
+    },
+    {
+      "component_id": "combat_result_record_heart_03",
+      "component_role": "combat_record_heart_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_heart_light.png",
+      "rect": { "x": 538, "y": 1304, "w": 72, "h": 72 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "remaining"
+    },
+    {
+      "component_id": "combat_result_record_heart_04",
+      "component_role": "combat_record_heart_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_heart_light.png",
+      "rect": { "x": 658, "y": 1304, "w": 72, "h": 72 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "remaining"
+    },
+    {
+      "component_id": "combat_result_record_heart_05",
+      "component_role": "combat_record_heart_icon",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_record_heart_light.png",
+      "rect": { "x": 778, "y": 1304, "w": 72, "h": 72 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 112,
+      "visible": true,
+      "variant": "remaining"
+    },
+    {
+      "component_id": "combat_result_continue_button",
+      "component_role": "result_confirm_button",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png",
+      "rect": { "x": 430, "y": 1378, "w": 420, "h": 122 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 120,
+      "visible": true,
+      "variant": "normal"
+    },
+    {
+      "component_id": "combat_result_continue_label",
+      "component_role": "result_confirm_button_text",
+      "prefab": "Label",
+      "asset": "",
+      "rect": { "x": 500, "y": 1396, "w": 280, "h": 80 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 130,
+      "visible": true,
+      "variant": "button_text",
+      "text": "继续"
+    },
+    {
+      "component_id": "combat_result_continue_hotspot",
+      "component_role": "result_confirm_hotspot",
+      "prefab": "Control",
+      "asset": "",
+      "rect": { "x": 380, "y": 1360, "w": 520, "h": 147 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 140,
+      "visible": true,
+      "variant": "touch_area",
+      "interactions": [
+        { "event": "pressed", "emit": "combat_result_confirmed", "payload": { "result": "win" } }
+      ]
+    }
+  ]
+}

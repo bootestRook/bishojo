@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "data_kind": "partner_card",
+  "template": false,
+  "template_files": {
+    "human_readable_template": "策划文档/02_战斗系统/03_卡牌数据/模板_伙伴卡牌阅读文件_v1.md",
+    "developer_data_template": "data/cards/templates/partner_card.template.v1.json"
+  },
+  "maintenance_rule": "每张卡牌必须拥有独立 Markdown 文件和独立 JSON 文件。当前角色 1 卡组的单卡 Markdown 放在 策划文档/02_战斗系统/03_卡牌数据/01_角色1卡组/。新增字段时必须同步更新两个模板文件以及所有已录入单卡文件。无法从截图确认的字段使用 null，不得按规律外推。",
+  "rarity_order": [
+    "green",
+    "blue",
+    "purple",
+    "yellow"
+  ],
+  "rarity_display_names": {
+    "green": "绿色",
+    "blue": "蓝色",
+    "purple": "紫色",
+    "yellow": "金色"
+  },
+  "damage_card_tag_rule": "只有卡牌自身主动/被动效果直接对敌人造成伤害时，is_damage_card 才为 true，并在 tags 中加入 damage_card；仅引用伤害伙伴或给其他卡牌 +X 点伤害不算伤害卡牌。",
+  "default_passive_stack_rule": "被动描述若写明“触发某事件时，获得/增加某数值”，则默认每次事件触发都叠加一次。",
+  "default_passive_duration_rule": "持续时间若没有特殊说明，则默认持续到本场战斗结束。",
+  "card_id": "kobold",
+  "name": "狗头人",
+  "card_type": "partner",
+  "human_readable_file": "策划文档/02_战斗系统/03_卡牌数据/01_角色1卡组/内容_狗头人卡牌_v1.md",
+  "size_type": "small",
+  "size_label": "小型",
+  "initial_cooldown_ms": 7000,
+  "base_cooldown_ms": 7000,
+  "is_damage_card": true,
+  "tags": [
+    "damage_card"
+  ],
+  "tag_labels": [
+    "伤害卡牌"
+  ],
+  "keyword_definitions": [],
+  "rarity_data": {
+    "green": {
+      "display_name": "绿色",
+      "sell_price": 1,
+      "portrait_top_value": 20,
+      "active_description": "对敌人造成 20 点伤害",
+      "passive_description": "其他伙伴触发暴击时：此伙伴 +5 点伤害",
+      "unknown_fields": []
+    },
+    "blue": {
+      "display_name": "蓝色",
+      "sell_price": 2,
+      "portrait_top_value": 30,
+      "active_description": "对敌人造成 30 点伤害",
+      "passive_description": "其他伙伴触发暴击时：此伙伴 +10 点伤害",
+      "unknown_fields": []
+    },
+    "purple": {
+      "display_name": "紫色",
+      "sell_price": 4,
+      "portrait_top_value": 40,
+      "active_description": "对敌人造成 40 点伤害",
+      "passive_description": "其他伙伴触发暴击时：此伙伴 +15 点伤害",
+      "unknown_fields": []
+    },
+    "yellow": {
+      "display_name": "金色",
+      "sell_price": 8,
+      "portrait_top_value": 50,
+      "active_description": "对敌人造成 50 点伤害",
+      "passive_description": "其他伙伴触发暴击时：此伙伴 +20 点伤害",
+      "unknown_fields": []
+    }
+  },
+  "active_skill": {
+    "trigger": "cooldown_ready",
+    "description_template": "对敌人造成 {damage} 点伤害",
+    "effects": [
+      {
+        "effect_id": "kobold_active_damage",
+        "effect_type": "damage",
+        "target_rule": "enemy_single",
+        "damage_kind": "direct",
+        "damage_type": null,
+        "can_crit": null,
+        "can_trigger_lifesteal": null,
+        "value_by_rarity": {
+          "green": 20,
+          "blue": 30,
+          "purple": 40,
+          "yellow": 50
+        },
+        "description_by_rarity": {
+          "green": "对敌人造成 20 点伤害",
+          "blue": "对敌人造成 30 点伤害",
+          "purple": "对敌人造成 40 点伤害",
+          "yellow": "对敌人造成 50 点伤害"
+        }
+      }
+    ]
+  },
+  "passive_skill": {
+    "trigger": "other_ally_crit",
+    "description_template": "其他伙伴触发暴击时：此伙伴 +{damage_bonus_flat} 点伤害",
+    "effects": [
+      {
+        "effect_id": "kobold_passive_damage_flat_on_other_ally_crit",
+        "effect_type": "buff",
+        "target_rule": "self",
+        "trigger_rule": "other_ally_crit",
+        "stat_modifier": {
+          "stat": "damage_flat",
+          "operation": "add",
+          "value_by_rarity": {
+            "green": 5,
+            "blue": 10,
+            "purple": 15,
+            "yellow": 20
+          }
+        },
+        "stack_rule": "stack_on_trigger",
+        "duration_rule": "until_battle_end",
+        "description_by_rarity": {
+          "green": "其他伙伴触发暴击时：此伙伴 +5 点伤害",
+          "blue": "其他伙伴触发暴击时：此伙伴 +10 点伤害",
+          "purple": "其他伙伴触发暴击时：此伙伴 +15 点伤害",
+          "yellow": "其他伙伴触发暴击时：此伙伴 +20 点伤害"
+        }
+      }
+    ]
+  },
+  "implementation_notes": {
+    "active_skill_notes": "冷却触发描述已经确认；damage_type、是否参与暴击、是否触发吸血未从截图明示，暂留 null，后续按战斗协议或实测补齐。",
+    "passive_skill_notes": "被动描述已经确认；每次其他伙伴触发暴击时叠加一次。描述未写特殊持续时间，默认持续到本场战斗结束。",
+    "pending_rules": [
+      "kobold.active.damage_type",
+      "kobold.active.can_crit",
+      "kobold.active.can_trigger_lifesteal"
+    ]
+  },
+  "source": {
+    "source_type": "user_screenshots",
+    "confidence": "confirmed_from_screenshots",
+    "files": [
+      {
+        "rarity": "green",
+        "file_name": "0787872d4972847d2956f9a40bada135.jpg"
+      },
+      {
+        "rarity": "blue",
+        "file_name": "87d3e128afb80e2c331c4c4070325eb2.jpg"
+      },
+      {
+        "rarity": "purple",
+        "file_name": "f741038d5f5b29be74e47c80a69585ca.jpg"
+      },
+      {
+        "rarity": "yellow",
+        "file_name": "afb8c903fc17de876ee4d7bf138cb931.jpg"
+      }
+    ]
+  }
+}

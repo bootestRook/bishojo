@@ -1,0 +1,377 @@
+{
+  "state_id": "run_board_route_initial_camp",
+  "page_type": "RUN_BOARD_PAGE",
+  "run_board_mode": "BRANCH_SELECT",
+  "source_scene": "res://scenes/ui/pages/run_board_route_initial_camp_layout_page.tscn",
+  "reference_image": "res://UI_reference/路线-初始营地.jpg",
+  "design_width": 1280,
+  "design_height": 2769,
+  "safe_area": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 2769
+  },
+  "component_analysis": {
+    "page_name": "路线-初始营地",
+    "reference_image_path": "res://UI_reference/路线-初始营地.jpg",
+    "main_visual_style": "参考图上半区为蓝绿色路线背景上的单个营地事件卡、问号连接节点与当前岛屿节点；本实现沿用项目轻量灰白组件风格，不复刻整图。",
+    "canvas_ratio": "1280x2769 mobile portrait",
+    "major_regions": [
+      "top_left_resource_hud_reused",
+      "top_right_menu_hud_reused",
+      "upper_route_content_new",
+      "bottom_player_formation_and_hud_reused"
+    ],
+    "full_page_image_risk_checked": true,
+    "full_page_image_used_as_runtime_ui": false
+  },
+  "layout_rules": {
+    "full_page_image_used_as_runtime_ui": false,
+    "computed_layout_used": false,
+    "copied_scene_regions_from": "res://scenes/ui/pages/combat_layout_page.tscn",
+    "unchanged_regions": [
+      "top_left_resource_hud",
+      "top_right_menu_hud",
+      "bottom_half_player_formation_and_hud"
+    ],
+    "new_regions": [
+      "upper_route_content"
+    ],
+    "runtime_note": "本状态只描述固定坐标拼接结果；营地插画和岛屿图均作为独立绑定槽位，不把参考图整张接入运行时。"
+  },
+  "generated_previews": [
+    {
+      "preview_role": "whole_page_visual_reference",
+      "asset": "res://tmp/previews/route/route_initial_camp_full_preview_1280x2769.png",
+      "runtime_usage": false,
+      "note": "整页预览只用于验收构图，不作为运行时整图 UI。"
+    },
+    {
+      "preview_role": "component_atlas_source",
+      "asset": "res://tmp/previews/route/route_initial_camp_component_atlas_source.png",
+      "runtime_usage": false,
+      "note": "组件表由 gpt-image-2 生成，已切片为独立运行时组件。"
+    }
+  ],
+  "components": [
+    {
+      "component_id": "background",
+      "component_role": "background",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/backgrounds/combat/ui_combat_background_light.png",
+      "rect": { "x": 0, "y": 0, "w": 1280, "h": 2769 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 0,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "top_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_top_hud_light.png",
+      "rect": { "x": 0, "y": 0, "w": 1280, "h": 548 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "bottom_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_bottom_hud_light.png",
+      "rect": { "x": 0, "y": 2238, "w": 1280, "h": 531 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "gold_display",
+      "component_role": "resource_display",
+      "prefab": "TextureRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_plate_resource_light.png",
+      "rect": { "x": 39, "y": 32, "w": 210, "h": 62 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "text": "14 +7",
+      "binding": { "source": "run_resources", "key": "gold_and_income" }
+    },
+    {
+      "component_id": "menu_button",
+      "component_role": "menu_button",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/icons/combat/ui_combat_icon_menu_light.png",
+      "rect": { "x": 1135, "y": 31, "w": 70, "h": 54 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "interactions": [
+        { "event": "pressed", "emit": "menu_requested" }
+      ]
+    },
+    {
+      "component_id": "route_content_area",
+      "component_role": "mode_content_background",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 0, "y": 548, "w": 1280, "h": 959 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 15,
+      "visible": true,
+      "variant": "light_tint"
+    },
+    {
+      "component_id": "route_event_card_frame",
+      "component_role": "route_event_card_frame",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/route/ui_route_event_card_frame_light.png",
+      "rect": { "x": 388, "y": 286, "w": 504, "h": 642 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "initial_camp"
+    },
+    {
+      "component_id": "route_event_title",
+      "component_role": "route_event_title_text",
+      "prefab": "Label",
+      "asset": "",
+      "rect": { "x": 454, "y": 318, "w": 372, "h": 76 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "title_text",
+      "text": "温暖营地",
+      "binding": { "source": "route_current_node", "key": "title" }
+    },
+    {
+      "component_id": "route_event_illustration_slot",
+      "component_role": "route_event_illustration_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/route/ui_route_event_illustration_initial_camp.png",
+      "rect": { "x": 425, "y": 415, "w": 430, "h": 390 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 45,
+      "visible": true,
+      "variant": "initial_camp",
+      "binding": { "source": "route_current_node", "key": "illustration_asset" },
+      "runtime_asset_rule": "正式营地插画必须作为独立资产接入，不得烘进背景或整页图。"
+    },
+    {
+      "component_id": "route_event_description",
+      "component_role": "route_event_description_text",
+      "prefab": "ColorRect+Label",
+      "asset": "",
+      "rect": { "x": 440, "y": 820, "w": 400, "h": 62 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 55,
+      "visible": true,
+      "variant": "dark_caption_plate",
+      "text": "新的旅程从这里开始！",
+      "binding": { "source": "route_current_node", "key": "description" }
+    },
+    {
+      "component_id": "route_question_connector",
+      "component_role": "route_path_connector",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 637, "y": 928, "w": 6, "h": 184 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 35,
+      "visible": true,
+      "variant": "muted_line"
+    },
+    {
+      "component_id": "route_question_node",
+      "component_role": "route_unknown_next_node",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/route/ui_route_node_unknown_light.png",
+      "rect": { "x": 560, "y": 990, "w": 160, "h": 178 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 60,
+      "visible": true,
+      "variant": "unknown",
+      "interactions": [
+        { "event": "pressed", "emit": "route_next_node_preview_requested", "payload": { "node_index": 0 } }
+      ]
+    },
+    {
+      "component_id": "route_current_node_art",
+      "component_role": "route_current_node_art",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/route/ui_route_node_initial_camp_island_light.png",
+      "rect": { "x": 454, "y": 1180, "w": 372, "h": 240 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 45,
+      "visible": true,
+      "variant": "initial_camp",
+      "binding": { "source": "route_current_node", "key": "node_art_asset" },
+      "runtime_asset_rule": "正式岛屿/营地图必须作为独立透明 PNG 接入，不得和背景、路线卡或参考图合并。"
+    },
+    {
+      "component_id": "formation_slot_front_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 26, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_front_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 276, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 526, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 776, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 1026, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 26, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 276, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 526, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 776, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 1026, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "player_hp_bar",
+      "component_role": "player_hp_display",
+      "prefab": "ColorRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png",
+      "rect": { "x": 30, "y": 2178, "w": 1220, "h": 50 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light",
+      "text": "250",
+      "binding": { "source": "player_status", "key": "hp" }
+    },
+    {
+      "component_id": "bottom_player_status_hud",
+      "component_role": "player_status_hud",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/combat/ui_combat_frame_portrait_light.png",
+      "rect": { "x": 494, "y": 2269, "w": 293, "h": 476 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light"
+    }
+  ]
+}

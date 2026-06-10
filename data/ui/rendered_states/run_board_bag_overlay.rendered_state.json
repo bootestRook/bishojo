@@ -1,0 +1,949 @@
+{
+  "state_id": "run_board_bag_overlay",
+  "page_type": "RUN_BOARD_PAGE",
+  "run_board_mode": "BAG_OVERLAY",
+  "source_scene": "res://scenes/ui/pages/run_board_bag_overlay_layout_page.tscn",
+  "reference_image": "res://UI_reference/背包界面.jpg",
+  "design_width": 1280,
+  "design_height": 2769,
+  "safe_area": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 2769
+  },
+  "component_analysis": {
+    "page_name": "RunBoardPage / BagOverlay",
+    "reference_image_path": "res://UI_reference/背包界面.jpg",
+    "main_visual_style": "参考图上半区是暗色背景上的箱包式背包展示板，内部为 2×5 固定槽位，右上有已占用卡片。当前实现保留项目既有浅色低噪声组件风格，不复刻参考图厚重暗色整图。",
+    "canvas_ratio": "1280x2769 mobile portrait",
+    "major_regions": [
+      "top_left_resource_hud_reused",
+      "top_right_menu_hud_reused",
+      "upper_bag_board_new",
+      "upper_bag_slot_grid_new",
+      "bottom_player_formation_and_hud_reused"
+    ],
+    "component_list": [
+      {
+        "component": "bag_board_shell",
+        "function": "承载上半区背包格的视觉底板",
+        "independent_asset_required": true,
+        "reuse": "res://assets/ui/components/bag/ui_bag_panel_shell_light.png"
+      },
+      {
+        "component": "bag_board_lid_and_latch",
+        "function": "参考箱包翻盖和锁扣的层级提示",
+        "independent_asset_required": true,
+        "reuse": "res://assets/ui/components/bag/ui_bag_top_flap_light.png 与 res://assets/ui/components/bag/ui_bag_latch_light.png"
+      },
+      {
+        "component": "bag_slot_01_to_10",
+        "function": "固定背包槽位，运行时只填充数据，不根据背包数量重排",
+        "independent_asset_required": true,
+        "reuse": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png"
+      },
+      {
+        "component": "bag_item_preview_05",
+        "function": "已占用卡牌预览层，绑定 bag_items[4]",
+        "independent_asset_required": true,
+        "reuse": "res://assets/ui/components/bag/ui_bag_card_frame_occupied_light.png 与独立 CharacterArt 槽位"
+      }
+    ],
+    "full_page_image_risk_checked": true,
+    "full_page_image_used_as_runtime_ui": false
+  },
+  "layout_rules": {
+    "full_page_image_used_as_runtime_ui": false,
+    "computed_layout_used": false,
+    "copied_scene_regions_from": "res://scenes/ui/pages/combat_layout_page.tscn",
+    "unchanged_regions": [
+      "top_left_resource_hud",
+      "top_right_menu_hud",
+      "bottom_half_player_formation_and_hud"
+    ],
+    "new_regions": [
+      "upper_bag_board",
+      "upper_bag_fixed_slot_grid"
+    ],
+    "runtime_note": "?????????? bag_slot_01 ~ bag_slot_10?bag_items ?????????????? empty?????????Godot ??? combat_layout_page.tscn ?????????????????????????????????? 5 ????228?318 ??? 22px ??????????????????? HUD ????????"
+  },
+  "generated_bag_assets": [
+    "res://assets/ui/components/bag/ui_bag_panel_shell_light.png",
+    "res://assets/ui/components/bag/ui_bag_top_flap_light.png",
+    "res://assets/ui/components/bag/ui_bag_latch_light.png",
+    "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+    "res://assets/ui/components/bag/ui_bag_card_frame_occupied_light.png",
+    "res://assets/ui/components/bag/ui_bag_badge_stack_light.png"
+  ],
+  "components": [
+    {
+      "component_id": "background",
+      "component_role": "background",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/backgrounds/combat/ui_combat_background_light.png",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 2769
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 0,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "top_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_top_hud_light.png",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 548
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "bottom_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_bottom_hud_light.png",
+      "rect": {
+        "x": 0,
+        "y": 2238,
+        "w": 1280,
+        "h": 531
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "gold_display",
+      "component_role": "resource_display",
+      "prefab": "TextureRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_plate_resource_light.png",
+      "rect": {
+        "x": 39,
+        "y": 32,
+        "w": 210,
+        "h": 62
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "text": "14 +7",
+      "binding": {
+        "source": "run_resources",
+        "key": "gold_and_income"
+      }
+    },
+    {
+      "component_id": "menu_button",
+      "component_role": "menu_button",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/icons/combat/ui_combat_icon_menu_light.png",
+      "rect": {
+        "x": 1135,
+        "y": 31,
+        "w": 70,
+        "h": 54
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "menu_requested"
+        }
+      ]
+    },
+    {
+      "component_id": "bag_overlay_content_area",
+      "component_role": "mode_content_background",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 0,
+        "y": 548,
+        "w": 1280,
+        "h": 959
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 15,
+      "visible": true,
+      "variant": "light_tint"
+    },
+    {
+      "component_id": "bag_board_shadow",
+      "component_role": "bag_board_decoration",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 17,
+        "y": 506,
+        "w": 1246,
+        "h": 900
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "soft_shadow"
+    },
+    {
+      "component_id": "bag_board_outer_panel",
+      "component_role": "bag_board_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_panel_shell_light.png",
+      "rect": {
+        "x": 17,
+        "y": 520,
+        "w": 1246,
+        "h": 858
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 22,
+      "visible": true,
+      "variant": "outer_panel"
+    },
+    {
+      "component_id": "bag_board_inner_panel",
+      "component_role": "bag_board_panel",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 26,
+        "y": 638,
+        "w": 1228,
+        "h": 727
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 24,
+      "visible": true,
+      "variant": "inner_panel"
+    },
+    {
+      "component_id": "bag_board_top_flap",
+      "component_role": "bag_board_decoration",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_top_flap_light.png",
+      "rect": {
+        "x": 270,
+        "y": 470,
+        "w": 740,
+        "h": 135
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 25,
+      "visible": true,
+      "variant": "top_flap"
+    },
+    {
+      "component_id": "bag_board_latch_base",
+      "component_role": "bag_board_decoration",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_latch_light.png",
+      "rect": {
+        "x": 568,
+        "y": 444,
+        "w": 144,
+        "h": 172
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 35,
+      "visible": true,
+      "variant": "latch"
+    },
+    {
+      "component_id": "bag_board_latch_top_slot",
+      "component_role": "bag_board_decoration",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 590,
+        "y": 470,
+        "w": 100,
+        "h": 44
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 36,
+      "visible": false,
+      "variant": "latch_groove"
+    },
+    {
+      "component_id": "bag_board_latch_bottom_slot",
+      "component_role": "bag_board_decoration",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 590,
+        "y": 532,
+        "w": 100,
+        "h": 44
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 36,
+      "visible": false,
+      "variant": "latch_groove"
+    },
+    {
+      "component_id": "bag_board_title_label",
+      "component_role": "bag_board_label",
+      "prefab": "Label",
+      "asset": "",
+      "rect": {
+        "x": 520,
+        "y": 596,
+        "w": 240,
+        "h": 58
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": false,
+      "variant": "muted",
+      "text": "背包"
+    },
+    {
+      "component_id": "bag_slot_01",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 26,
+        "y": 690,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 0
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_01",
+            "bag_index": 0
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "bag_slot_02",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 276,
+        "y": 690,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 1
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_02",
+            "bag_index": 1
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "bag_slot_03",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 526,
+        "y": 690,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 2
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_03",
+            "bag_index": 2
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "bag_slot_04",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 776,
+        "y": 690,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 3
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_04",
+            "bag_index": 3
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "bag_slot_05",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 1026,
+        "y": 690,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "occupied",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 4
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_05",
+            "bag_index": 4
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "bag_item_preview_05",
+      "component_role": "bag_item_card_preview",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/bag/ui_bag_card_frame_occupied_light.png",
+      "rect": {
+        "x": 1026,
+        "y": 690,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 58,
+      "visible": true,
+      "variant": "occupied_preview",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 4
+      },
+      "subcomponents": [
+        {
+          "component_id": "bag_item_preview_05_art_slot",
+          "prefab": "ColorRect+TextureRect",
+          "rect": {
+            "x": 1050,
+            "y": 724,
+            "w": 180,
+            "h": 203
+          },
+          "binding": {
+            "source": "CharacterArt",
+            "key": "portrait_asset"
+          }
+        },
+        {
+          "component_id": "bag_item_preview_05_stack_badge",
+          "prefab": "TextureRect+Label",
+          "asset": "res://assets/ui/components/bag/ui_bag_badge_stack_light.png",
+          "rect": {
+            "x": 1040,
+            "y": 928,
+            "w": 74,
+            "h": 78
+          },
+          "text": "1"
+        }
+      ]
+    },
+    {
+      "component_id": "bag_slot_06",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 26,
+        "y": 1038,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 5
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_06",
+            "bag_index": 5
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "bag_slot_07",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 276,
+        "y": 1038,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 6
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_07",
+            "bag_index": 6
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "bag_slot_08",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 526,
+        "y": 1038,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 7
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_08",
+            "bag_index": 7
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "bag_slot_09",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 776,
+        "y": 1038,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 8
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_09",
+            "bag_index": 8
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "bag_slot_10",
+      "component_role": "bag_item_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/bag/ui_bag_slot_frame_empty_light.png",
+      "rect": {
+        "x": 1026,
+        "y": 1038,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": {
+        "source": "bag_items",
+        "index": 9
+      },
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "bag_slot_selected",
+          "payload": {
+            "slot_id": "bag_slot_10",
+            "bag_index": 9
+          }
+        },
+        {
+          "event": "long_press",
+          "emit": "card_detail_requested",
+          "payload_from_binding": true
+        }
+      ]
+    },
+    {
+      "component_id": "formation_slot_front_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 26,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_front_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 276,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 526,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 776,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 1026,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 26,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 276,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 526,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 776,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 1026,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "player_hp_bar",
+      "component_role": "player_hp_display",
+      "prefab": "ColorRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png",
+      "rect": {
+        "x": 30,
+        "y": 2178,
+        "w": 1220,
+        "h": 50
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light",
+      "text": "250",
+      "binding": {
+        "source": "player_status",
+        "key": "hp"
+      }
+    },
+    {
+      "component_id": "bottom_player_status_hud",
+      "component_role": "player_status_hud",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/combat/ui_combat_frame_portrait_light.png",
+      "rect": {
+        "x": 494,
+        "y": 2269,
+        "w": 293,
+        "h": 476
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light"
+    }
+  ]
+}

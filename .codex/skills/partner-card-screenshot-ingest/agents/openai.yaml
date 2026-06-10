@@ -1,0 +1,7 @@
+interface:
+  display_name: "Partner Card Screenshot Ingest"
+  short_description: "Extract card screenshots into data files"
+  default_prompt: "Use $partner-card-screenshot-ingest to录入我发的卡牌截图。"
+
+policy:
+  allow_implicit_invocation: true

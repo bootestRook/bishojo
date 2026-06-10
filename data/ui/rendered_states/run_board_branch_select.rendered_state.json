@@ -1,0 +1,677 @@
+{
+  "state_id": "run_board_branch_select",
+  "page_type": "RUN_BOARD_PAGE",
+  "run_board_mode": "BRANCH_SELECT",
+  "source_scene": "res://scenes/ui/pages/run_board_branch_select_layout_page.tscn",
+  "reference_image": "res://UI_reference/路线-2分支.jpg",
+  "design_width": 1280,
+  "design_height": 2769,
+  "safe_area": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 2769
+  },
+  "reference_analysis": {
+    "page_name": "RunBoardPage / BranchSelect",
+    "canvas_role": "手机竖屏局内路线分支选择界面",
+    "major_regions": [
+      "左上资源显示，复用现有 ResourcePlate / ResourceIcon / ResourceValueLabel",
+      "右上菜单入口，复用现有 MenuButtonIcon",
+      "上半区 2 个路线分支卡片，作为当前模式唯一新增核心交互",
+      "分支卡片下方节点徽标、节点落点和连接线，作为路线关系提示",
+      "下半区玩家回路、生命条和底部 HUD，复用 combat 骨架"
+    ],
+    "component_split_rules": [
+      "两张分支卡是独立可点击组件，分别发出 branch_selected 事件",
+      "标题、说明文字和分支类型绑定运行时 branch_options 固定槽位，不烘焙进卡框",
+      "预览图和节点小岛只作为独立资产槽位，后续可替换为 CharacterArt 或 RouteNodeArt",
+      "连接线只表达当前固定路线关系，不根据分支数量运行时重排"
+    ]
+  },
+  "layout_rules": {
+    "full_page_image_used_as_runtime_ui": false,
+    "computed_layout_used": false,
+    "copied_scene": "res://scenes/ui/pages/combat_layout_page.tscn",
+    "unchanged_regions": [
+      "top_left_resource_hud",
+      "top_right_menu_hud",
+      "bottom_half_player_formation_and_hud"
+    ],
+    "runtime_note": "本状态固定描述 2 分支路线选择；branch_options[0] 和 branch_options[1] 只填充既有槽位，不根据数组长度重排。"
+  },
+  "generated_route_assets": [
+    {
+      "asset_role": "branch_preview_shop",
+      "path": "res://assets/ui/components/route/ui_route_branch_preview_shop_light.png",
+      "note": "已通过 gpt-image-2 生成独立矩形预览图，运行时作为分支卡内部插画槽。"
+    },
+    {
+      "asset_role": "branch_preview_rest",
+      "path": "res://assets/ui/components/route/ui_route_branch_preview_rest_light.png",
+      "note": "已通过 gpt-image-2 生成独立矩形预览图，运行时作为分支卡内部插画槽。"
+    },
+    {
+      "asset_role": "route_node_shop",
+      "path": "res://assets/ui/components/route/ui_route_node_shop_light.png",
+      "note": "已通过 gpt-image-2 生成独立透明 PNG，不和背景或卡片合并。"
+    },
+    {
+      "asset_role": "route_node_rest",
+      "path": "res://assets/ui/components/route/ui_route_node_rest_light.png",
+      "note": "已通过 gpt-image-2 生成独立透明 PNG，不和背景或卡片合并。"
+    }
+  ],
+  "components": [
+    {
+      "component_id": "background",
+      "component_role": "background",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/backgrounds/combat/ui_combat_background_light.png",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 2769
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 0,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "top_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_top_hud_light.png",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 548
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "bottom_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_bottom_hud_light.png",
+      "rect": {
+        "x": 0,
+        "y": 2238,
+        "w": 1280,
+        "h": 531
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "gold_display",
+      "component_role": "resource_display",
+      "prefab": "TextureRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_plate_resource_light.png",
+      "rect": {
+        "x": 39,
+        "y": 32,
+        "w": 210,
+        "h": 62
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "text": "14 +7",
+      "binding": {
+        "source": "run_resources",
+        "key": "gold_and_income"
+      }
+    },
+    {
+      "component_id": "menu_button",
+      "component_role": "menu_button",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/icons/combat/ui_combat_icon_menu_light.png",
+      "rect": {
+        "x": 1135,
+        "y": 31,
+        "w": 70,
+        "h": 54
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "menu_requested"
+        }
+      ]
+    },
+    {
+      "component_id": "branch_select_content_area",
+      "component_role": "mode_content_background",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 0,
+        "y": 548,
+        "w": 1280,
+        "h": 959
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 15,
+      "visible": true,
+      "variant": "light_tint"
+    },
+    {
+      "component_id": "branch_option_shop",
+      "component_role": "route_branch_option",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/route/ui_route_branch_card_frame_light.png",
+      "rect": {
+        "x": 92,
+        "y": 540,
+        "w": 504,
+        "h": 610
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "shop",
+      "data_binding": {
+        "source": "branch_options",
+        "index": 0
+      },
+      "text": {
+        "title": "通用伙伴商店",
+        "description": "在此可购买各种伙伴"
+      },
+      "subcomponents": [
+        {
+          "component_id": "branch_option_shop_title_banner",
+          "asset": "res://assets/ui/components/route/ui_route_branch_title_banner_light.png",
+          "rect": {
+            "x": 140,
+            "y": 558,
+            "w": 404,
+            "h": 90
+          }
+        },
+        {
+          "component_id": "branch_option_shop_preview_art",
+          "asset": "res://assets/ui/components/route/ui_route_branch_preview_shop_light.png",
+          "rect": {
+            "x": 136,
+            "y": 670,
+            "w": 412,
+            "h": 295
+          },
+          "binding": {
+            "source": "RouteNodeArt",
+            "key": "preview_asset"
+          }
+        },
+        {
+          "component_id": "branch_option_shop_description_shade",
+          "prefab": "ColorRect",
+          "rect": {
+            "x": 142,
+            "y": 984,
+            "w": 400,
+            "h": 100
+          }
+        },
+        {
+          "component_id": "branch_option_shop_badge",
+          "asset": "res://assets/ui/components/route/ui_route_branch_badge_frame_light.png",
+          "rect": {
+            "x": 272,
+            "y": 1120,
+            "w": 132,
+            "h": 132
+          }
+        },
+        {
+          "component_id": "branch_option_shop_node_art",
+          "asset": "res://assets/ui/components/route/ui_route_node_shop_light.png",
+          "rect": {
+            "x": 210,
+            "y": 1270,
+            "w": 310,
+            "h": 150
+          },
+          "binding": {
+            "source": "RouteNodeArt",
+            "key": "node_asset"
+          }
+        }
+      ],
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "branch_selected",
+          "payload": {
+            "branch_id": "shop",
+            "option_index": 0
+          }
+        }
+      ]
+    },
+    {
+      "component_id": "branch_option_rest",
+      "component_role": "route_branch_option",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/route/ui_route_branch_card_frame_light.png",
+      "rect": {
+        "x": 684,
+        "y": 540,
+        "w": 504,
+        "h": 610
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "rest",
+      "data_binding": {
+        "source": "branch_options",
+        "index": 1
+      },
+      "text": {
+        "title": "奇妙小屋",
+        "description": "休息获得最大生命或获得金币"
+      },
+      "subcomponents": [
+        {
+          "component_id": "branch_option_rest_title_banner",
+          "asset": "res://assets/ui/components/route/ui_route_branch_title_banner_light.png",
+          "rect": {
+            "x": 732,
+            "y": 558,
+            "w": 404,
+            "h": 90
+          }
+        },
+        {
+          "component_id": "branch_option_rest_preview_art",
+          "asset": "res://assets/ui/components/route/ui_route_branch_preview_rest_light.png",
+          "rect": {
+            "x": 728,
+            "y": 670,
+            "w": 412,
+            "h": 295
+          },
+          "binding": {
+            "source": "RouteNodeArt",
+            "key": "preview_asset"
+          }
+        },
+        {
+          "component_id": "branch_option_rest_description_shade",
+          "prefab": "ColorRect",
+          "rect": {
+            "x": 734,
+            "y": 984,
+            "w": 400,
+            "h": 100
+          }
+        },
+        {
+          "component_id": "branch_option_rest_badge",
+          "asset": "res://assets/ui/components/route/ui_route_branch_badge_frame_light.png",
+          "rect": {
+            "x": 864,
+            "y": 1120,
+            "w": 132,
+            "h": 132
+          }
+        },
+        {
+          "component_id": "branch_option_rest_node_art",
+          "asset": "res://assets/ui/components/route/ui_route_node_rest_light.png",
+          "rect": {
+            "x": 760,
+            "y": 1270,
+            "w": 310,
+            "h": 150
+          },
+          "binding": {
+            "source": "RouteNodeArt",
+            "key": "node_asset"
+          }
+        }
+      ],
+      "interactions": [
+        {
+          "event": "pressed",
+          "emit": "branch_selected",
+          "payload": {
+            "branch_id": "rest",
+            "option_index": 1
+          }
+        }
+      ]
+    },
+    {
+      "component_id": "route_shop_connector",
+      "component_role": "route_connector",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 334,
+        "y": 1248,
+        "w": 8,
+        "h": 40
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 32,
+      "visible": true,
+      "variant": "solid"
+    },
+    {
+      "component_id": "route_rest_connector",
+      "component_role": "route_connector",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 926,
+        "y": 1248,
+        "w": 8,
+        "h": 40
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 32,
+      "visible": true,
+      "variant": "solid"
+    },
+    {
+      "component_id": "route_shop_dash_01",
+      "component_role": "route_dotted_path",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 334,
+        "y": 1436,
+        "w": 8,
+        "h": 42
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 32,
+      "visible": true,
+      "variant": "dash"
+    },
+    {
+      "component_id": "route_shop_dash_02",
+      "component_role": "route_dotted_path",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 334,
+        "y": 1498,
+        "w": 8,
+        "h": 42
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 32,
+      "visible": true,
+      "variant": "dash"
+    },
+    {
+      "component_id": "route_rest_dash_01",
+      "component_role": "route_dotted_path",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 926,
+        "y": 1436,
+        "w": 8,
+        "h": 42
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 32,
+      "visible": true,
+      "variant": "dash"
+    },
+    {
+      "component_id": "route_rest_dash_02",
+      "component_role": "route_dotted_path",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": {
+        "x": 926,
+        "y": 1498,
+        "w": 8,
+        "h": 42
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 32,
+      "visible": true,
+      "variant": "dash"
+    },
+    {
+      "component_id": "formation_slot_front_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 26,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_front_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 276,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 526,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 776,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 1026,
+        "y": 1507,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 26,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 276,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 526,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 776,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": {
+        "x": 1026,
+        "y": 1855,
+        "w": 228,
+        "h": 318
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "player_hp_bar",
+      "component_role": "player_hp_display",
+      "prefab": "ColorRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png",
+      "rect": {
+        "x": 30,
+        "y": 2178,
+        "w": 1220,
+        "h": 50
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light",
+      "text": "250"
+    },
+    {
+      "component_id": "bottom_player_status_hud",
+      "component_role": "player_status_hud",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/combat/ui_combat_frame_portrait_light.png",
+      "rect": {
+        "x": 494,
+        "y": 2269,
+        "w": 293,
+        "h": 476
+      },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light"
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "data_kind": "partner_card",
+  "template": false,
+  "template_files": {
+    "human_readable_template": "策划文档/02_战斗系统/03_卡牌数据/模板_伙伴卡牌阅读文件_v1.md",
+    "developer_data_template": "data/cards/templates/partner_card.template.v1.json"
+  },
+  "maintenance_rule": "每张卡牌必须拥有独立 Markdown 文件和独立 JSON 文件。当前角色 1 卡组的单卡 Markdown 放在 策划文档/02_战斗系统/03_卡牌数据/01_角色1卡组/。新增字段时必须同步更新两个模板文件以及所有已录入单卡文件。无法从截图确认的字段使用 null，不得按规律外推。",
+  "rarity_order": [
+    "green",
+    "blue",
+    "purple",
+    "yellow"
+  ],
+  "rarity_display_names": {
+    "green": "绿色",
+    "blue": "蓝色",
+    "purple": "紫色",
+    "yellow": "金色"
+  },
+  "damage_card_tag_rule": "只有卡牌自身主动/被动效果直接对敌人造成伤害时，is_damage_card 才为 true，并在 tags 中加入 damage_card；仅引用伤害伙伴或给其他卡牌 +X 点伤害不算伤害卡牌。",
+  "default_passive_stack_rule": "被动描述若写明“触发某事件时，获得/增加某数值”，则默认每次事件触发都叠加一次。",
+  "default_passive_duration_rule": "持续时间若没有特殊说明，则默认持续到本场战斗结束。",
+  "card_id": "brick_mouse",
+  "name": "搬砖鼠",
+  "card_type": "partner",
+  "human_readable_file": "策划文档/02_战斗系统/03_卡牌数据/01_角色1卡组/内容_搬砖鼠卡牌_v1.md",
+  "size_type": "small",
+  "size_label": "小型",
+  "initial_cooldown_ms": null,
+  "base_cooldown_ms": null,
+  "is_damage_card": false,
+  "tags": [
+    "damage_ally_support",
+    "cooldown_cap_modifier"
+  ],
+  "tag_labels": [
+    "伤害伙伴支援",
+    "冷却上限调整"
+  ],
+  "keyword_definitions": [],
+  "rarity_data": {
+    "green": {
+      "display_name": "绿色",
+      "sell_price": 1,
+      "portrait_top_value": null,
+      "active_description": "无",
+      "passive_description": "右侧相邻的伤害伙伴 +10 点伤害；若只上阵 1 个伤害伙伴，使其冷却时间上限 -5%",
+      "unknown_fields": []
+    },
+    "blue": {
+      "display_name": "蓝色",
+      "sell_price": 2,
+      "portrait_top_value": null,
+      "active_description": "无",
+      "passive_description": "右侧相邻的伤害伙伴 +20 点伤害；若只上阵 1 个伤害伙伴，使其冷却时间上限 -10%",
+      "unknown_fields": []
+    },
+    "purple": {
+      "display_name": "紫色",
+      "sell_price": 4,
+      "portrait_top_value": null,
+      "active_description": "无",
+      "passive_description": "右侧相邻的伤害伙伴 +30 点伤害；若只上阵 1 个伤害伙伴，使其冷却时间上限 -15%",
+      "unknown_fields": []
+    },
+    "yellow": {
+      "display_name": "金色",
+      "sell_price": 8,
+      "portrait_top_value": null,
+      "active_description": "无",
+      "passive_description": "右侧相邻的伤害伙伴 +40 点伤害；若只上阵 1 个伤害伙伴，使其冷却时间上限 -20%",
+      "unknown_fields": []
+    }
+  },
+  "active_skill": {
+    "trigger": null,
+    "description_template": null,
+    "effects": []
+  },
+  "passive_skill": {
+    "trigger": "while_deployed",
+    "description_template": "右侧相邻的伤害伙伴 +{damage_bonus_flat} 点伤害；若只上阵 1 个伤害伙伴，使其冷却时间上限 -{cooldown_cap_reduction_percent}%",
+    "effects": [
+      {
+        "effect_id": "brick_mouse_passive_right_adjacent_damage_bonus",
+        "effect_type": "buff",
+        "target_rule": "right_adjacent_damage_ally",
+        "trigger_rule": "while_deployed",
+        "stat_modifier": {
+          "stat": "damage_flat",
+          "operation": "add",
+          "value_by_rarity": {
+            "green": 10,
+            "blue": 20,
+            "purple": 30,
+            "yellow": 40
+          }
+        },
+        "stack_rule": "aura_no_stack",
+        "duration_rule": "while_deployed",
+        "description_by_rarity": {
+          "green": "右侧相邻的伤害伙伴 +10 点伤害",
+          "blue": "右侧相邻的伤害伙伴 +20 点伤害",
+          "purple": "右侧相邻的伤害伙伴 +30 点伤害",
+          "yellow": "右侧相邻的伤害伙伴 +40 点伤害"
+        }
+      },
+      {
+        "effect_id": "brick_mouse_passive_single_damage_ally_cooldown_cap_reduction",
+        "effect_type": "buff",
+        "target_rule": "single_deployed_damage_ally",
+        "trigger_rule": "while_deployed",
+        "condition": {
+          "deployed_damage_ally_count": 1
+        },
+        "stat_modifier": {
+          "stat": "cooldown_time_cap_bp",
+          "operation": "add",
+          "value_by_rarity": {
+            "green": -500,
+            "blue": -1000,
+            "purple": -1500,
+            "yellow": -2000
+          }
+        },
+        "stack_rule": "aura_no_stack",
+        "duration_rule": "while_deployed",
+        "description_by_rarity": {
+          "green": "若只上阵 1 个伤害伙伴，使其冷却时间上限 -5%",
+          "blue": "若只上阵 1 个伤害伙伴，使其冷却时间上限 -10%",
+          "purple": "若只上阵 1 个伤害伙伴，使其冷却时间上限 -15%",
+          "yellow": "若只上阵 1 个伤害伙伴，使其冷却时间上限 -20%"
+        }
+      }
+    ]
+  },
+  "implementation_notes": {
+    "active_skill_notes": "无冷却触发效果；截图未显示初始冷却和卡面顶部数值。",
+    "passive_skill_notes": "被动描述已经确认；右侧相邻伤害伙伴获得固定伤害加成。若只上阵 1 个伤害伙伴，则降低该唯一伤害伙伴的冷却时间上限。",
+    "pending_rules": []
+  },
+  "source": {
+    "source_type": "user_screenshots",
+    "confidence": "confirmed_from_screenshots",
+    "files": [
+      {
+        "rarity": "green",
+        "file_name": "6e4e5c153a2296101c9b8e0794db2329.jpg"
+      },
+      {
+        "rarity": "blue",
+        "file_name": "70178a9339c816a73633a419f8ad8f45.jpg"
+      },
+      {
+        "rarity": "purple",
+        "file_name": "3c571f8caac84ee9ec54e7d4a2c17dad.jpg"
+      },
+      {
+        "rarity": "yellow",
+        "file_name": "944d4afb10f4f942b1d3708b3ea4984d.jpg"
+      }
+    ]
+  }
+}

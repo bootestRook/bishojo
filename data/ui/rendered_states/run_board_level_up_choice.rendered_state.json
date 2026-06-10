@@ -1,0 +1,473 @@
+{
+  "state_id": "run_board_level_up_choice",
+  "page_type": "RUN_BOARD_PAGE",
+  "run_board_mode": "REWARD_SELECT",
+  "source_scene": "res://scenes/ui/pages/run_board_level_up_choice_layout_page.tscn",
+  "reference_image": "res://UI_reference/升级3选1界面.jpg",
+  "design_width": 1280,
+  "design_height": 2769,
+  "safe_area": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 2769
+  },
+  "reference_analysis": {
+    "page_name": "RunBoardPage / RewardSelect / LevelUpChoice",
+    "reference_image_path": "res://UI_reference/升级3选1界面.jpg",
+    "main_visual_style": "参考图上半区由升级标题、目标等级徽章、三张技能奖励卡和退出按钮组成；本实现沿用项目现有轻量灰白组件和红色操作按钮，不把参考图作为运行时整图。",
+    "canvas_ratio": "mobile portrait",
+    "major_regions": [
+      "top_left_resource_hud_reused",
+      "top_right_menu_hud_reused",
+      "upper_level_up_header_new",
+      "upper_three_reward_options_new",
+      "bottom_player_formation_and_hud_reused"
+    ],
+    "component_list": [
+      "level_up_title_label",
+      "level_up_target_level_badge",
+      "reward_option_01",
+      "reward_option_02",
+      "reward_option_03",
+      "level_up_exit_button"
+    ],
+    "full_page_image_risk_checked": true,
+    "full_page_image_used_as_runtime_ui": false
+  },
+  "layout_rules": {
+    "full_page_image_used_as_runtime_ui": false,
+    "computed_layout_used": false,
+    "copied_scene_regions_from": "res://scenes/ui/pages/start_camp_card_choice_layout_page.tscn",
+    "unchanged_regions": [
+      "top_left_resource_hud",
+      "top_right_menu_hud",
+      "bottom_half_player_formation_and_hud"
+    ],
+    "fixed_slots": [
+      "reward_option_01",
+      "reward_option_02",
+      "reward_option_03"
+    ],
+    "runtime_note": "本状态只描述升级 3 选 1 的固定坐标拼接结果；skill_options[0..2] 只填充既有槽位，不根据数组长度重排。正式技能图标必须作为独立 SkillIcon 资产接入，不烘进卡框或整页图。"
+  },
+  "generated_level_up_assets": [
+    {
+      "asset_role": "reward_option_card_frame",
+      "path": "res://assets/ui/components/level_up/ui_level_up_card_reward_frame_light.png",
+      "source": "gpt-image-2 host-native generated component sheet, chroma-key removed and sliced"
+    },
+    {
+      "asset_role": "skill_icon_frame",
+      "path": "res://assets/ui/components/level_up/ui_level_up_skill_icon_frame_light.png",
+      "source": "gpt-image-2 host-native generated component sheet, chroma-key removed and sliced"
+    },
+    {
+      "asset_role": "target_level_badge_frame",
+      "path": "res://assets/ui/components/level_up/ui_level_up_badge_target_level_light.png",
+      "source": "gpt-image-2 host-native generated component sheet, chroma-key removed and sliced"
+    },
+    {
+      "asset_role": "red_action_button_frame",
+      "path": "res://assets/ui/components/level_up/ui_level_up_button_action_red_normal.png",
+      "source": "gpt-image-2 host-native generated component sheet, chroma-key removed and sliced"
+    },
+    {
+      "asset_role": "header_divider",
+      "path": "res://assets/ui/components/level_up/ui_level_up_header_divider_gold_light.png",
+      "source": "gpt-image-2 host-native generated component sheet, chroma-key removed and sliced"
+    },
+    {
+      "asset_role": "header_glow",
+      "path": "res://assets/ui/components/level_up/ui_level_up_header_glow_gold_light.png",
+      "source": "gpt-image-2 host-native generated component sheet, chroma-key removed and sliced"
+    }
+  ],
+  "components": [
+    {
+      "component_id": "background",
+      "component_role": "background",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/backgrounds/combat/ui_combat_background_light.png",
+      "rect": { "x": 0, "y": 0, "w": 1280, "h": 2769 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 0,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "top_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_top_hud_light.png",
+      "rect": { "x": 0, "y": 0, "w": 1280, "h": 548 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "bottom_hud_panel",
+      "component_role": "hud_panel",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_panel_bottom_hud_light.png",
+      "rect": { "x": 0, "y": 2238, "w": 1280, "h": 531 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 10,
+      "visible": true,
+      "variant": "light"
+    },
+    {
+      "component_id": "gold_display",
+      "component_role": "resource_display",
+      "prefab": "TextureRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_plate_resource_light.png",
+      "rect": { "x": 39, "y": 32, "w": 210, "h": 62 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "text": "14 +7",
+      "binding": { "source": "run_resources", "key": "gold_and_income" }
+    },
+    {
+      "component_id": "menu_button",
+      "component_role": "menu_button",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/icons/combat/ui_combat_icon_menu_light.png",
+      "rect": { "x": 1135, "y": 31, "w": 70, "h": 54 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "light",
+      "interactions": [
+        { "event": "pressed", "emit": "menu_requested" }
+      ]
+    },
+    {
+      "component_id": "level_up_header_tint",
+      "component_role": "mode_header_background",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 0, "y": 96, "w": 1280, "h": 452 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 12,
+      "visible": true,
+      "variant": "soft_gold_wash"
+    },
+    {
+      "component_id": "level_up_title_label",
+      "component_role": "mode_title_text",
+      "prefab": "Label",
+      "asset": "",
+      "rect": { "x": 390, "y": 120, "w": 500, "h": 80 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 35,
+      "visible": true,
+      "variant": "gold_title",
+      "text": "等级提升至",
+      "binding": { "source": "level_up_state", "key": "title" }
+    },
+    {
+      "component_id": "level_up_target_level_badge",
+      "component_role": "level_badge",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/level_up/ui_level_up_badge_target_level_light.png",
+      "rect": { "x": 535, "y": 220, "w": 210, "h": 210 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 35,
+      "visible": true,
+      "variant": "level_up",
+      "text": "2",
+      "binding": { "source": "level_up_state", "key": "target_level" }
+    },
+    {
+      "component_id": "level_up_header_glow",
+      "component_role": "mode_header_decoration",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/level_up/ui_level_up_header_glow_gold_light.png",
+      "rect": { "x": 0, "y": 308, "w": 1280, "h": 240 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 28,
+      "visible": true,
+      "variant": "gold_glow"
+    },
+    {
+      "component_id": "level_up_header_divider",
+      "component_role": "mode_header_divider",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/level_up/ui_level_up_header_divider_gold_light.png",
+      "rect": { "x": 100, "y": 520, "w": 1080, "h": 64 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 35,
+      "visible": true,
+      "variant": "gold_line"
+    },
+    {
+      "component_id": "level_up_choice_area",
+      "component_role": "mode_content_background",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 0, "y": 548, "w": 1280, "h": 959 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 15,
+      "visible": true,
+      "variant": "dark_translucent"
+    },
+    {
+      "component_id": "reward_option_01",
+      "component_role": "level_up_reward_option_card",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/level_up/ui_level_up_card_reward_frame_light.png",
+      "rect": { "x": 44, "y": 650, "w": 380, "h": 660 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "shield_skill",
+      "data_binding": { "source": "level_up_skill_options", "index": 0 },
+      "text": {
+        "description": "获得1个随机护盾技能",
+        "button": "选择"
+      },
+      "subcomponents": [
+        { "component_id": "reward_option_01_skill_icon_slot", "asset": "res://assets/ui/components/level_up/ui_level_up_skill_icon_frame_light.png", "rect": { "x": 148, "y": 700, "w": 172, "h": 172 }, "binding": { "source": "SkillIcon", "key": "icon_asset" } },
+        { "component_id": "reward_option_01_skill_icon_placeholder", "prefab": "Label", "rect": { "x": 184, "y": 727, "w": 100, "h": 118 }, "text": "盾" },
+        { "component_id": "reward_option_01_description_label", "prefab": "Label", "rect": { "x": 72, "y": 928, "w": 324, "h": 132 }, "binding": { "source": "level_up_skill_options", "key": "description" } },
+        { "component_id": "reward_option_01_select_button", "asset": "res://assets/ui/components/level_up/ui_level_up_button_action_red_normal.png", "rect": { "x": 105, "y": 1148, "w": 258, "h": 82 } }
+      ],
+      "interactions": [
+        { "event": "pressed", "emit": "level_up_reward_option_selected", "payload": { "option_index": 0 } },
+        { "event": "long_press", "emit": "level_up_reward_option_detail_requested", "payload": { "option_index": 0 } }
+      ]
+    },
+    {
+      "component_id": "reward_option_02",
+      "component_role": "level_up_reward_option_card",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/level_up/ui_level_up_card_reward_frame_light.png",
+      "rect": { "x": 450, "y": 650, "w": 380, "h": 660 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "green_quality_skill",
+      "data_binding": { "source": "level_up_skill_options", "index": 1 },
+      "text": {
+        "description": "获得1个随机绿色品质技能",
+        "button": "选择"
+      },
+      "subcomponents": [
+        { "component_id": "reward_option_02_skill_icon_slot", "asset": "res://assets/ui/components/level_up/ui_level_up_skill_icon_frame_light.png", "rect": { "x": 554, "y": 700, "w": 172, "h": 172 }, "binding": { "source": "SkillIcon", "key": "icon_asset" } },
+        { "component_id": "reward_option_02_skill_icon_placeholder", "prefab": "Label", "rect": { "x": 590, "y": 727, "w": 100, "h": 118 }, "text": "品" },
+        { "component_id": "reward_option_02_description_label", "prefab": "Label", "rect": { "x": 478, "y": 928, "w": 324, "h": 132 }, "binding": { "source": "level_up_skill_options", "key": "description" } },
+        { "component_id": "reward_option_02_select_button", "asset": "res://assets/ui/components/level_up/ui_level_up_button_action_red_normal.png", "rect": { "x": 511, "y": 1148, "w": 258, "h": 82 } }
+      ],
+      "interactions": [
+        { "event": "pressed", "emit": "level_up_reward_option_selected", "payload": { "option_index": 1 } },
+        { "event": "long_press", "emit": "level_up_reward_option_detail_requested", "payload": { "option_index": 1 } }
+      ]
+    },
+    {
+      "component_id": "reward_option_03",
+      "component_role": "level_up_reward_option_card",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/level_up/ui_level_up_card_reward_frame_light.png",
+      "rect": { "x": 856, "y": 650, "w": 380, "h": 660 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "haste_skill",
+      "data_binding": { "source": "level_up_skill_options", "index": 2 },
+      "text": {
+        "description": "获得1个随机加速技能",
+        "button": "选择"
+      },
+      "subcomponents": [
+        { "component_id": "reward_option_03_skill_icon_slot", "asset": "res://assets/ui/components/level_up/ui_level_up_skill_icon_frame_light.png", "rect": { "x": 960, "y": 700, "w": 172, "h": 172 }, "binding": { "source": "SkillIcon", "key": "icon_asset" } },
+        { "component_id": "reward_option_03_skill_icon_placeholder", "prefab": "Label", "rect": { "x": 996, "y": 727, "w": 100, "h": 118 }, "text": "速" },
+        { "component_id": "reward_option_03_description_label", "prefab": "Label", "rect": { "x": 884, "y": 928, "w": 324, "h": 132 }, "binding": { "source": "level_up_skill_options", "key": "description" } },
+        { "component_id": "reward_option_03_select_button", "asset": "res://assets/ui/components/level_up/ui_level_up_button_action_red_normal.png", "rect": { "x": 917, "y": 1148, "w": 258, "h": 82 } }
+      ],
+      "interactions": [
+        { "event": "pressed", "emit": "level_up_reward_option_selected", "payload": { "option_index": 2 } },
+        { "event": "long_press", "emit": "level_up_reward_option_detail_requested", "payload": { "option_index": 2 } }
+      ]
+    },
+    {
+      "component_id": "level_up_exit_button",
+      "component_role": "mode_action_button",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/level_up/ui_level_up_button_action_red_normal.png",
+      "rect": { "x": 480, "y": 1384, "w": 320, "h": 102 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 50,
+      "visible": true,
+      "variant": "normal",
+      "text": "退出",
+      "icon_text": "↗",
+      "interactions": [
+        { "event": "pressed", "emit": "level_up_choice_leave_requested" }
+      ]
+    },
+    {
+      "component_id": "formation_slot_front_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 26, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_front_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 276, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 526, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 776, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty"
+    },
+    {
+      "component_id": "formation_slot_front_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 1026, "y": 1507, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_01",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 26, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_02",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 276, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_03",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 526, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_04",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 776, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "formation_slot_back_05",
+      "component_role": "player_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 1026, "y": 1855, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "locked"
+    },
+    {
+      "component_id": "player_hp_bar",
+      "component_role": "player_hp_display",
+      "prefab": "ColorRect+TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png",
+      "rect": { "x": 30, "y": 2178, "w": 1220, "h": 50 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light",
+      "text": "250",
+      "binding": { "source": "player_status", "key": "hp" }
+    },
+    {
+      "component_id": "bottom_player_status_hud",
+      "component_role": "player_status_hud",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/combat/ui_combat_frame_portrait_light.png",
+      "rect": { "x": 494, "y": 2269, "w": 293, "h": 476 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 40,
+      "visible": true,
+      "variant": "light"
+    }
+  ]
+}

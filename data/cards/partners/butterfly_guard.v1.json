@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "data_kind": "partner_card",
+  "template": false,
+  "template_files": {
+    "human_readable_template": "策划文档/02_战斗系统/03_卡牌数据/模板_伙伴卡牌阅读文件_v1.md",
+    "developer_data_template": "data/cards/templates/partner_card.template.v1.json"
+  },
+  "maintenance_rule": "每张卡牌必须拥有独立 Markdown 文件和独立 JSON 文件。当前角色 1 卡组的单卡 Markdown 放在 策划文档/02_战斗系统/03_卡牌数据/01_角色1卡组/。新增字段时必须同步更新两个模板文件以及所有已录入单卡文件。无法从截图确认的字段使用 null，不得按规律外推。",
+  "rarity_order": [
+    "green",
+    "blue",
+    "purple",
+    "yellow"
+  ],
+  "rarity_display_names": {
+    "green": "绿色",
+    "blue": "蓝色",
+    "purple": "紫色",
+    "yellow": "金色"
+  },
+  "damage_card_tag_rule": "只有卡牌自身主动/被动效果直接对敌人造成伤害时，is_damage_card 才为 true，并在 tags 中加入 damage_card；仅引用伤害伙伴或给其他卡牌 +X 点伤害不算伤害卡牌。",
+  "default_passive_stack_rule": "被动描述若写明“触发某事件时，获得/增加某数值”，则默认每次事件触发都叠加一次。",
+  "default_passive_duration_rule": "持续时间若没有特殊说明，则默认持续到本场战斗结束。",
+  "card_id": "butterfly_guard",
+  "name": "蝴蝶守卫",
+  "card_type": "partner",
+  "human_readable_file": "策划文档/02_战斗系统/03_卡牌数据/01_角色1卡组/内容_蝴蝶守卫卡牌_v1.md",
+  "size_type": "small",
+  "size_label": "小型",
+  "initial_cooldown_ms": 5000,
+  "base_cooldown_ms": 5000,
+  "is_damage_card": false,
+  "tags": [
+    "poison",
+    "haste_synergy"
+  ],
+  "tag_labels": [
+    "剧毒",
+    "加速联动"
+  ],
+  "keyword_definitions": [
+    {
+      "keyword_id": "poison",
+      "keyword": "剧毒",
+      "description": "忽视护盾并每秒造成 1 次伤害",
+      "ignores_shield": true,
+      "tick_interval_ms": 1000,
+      "damage_frequency": "once_per_second",
+      "duration_rule": "until_battle_end"
+    }
+  ],
+  "rarity_data": {
+    "green": {
+      "display_name": "绿色",
+      "sell_price": 1,
+      "portrait_top_value": 3,
+      "active_description": "对敌人释放 3 层毒",
+      "passive_description": "此伙伴获得加速状态时：自身 +2 层毒",
+      "unknown_fields": []
+    },
+    "blue": {
+      "display_name": "蓝色",
+      "sell_price": 2,
+      "portrait_top_value": 3,
+      "active_description": "对敌人释放 3 层毒",
+      "passive_description": "此伙伴获得加速状态时：自身 +4 层毒",
+      "unknown_fields": []
+    },
+    "purple": {
+      "display_name": "紫色",
+      "sell_price": 4,
+      "portrait_top_value": 3,
+      "active_description": "对敌人释放 3 层毒",
+      "passive_description": "此伙伴获得加速状态时：自身 +6 层毒",
+      "unknown_fields": []
+    },
+    "yellow": {
+      "display_name": "金色",
+      "sell_price": 8,
+      "portrait_top_value": 3,
+      "active_description": "对敌人释放 3 层毒",
+      "passive_description": "此伙伴获得加速状态时：自身 +8 层毒",
+      "unknown_fields": []
+    }
+  },
+  "active_skill": {
+    "trigger": "cooldown_ready",
+    "description_template": "对敌人释放 {poison_stacks} 层毒",
+    "effects": [
+      {
+        "effect_id": "butterfly_guard_active_poison",
+        "effect_type": "apply_dot_to_enemy",
+        "keyword_id": "poison",
+        "status_id": "poison",
+        "target_rule": "enemy_single",
+        "damage_type": "poison",
+        "stack_by_rarity": {
+          "green": 3,
+          "blue": 3,
+          "purple": 3,
+          "yellow": 3
+        },
+        "tick_interval_ms": 1000,
+        "duration_rule": "until_battle_end",
+        "ignores_shield": true,
+        "can_crit": false,
+        "can_trigger_lifesteal": false,
+        "description_by_rarity": {
+          "green": "对敌人释放 3 层毒",
+          "blue": "对敌人释放 3 层毒",
+          "purple": "对敌人释放 3 层毒",
+          "yellow": "对敌人释放 3 层毒"
+        }
+      }
+    ]
+  },
+  "passive_skill": {
+    "trigger": "self_gain_haste",
+    "description_template": "此伙伴获得加速状态时：自身 +{poison_stack_bonus} 层毒",
+    "effects": [
+      {
+        "effect_id": "butterfly_guard_passive_poison_bonus_on_self_gain_haste",
+        "effect_type": "buff",
+        "target_rule": "self",
+        "trigger_rule": "self_gain_haste",
+        "stat_modifier": {
+          "stat": "poison_stack_bonus",
+          "operation": "add",
+          "value_by_rarity": {
+            "green": 2,
+            "blue": 4,
+            "purple": 6,
+            "yellow": 8
+          }
+        },
+        "stack_rule": "stack_on_trigger",
+        "duration_rule": "until_battle_end",
+        "description_by_rarity": {
+          "green": "此伙伴获得加速状态时：自身 +2 层毒",
+          "blue": "此伙伴获得加速状态时：自身 +4 层毒",
+          "purple": "此伙伴获得加速状态时：自身 +6 层毒",
+          "yellow": "此伙伴获得加速状态时：自身 +8 层毒"
+        }
+      }
+    ]
+  },
+  "implementation_notes": {
+    "active_skill_notes": "冷却触发描述已经确认；主动固定施加 3 层剧毒。剧毒关键词说明为忽视护盾并每秒造成 1 次伤害。描述未写特殊持续时间，默认持续到本场战斗结束。",
+    "passive_skill_notes": "被动描述已经确认；每次自身获得加速状态时叠加一次剧毒层数加成。描述未写特殊持续时间，默认持续到本场战斗结束。",
+    "pending_rules": []
+  },
+  "source": {
+    "source_type": "user_screenshots",
+    "confidence": "confirmed_from_screenshots",
+    "files": [
+      {
+        "rarity": "green",
+        "file_name": "230d7e2b53496e2e317bed6f6b963aa8.jpg"
+      },
+      {
+        "rarity": "blue",
+        "file_name": "b4e361e99a4dad4df80ba417ccd46c64.jpg"
+      },
+      {
+        "rarity": "purple",
+        "file_name": "c1679c9d57fdc7cd3e6e85bc088b847b.jpg"
+      },
+      {
+        "rarity": "yellow",
+        "file_name": "0a3613a254fc6af148272e7c90f07c84.jpg"
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bddxqiadr6g2h"]
+[gd_scene format=3 uid="uid://b0f58l5pxjsw7"]
 
 [ext_resource type="Texture2D" uid="uid://bxn6q3pyv001o" path="res://assets/ui/backgrounds/combat/ui_combat_background_light.png" id="1_81g7c"]
 [ext_resource type="Texture2D" uid="uid://ujkmm1h8yb7o" path="res://assets/ui/components/combat/ui_combat_panel_top_hud_light.png" id="2_yeu46"]
@@ -17,16 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://c5glgcha5vaq" path="res://assets/ui/components/combat/ui_combat_bar_charge_frame_light.png" id="15_3nfsb"]
 [ext_resource type="Texture2D" uid="uid://dlhvjfa8saeei" path="res://assets/ui/components/combat/ui_combat_badge_shield_light.png" id="16_u5apn"]
 [ext_resource type="Texture2D" uid="uid://b5akvk8qot72d" path="res://assets/ui/components/combat/ui_combat_button_trophy_light.png" id="17_egapu"]
-[ext_resource type="Texture2D" uid="uid://l14lkuui1d3w" path="res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png" id="18_card_base"]
-[ext_resource type="Texture2D" uid="uid://oiivbmju5hli" path="res://assets/ui/components/start_camp/ui_start_camp_card_title_banner_light.png" id="19_card_title"]
-[ext_resource type="Texture2D" uid="uid://cmras4g75u5yl" path="res://assets/ui/components/start_camp/ui_start_camp_card_portrait_frame_light.png" id="20_card_portrait"]
-[ext_resource type="Texture2D" uid="uid://vis3x8p5uryx" path="res://assets/ui/components/start_camp/ui_start_camp_card_badge_cost_light.png" id="21_card_cost"]
-[ext_resource type="Texture2D" uid="uid://vnhq6s0rimll" path="res://assets/ui/components/start_camp/ui_start_camp_card_badge_value_light.png" id="22_card_value"]
-[ext_resource type="Texture2D" uid="uid://danlrv3s5pq0q" path="res://assets/ui/components/start_camp/ui_start_camp_card_type_plate_light.png" id="23_card_type"]
-[ext_resource type="Texture2D" uid="uid://d4k76nty6o1q7" path="res://assets/ui/components/start_camp/ui_start_camp_card_divider_ornament_light.png" id="24_card_divider"]
-[ext_resource type="Texture2D" uid="uid://hjbk8t0g5ojg" path="res://assets/ui/components/start_camp/ui_start_camp_card_cooldown_plate_light.png" id="25_card_cooldown"]
-[ext_resource type="Texture2D" uid="uid://byi0fj8xauxij" path="res://assets/ui/components/start_camp/ui_start_camp_card_active_panel_light.png" id="26_card_active"]
-[ext_resource type="Texture2D" uid="uid://bq2xwt5cxcyr0" path="res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png" id="27_action_button"]
+[ext_resource type="Texture2D" uid="uid://bq2xwt5cxcyr0" path="res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png" id="18_result_button"]
+[ext_resource type="Texture2D" uid="uid://t8jbv5lud5jj" path="res://assets/ui/components/combat_result/ui_combat_result_victory_ribbon_light.png" id="19_victory_ribbon"]
+[ext_resource type="Texture2D" uid="uid://df6avrydiqhml" path="res://assets/ui/components/combat_result/ui_combat_result_victory_light_rays_light.png" id="20_victory_rays"]
+[ext_resource type="Texture2D" uid="uid://cw5l7hmnrc6ko" path="res://assets/ui/components/combat_result/ui_combat_result_record_divider_light.png" id="21_record_divider"]
+[ext_resource type="Texture2D" uid="uid://bgpbm08tpr0yb" path="res://assets/ui/components/combat_result/ui_combat_result_record_trophy_light.png" id="22_record_trophy"]
+[ext_resource type="Texture2D" uid="uid://cj67ct8e8vcxe" path="res://assets/ui/components/combat_result/ui_combat_result_record_heart_light.png" id="23_record_heart"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1"]
 font_size = 40
@@ -39,48 +35,6 @@ font_size = 34
 font_color = Color(0.305882, 0.305882, 0.290196, 1)
 outline_size = 2
 outline_color = Color(1, 1, 1, 0.7)
-
-[sub_resource type="LabelSettings" id="LabelSettings_6"]
-font_size = 36
-font_color = Color(0.96, 0.96, 0.9, 1)
-outline_size = 2
-outline_color = Color(0.24, 0.29, 0.22, 0.7)
-
-[sub_resource type="LabelSettings" id="LabelSettings_8"]
-font_size = 24
-font_color = Color(0.96, 0.96, 0.9, 1)
-outline_size = 2
-outline_color = Color(0.23, 0.16, 0.13, 0.8)
-
-[sub_resource type="LabelSettings" id="LabelSettings_7"]
-font_size = 30
-font_color = Color(0.305882, 0.305882, 0.290196, 1)
-outline_size = 2
-outline_color = Color(1, 1, 1, 0.7)
-
-[sub_resource type="LabelSettings" id="LabelSettings_10"]
-font_size = 21
-font_color = Color(0.305882, 0.305882, 0.290196, 1)
-outline_size = 1
-outline_color = Color(1, 1, 1, 0.55)
-
-[sub_resource type="LabelSettings" id="LabelSettings_9"]
-font_size = 25
-font_color = Color(0.305882, 0.305882, 0.290196, 1)
-outline_size = 2
-outline_color = Color(1, 1, 1, 0.55)
-
-[sub_resource type="LabelSettings" id="LabelSettings_12"]
-font_size = 54
-font_color = Color(0.96, 0.86, 0.48, 1)
-outline_size = 4
-outline_color = Color(0.16, 0.08, 0.05, 0.9)
-
-[sub_resource type="LabelSettings" id="LabelSettings_11"]
-font_size = 44
-font_color = Color(0.96, 0.91, 0.72, 1)
-outline_size = 4
-outline_color = Color(0.16, 0.08, 0.05, 0.9)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3"]
 font_size = 31
@@ -100,7 +54,34 @@ font_color = Color(0.305882, 0.305882, 0.290196, 1)
 outline_size = 2
 outline_color = Color(1, 1, 1, 0.7)
 
-[node name="StartCampCardChoiceLayoutPage" type="Control" unique_id=183786469]
+[sub_resource type="LabelSettings" id="LabelSettings_6"]
+font_size = 76
+font_color = Color(1, 0.870588, 0.454902, 1)
+outline_size = 4
+outline_color = Color(0.231373, 0.152941, 0.054902, 0.86)
+shadow_size = 3
+shadow_color = Color(0.231373, 0.152941, 0.054902, 0.5)
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7"]
+font_size = 30
+font_color = Color(0.862745, 0.752941, 0.541176, 0.92)
+outline_size = 2
+outline_color = Color(0.145098, 0.101961, 0.066667, 0.72)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8"]
+font_size = 38
+font_color = Color(0.890196, 0.827451, 0.705882, 0.96)
+outline_size = 2
+outline_color = Color(0.141176, 0.105882, 0.078431, 0.76)
+
+[sub_resource type="LabelSettings" id="LabelSettings_9"]
+font_size = 42
+font_color = Color(0.960784, 0.92549, 0.823529, 1)
+outline_size = 3
+outline_color = Color(0.231373, 0.054902, 0.043137, 0.88)
+
+[node name="RunBoardCombatResultVictoryLayoutPage" type="Control" unique_id=183786469]
 custom_minimum_size = Vector2(1280, 2769)
 layout_mode = 3
 anchors_preset = 0
@@ -132,21 +113,21 @@ mouse_filter = 2
 texture = ExtResource("3_kxff5")
 expand_mode = 1
 
-[node name="CampCardChoiceAreaTint" type="ColorRect" parent="." unique_id=1570342760]
+[node name="EnemySlotAreaTint" type="ColorRect" parent="." unique_id=1570342760]
 layout_mode = 0
-offset_top = 548.0
+offset_top = 598.0
 offset_right = 1280.0
-offset_bottom = 1507.0
+offset_bottom = 1266.0
 mouse_filter = 2
-color = Color(0.964706, 0.964706, 0.956863, 0.26)
+color = Color(0.964706, 0.964706, 0.956863, 0.15)
 
-[node name="CampCardChoiceBottomFade" type="ColorRect" parent="." unique_id=1656346652]
+[node name="MiddleDividerPreviewTint" type="ColorRect" parent="." unique_id=1656346652]
 layout_mode = 0
-offset_top = 1372.0
+offset_top = 1266.0
 offset_right = 1280.0
 offset_bottom = 1507.0
 mouse_filter = 2
-color = Color(0.870588, 0.870588, 0.862745, 0.32)
+color = Color(0.870588, 0.870588, 0.862745, 0.44)
 
 [node name="PlayerSlotAreaTint" type="ColorRect" parent="." unique_id=1284396505]
 layout_mode = 0
@@ -197,8 +178,72 @@ mouse_filter = 2
 texture = ExtResource("6_gd7uc")
 expand_mode = 1
 
+[node name="TopSkillSlotLeft01" type="TextureRect" parent="." unique_id=729229778]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 158.0
+offset_top = 114.0
+offset_right = 298.0
+offset_bottom = 254.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="TopSkillSlotLeft02Active" type="TextureRect" parent="." unique_id=774858363]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 266.0
+offset_right = 218.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="TopSkillSlotLeft03" type="TextureRect" parent="." unique_id=840319508]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 248.0
+offset_top = 266.0
+offset_right = 388.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="TopSkillSlotRight01" type="TextureRect" parent="." unique_id=232182139]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 982.0
+offset_top = 114.0
+offset_right = 1122.0
+offset_bottom = 254.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="TopSkillSlotRight02" type="TextureRect" parent="." unique_id=285869796]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 892.0
+offset_top = 266.0
+offset_right = 1032.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
+[node name="TopSkillSlotRight03" type="TextureRect" parent="." unique_id=474600588]
+modulate = Color(1, 1, 1, 0.58)
+layout_mode = 0
+offset_left = 1062.0
+offset_top = 266.0
+offset_right = 1202.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("7_j72pe")
+expand_mode = 1
+
 [node name="EnemyPortraitFrame" type="TextureRect" parent="." unique_id=152380013]
-visible = false
 layout_mode = 0
 offset_left = 487.0
 offset_top = 6.0
@@ -209,7 +254,6 @@ texture = ExtResource("8_hgaux")
 expand_mode = 1
 
 [node name="EnemyHpFillPreview" type="ColorRect" parent="." unique_id=1782500422]
-visible = false
 layout_mode = 0
 offset_left = 54.0
 offset_top = 564.0
@@ -219,7 +263,6 @@ mouse_filter = 2
 color = Color(0.745098, 0.839216, 0.721569, 0.75)
 
 [node name="EnemyHpBarFrame" type="TextureRect" parent="." unique_id=1467301272]
-visible = false
 layout_mode = 0
 offset_left = 30.0
 offset_top = 548.0
@@ -230,7 +273,6 @@ texture = ExtResource("9_snbqy")
 expand_mode = 1
 
 [node name="EnemyHpLabel" type="Label" parent="." unique_id=3177349]
-visible = false
 layout_mode = 0
 offset_left = 590.0
 offset_top = 548.0
@@ -242,7 +284,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnemySlot_front_01" type="TextureRect" parent="." unique_id=519324458]
-visible = false
 layout_mode = 0
 offset_left = 26.0
 offset_top = 600.0
@@ -253,7 +294,6 @@ texture = ExtResource("10_yh65x")
 expand_mode = 1
 
 [node name="EnemySlot_front_02" type="TextureRect" parent="." unique_id=880107216]
-visible = false
 layout_mode = 0
 offset_left = 276.0
 offset_top = 600.0
@@ -264,7 +304,6 @@ texture = ExtResource("10_yh65x")
 expand_mode = 1
 
 [node name="EnemySlot_front_03" type="TextureRect" parent="." unique_id=1393818010]
-visible = false
 layout_mode = 0
 offset_left = 526.0
 offset_top = 600.0
@@ -275,7 +314,6 @@ texture = ExtResource("10_yh65x")
 expand_mode = 1
 
 [node name="EnemySlot_front_04" type="TextureRect" parent="." unique_id=1949322756]
-visible = false
 layout_mode = 0
 offset_left = 776.0
 offset_top = 600.0
@@ -286,7 +324,6 @@ texture = ExtResource("10_yh65x")
 expand_mode = 1
 
 [node name="EnemySlot_front_05" type="TextureRect" parent="." unique_id=1829505470]
-visible = false
 layout_mode = 0
 offset_left = 1026.0
 offset_top = 600.0
@@ -297,7 +334,6 @@ texture = ExtResource("10_yh65x")
 expand_mode = 1
 
 [node name="EnemySlot_back_01" type="TextureRect" parent="." unique_id=131417285]
-visible = false
 layout_mode = 0
 offset_left = 26.0
 offset_top = 948.0
@@ -308,7 +344,6 @@ texture = ExtResource("10_yh65x")
 expand_mode = 1
 
 [node name="EnemySlot_back_02" type="TextureRect" parent="." unique_id=1266579324]
-visible = false
 layout_mode = 0
 offset_left = 276.0
 offset_top = 948.0
@@ -319,7 +354,6 @@ texture = ExtResource("10_yh65x")
 expand_mode = 1
 
 [node name="EnemySlot_back_03" type="TextureRect" parent="." unique_id=1288900272]
-visible = false
 layout_mode = 0
 offset_left = 526.0
 offset_top = 948.0
@@ -330,7 +364,6 @@ texture = ExtResource("10_yh65x")
 expand_mode = 1
 
 [node name="EnemySlot_back_04" type="TextureRect" parent="." unique_id=264931475]
-visible = false
 layout_mode = 0
 offset_left = 776.0
 offset_top = 948.0
@@ -341,7 +374,6 @@ texture = ExtResource("10_yh65x")
 expand_mode = 1
 
 [node name="EnemySlot_back_05" type="TextureRect" parent="." unique_id=1250030446]
-visible = false
 layout_mode = 0
 offset_left = 1026.0
 offset_top = 948.0
@@ -350,479 +382,6 @@ offset_bottom = 1266.0
 mouse_filter = 2
 texture = ExtResource("10_yh65x")
 expand_mode = 1
-
-[node name="RewardOptionCard01_BaseFrame" type="TextureRect" parent="." unique_id=1367872816]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 608.0
-offset_right = 424.0
-offset_bottom = 1330.0
-mouse_filter = 2
-texture = ExtResource("18_card_base")
-expand_mode = 1
-
-[node name="RewardOptionCard01_TitleBanner" type="TextureRect" parent="." unique_id=1290538794]
-layout_mode = 0
-offset_left = 92.0
-offset_top = 632.0
-offset_right = 377.0
-offset_bottom = 714.0
-mouse_filter = 2
-texture = ExtResource("19_card_title")
-expand_mode = 1
-
-[node name="RewardOptionCard01_TitleLabel" type="Label" parent="." unique_id=1262362883]
-layout_mode = 0
-offset_left = 106.0
-offset_top = 637.0
-offset_right = 363.0
-offset_bottom = 707.0
-text = "扇贝"
-label_settings = SubResource("LabelSettings_6")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard01_PortraitFrame" type="TextureRect" parent="." unique_id=1803092042]
-layout_mode = 0
-offset_left = 148.0
-offset_top = 726.0
-offset_right = 319.0
-offset_bottom = 964.0
-mouse_filter = 2
-texture = ExtResource("20_card_portrait")
-expand_mode = 1
-
-[node name="RewardOptionCard01_CostBadge" type="TextureRect" parent="." unique_id=1212509415]
-layout_mode = 0
-offset_left = 195.0
-offset_top = 708.0
-offset_right = 273.0
-offset_bottom = 757.0
-mouse_filter = 2
-texture = ExtResource("21_card_cost")
-expand_mode = 1
-
-[node name="RewardOptionCard01_CostLabel" type="Label" parent="." unique_id=958670928]
-layout_mode = 0
-offset_left = 204.0
-offset_top = 712.0
-offset_right = 264.0
-offset_bottom = 752.0
-text = "10"
-label_settings = SubResource("LabelSettings_8")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard01_ValueLabel" type="Label" parent="." unique_id=207120955]
-layout_mode = 0
-offset_left = 105.0
-offset_top = 901.0
-offset_right = 153.0
-offset_bottom = 941.0
-text = "2"
-label_settings = SubResource("LabelSettings_8")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard01_TypePlate" type="TextureRect" parent="." unique_id=1656567390]
-layout_mode = 0
-offset_left = 179.0
-offset_top = 938.0
-offset_right = 289.0
-offset_bottom = 982.0
-mouse_filter = 2
-texture = ExtResource("23_card_type")
-expand_mode = 1
-
-[node name="RewardOptionCard01_TypeLabel" type="Label" parent="." unique_id=1929583023]
-layout_mode = 0
-offset_left = 183.0
-offset_top = 939.0
-offset_right = 285.0
-offset_bottom = 979.0
-text = "中型"
-label_settings = SubResource("LabelSettings_7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard01_Divider" type="TextureRect" parent="." unique_id=301118675]
-layout_mode = 0
-offset_left = 68.0
-offset_top = 974.0
-offset_right = 401.0
-offset_bottom = 1014.0
-mouse_filter = 2
-texture = ExtResource("24_card_divider")
-expand_mode = 1
-
-[node name="RewardOptionCard01_ActivePanel" type="TextureRect" parent="." unique_id=1800962651]
-layout_mode = 0
-offset_left = 75.0
-offset_top = 1020.0
-offset_right = 400.0
-offset_bottom = 1140.0
-mouse_filter = 2
-texture = ExtResource("26_card_active")
-expand_mode = 1
-
-[node name="RewardOptionCard01_CooldownPlate" type="TextureRect" parent="." unique_id=562805002]
-layout_mode = 0
-offset_left = 77.0
-offset_top = 1022.0
-offset_right = 151.0
-offset_bottom = 1138.0
-mouse_filter = 2
-texture = ExtResource("25_card_cooldown")
-expand_mode = 1
-
-[node name="RewardOptionCard01_CooldownLabel" type="Label" parent="." unique_id=1995818995]
-layout_mode = 0
-offset_left = 82.0
-offset_top = 1048.0
-offset_right = 146.0
-offset_bottom = 1118.0
-text = "6
-秒"
-label_settings = SubResource("LabelSettings_7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard01_ActiveTextLabel" type="Label" parent="." unique_id=1507567855]
-layout_mode = 0
-offset_left = 166.0
-offset_top = 1030.0
-offset_right = 384.0
-offset_bottom = 1128.0
-text = "▶ 对敌人造成 ✦ 10点
-  伤害"
-label_settings = SubResource("LabelSettings_10")
-vertical_alignment = 1
-clip_text = true
-
-[node name="RewardOptionCard01_PassiveTextLabel" type="Label" parent="." unique_id=1040090542]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 1160.0
-offset_right = 380.0
-offset_bottom = 1262.0
-text = "获得等于当前护盾值的 ✦ 伤害"
-label_settings = SubResource("LabelSettings_9")
-clip_text = true
-
-[node name="RewardOptionCard02_BaseFrame" type="TextureRect" parent="." unique_id=198898199]
-layout_mode = 0
-offset_left = 450.0
-offset_top = 608.0
-offset_right = 830.0
-offset_bottom = 1330.0
-mouse_filter = 2
-texture = ExtResource("18_card_base")
-expand_mode = 1
-
-[node name="RewardOptionCard02_TitleBanner" type="TextureRect" parent="." unique_id=2085195816]
-layout_mode = 0
-offset_left = 498.0
-offset_top = 632.0
-offset_right = 783.0
-offset_bottom = 714.0
-mouse_filter = 2
-texture = ExtResource("19_card_title")
-expand_mode = 1
-
-[node name="RewardOptionCard02_TitleLabel" type="Label" parent="." unique_id=1270282353]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 637.0
-offset_right = 782.0
-offset_bottom = 707.0
-text = "猫头鹰法师"
-label_settings = SubResource("LabelSettings_6")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard02_PortraitFrame" type="TextureRect" parent="." unique_id=918210426]
-layout_mode = 0
-offset_left = 554.0
-offset_top = 726.0
-offset_right = 725.0
-offset_bottom = 964.0
-mouse_filter = 2
-texture = ExtResource("20_card_portrait")
-expand_mode = 1
-
-[node name="RewardOptionCard02_ValueBadge" type="TextureRect" parent="." unique_id=515301777]
-layout_mode = 0
-offset_left = 502.0
-offset_top = 897.0
-offset_right = 567.0
-offset_bottom = 948.0
-mouse_filter = 2
-texture = ExtResource("22_card_value")
-expand_mode = 1
-
-[node name="RewardOptionCard02_TypePlate" type="TextureRect" parent="." unique_id=1538783310]
-layout_mode = 0
-offset_left = 585.0
-offset_top = 938.0
-offset_right = 695.0
-offset_bottom = 982.0
-mouse_filter = 2
-texture = ExtResource("23_card_type")
-expand_mode = 1
-
-[node name="RewardOptionCard02_TypeLabel" type="Label" parent="." unique_id=1047256772]
-layout_mode = 0
-offset_left = 589.0
-offset_top = 939.0
-offset_right = 691.0
-offset_bottom = 979.0
-text = "中型"
-label_settings = SubResource("LabelSettings_7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard02_Divider" type="TextureRect" parent="." unique_id=108191364]
-layout_mode = 0
-offset_left = 474.0
-offset_top = 974.0
-offset_right = 807.0
-offset_bottom = 1014.0
-mouse_filter = 2
-texture = ExtResource("24_card_divider")
-expand_mode = 1
-
-[node name="RewardOptionCard02_PassiveTextLabel" type="Label" parent="." unique_id=716643711]
-layout_mode = 0
-offset_left = 502.0
-offset_top = 1026.0
-offset_right = 786.0
-offset_bottom = 1204.0
-text = "右侧相邻伙伴激活时：赋予其加速状态 1秒
-
-右侧相邻伤害伙伴激活时：使其 +3✦伤害"
-label_settings = SubResource("LabelSettings_9")
-clip_text = true
-
-[node name="RewardOptionCard03_BaseFrame" type="TextureRect" parent="." unique_id=1488614568]
-layout_mode = 0
-offset_left = 856.0
-offset_top = 608.0
-offset_right = 1236.0
-offset_bottom = 1330.0
-mouse_filter = 2
-texture = ExtResource("18_card_base")
-expand_mode = 1
-
-[node name="RewardOptionCard03_TitleBanner" type="TextureRect" parent="." unique_id=1710397392]
-layout_mode = 0
-offset_left = 904.0
-offset_top = 632.0
-offset_right = 1189.0
-offset_bottom = 714.0
-mouse_filter = 2
-texture = ExtResource("19_card_title")
-expand_mode = 1
-
-[node name="RewardOptionCard03_TitleLabel" type="Label" parent="." unique_id=1922461086]
-layout_mode = 0
-offset_left = 918.0
-offset_top = 637.0
-offset_right = 1175.0
-offset_bottom = 707.0
-text = "幽灵狼"
-label_settings = SubResource("LabelSettings_6")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard03_PortraitFrame" type="TextureRect" parent="." unique_id=1845198467]
-layout_mode = 0
-offset_left = 960.0
-offset_top = 726.0
-offset_right = 1131.0
-offset_bottom = 964.0
-mouse_filter = 2
-texture = ExtResource("20_card_portrait")
-expand_mode = 1
-
-[node name="RewardOptionCard03_CostBadge" type="TextureRect" parent="." unique_id=684025351]
-layout_mode = 0
-offset_left = 1007.0
-offset_top = 708.0
-offset_right = 1085.0
-offset_bottom = 757.0
-mouse_filter = 2
-texture = ExtResource("21_card_cost")
-expand_mode = 1
-
-[node name="RewardOptionCard03_CostLabel" type="Label" parent="." unique_id=304565198]
-layout_mode = 0
-offset_left = 1016.0
-offset_top = 712.0
-offset_right = 1076.0
-offset_bottom = 752.0
-text = "3"
-label_settings = SubResource("LabelSettings_8")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard03_ValueBadge" type="TextureRect" parent="." unique_id=726836490]
-layout_mode = 0
-offset_left = 908.0
-offset_top = 897.0
-offset_right = 973.0
-offset_bottom = 948.0
-mouse_filter = 2
-texture = ExtResource("22_card_value")
-expand_mode = 1
-
-[node name="RewardOptionCard03_TypePlate" type="TextureRect" parent="." unique_id=1844932174]
-layout_mode = 0
-offset_left = 991.0
-offset_top = 938.0
-offset_right = 1101.0
-offset_bottom = 982.0
-mouse_filter = 2
-texture = ExtResource("23_card_type")
-expand_mode = 1
-
-[node name="RewardOptionCard03_TypeLabel" type="Label" parent="." unique_id=1955601949]
-layout_mode = 0
-offset_left = 995.0
-offset_top = 939.0
-offset_right = 1097.0
-offset_bottom = 979.0
-text = "小型"
-label_settings = SubResource("LabelSettings_7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard03_Divider" type="TextureRect" parent="." unique_id=753554608]
-layout_mode = 0
-offset_left = 880.0
-offset_top = 974.0
-offset_right = 1213.0
-offset_bottom = 1014.0
-mouse_filter = 2
-texture = ExtResource("24_card_divider")
-expand_mode = 1
-
-[node name="RewardOptionCard03_ActivePanel" type="TextureRect" parent="." unique_id=431452004]
-layout_mode = 0
-offset_left = 887.0
-offset_top = 1020.0
-offset_right = 1212.0
-offset_bottom = 1140.0
-mouse_filter = 2
-texture = ExtResource("26_card_active")
-expand_mode = 1
-
-[node name="RewardOptionCard03_CooldownPlate" type="TextureRect" parent="." unique_id=1153604317]
-layout_mode = 0
-offset_left = 889.0
-offset_top = 1022.0
-offset_right = 963.0
-offset_bottom = 1138.0
-mouse_filter = 2
-texture = ExtResource("25_card_cooldown")
-expand_mode = 1
-
-[node name="RewardOptionCard03_CooldownLabel" type="Label" parent="." unique_id=256576231]
-layout_mode = 0
-offset_left = 894.0
-offset_top = 1048.0
-offset_right = 958.0
-offset_bottom = 1118.0
-text = "7
-秒"
-label_settings = SubResource("LabelSettings_7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RewardOptionCard03_ActiveTextLabel" type="Label" parent="." unique_id=285343216]
-layout_mode = 0
-offset_left = 978.0
-offset_top = 1030.0
-offset_right = 1196.0
-offset_bottom = 1128.0
-text = "▶ 对敌人释放 3层
-  毒"
-label_settings = SubResource("LabelSettings_10")
-vertical_alignment = 1
-clip_text = true
-
-[node name="RewardOptionCard03_PassiveTextLabel" type="Label" parent="." unique_id=519129248]
-layout_mode = 0
-offset_left = 908.0
-offset_top = 1160.0
-offset_right = 1192.0
-offset_bottom = 1262.0
-text = "相邻伙伴激活时：此伙伴获得加速状态 1秒"
-label_settings = SubResource("LabelSettings_9")
-clip_text = true
-
-[node name="StartCampExitButtonFrame" type="TextureRect" parent="." unique_id=1690951288]
-layout_mode = 0
-offset_left = 165.0
-offset_top = 1387.0
-offset_right = 485.0
-offset_bottom = 1489.0
-mouse_filter = 2
-texture = ExtResource("27_action_button")
-expand_mode = 1
-
-[node name="StartCampExitButtonIcon" type="Label" parent="." unique_id=1149840730]
-layout_mode = 0
-offset_left = 214.0
-offset_top = 1399.0
-offset_right = 284.0
-offset_bottom = 1475.0
-text = "↗"
-label_settings = SubResource("LabelSettings_12")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartCampExitButtonLabel" type="Label" parent="." unique_id=1537452638]
-layout_mode = 0
-offset_left = 292.0
-offset_top = 1399.0
-offset_right = 442.0
-offset_bottom = 1475.0
-text = "退出"
-label_settings = SubResource("LabelSettings_11")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartCampFreeRefreshButtonFrame" type="TextureRect" parent="." unique_id=1640149557]
-layout_mode = 0
-offset_left = 795.0
-offset_top = 1387.0
-offset_right = 1115.0
-offset_bottom = 1489.0
-mouse_filter = 2
-texture = ExtResource("27_action_button")
-expand_mode = 1
-
-[node name="StartCampFreeRefreshButtonIcon" type="Label" parent="." unique_id=1429818005]
-layout_mode = 0
-offset_left = 844.0
-offset_top = 1399.0
-offset_right = 914.0
-offset_bottom = 1475.0
-text = "↻"
-label_settings = SubResource("LabelSettings_12")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartCampFreeRefreshButtonLabel" type="Label" parent="." unique_id=1678638093]
-layout_mode = 0
-offset_left = 922.0
-offset_top = 1399.0
-offset_right = 1072.0
-offset_bottom = 1475.0
-text = "免费"
-label_settings = SubResource("LabelSettings_11")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PlayerSlot_front_01" type="TextureRect" parent="." unique_id=437663203]
 layout_mode = 0
@@ -1252,3 +811,236 @@ text = "0"
 label_settings = SubResource("LabelSettings_5")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CombatResultUpperOverlayDim" type="ColorRect" parent="." unique_id=1663264584]
+z_index = 80
+layout_mode = 0
+offset_top = 2.0
+offset_right = 1280.0
+offset_bottom = 2775.0
+mouse_filter = 2
+color = Color(0.070588, 0.047059, 0.035294, 0.54)
+
+[node name="CombatResultVictoryLightRays" type="TextureRect" parent="." unique_id=937588529]
+z_index = 86
+layout_mode = 0
+offset_left = 120.0
+offset_top = 420.0
+offset_right = 1160.0
+offset_bottom = 1040.0
+mouse_filter = 2
+texture = ExtResource("20_victory_rays")
+expand_mode = 1
+
+[node name="CombatResultVictoryRibbon" type="TextureRect" parent="." unique_id=674197419]
+z_index = 100
+layout_mode = 0
+offset_left = 210.0
+offset_top = 600.0
+offset_right = 1070.0
+offset_bottom = 960.0
+mouse_filter = 2
+texture = ExtResource("19_victory_ribbon")
+expand_mode = 1
+
+[node name="CombatResultVictoryTitleLabel" type="Label" parent="." unique_id=1889176650]
+z_index = 110
+layout_mode = 0
+offset_left = 390.0
+offset_top = 700.0
+offset_right = 890.0
+offset_bottom = 835.0
+text = "胜利"
+label_settings = SubResource("LabelSettings_6")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="CombatResultVictorySubtitleLabel" type="Label" parent="." unique_id=1253719377]
+z_index = 110
+layout_mode = 0
+offset_left = 390.0
+offset_top = 930.0
+offset_right = 890.0
+offset_bottom = 994.0
+text = "奖励已结算"
+label_settings = SubResource("LabelSettings_7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultRecordDivider" type="TextureRect" parent="." unique_id=233212545]
+z_index = 92
+layout_mode = 0
+offset_left = 230.0
+offset_top = 1148.0
+offset_right = 1050.0
+offset_bottom = 1238.0
+mouse_filter = 2
+texture = ExtResource("21_record_divider")
+expand_mode = 1
+
+[node name="CombatResultRecordTitleLabel" type="Label" parent="." unique_id=949196667]
+z_index = 110
+layout_mode = 0
+offset_left = 458.0
+offset_top = 1134.0
+offset_right = 822.0
+offset_bottom = 1222.0
+text = "本回合战绩"
+label_settings = SubResource("LabelSettings_8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultRecordTrophy01" type="TextureRect" parent="." unique_id=1726672622]
+z_index = 112
+layout_mode = 0
+offset_left = 290.0
+offset_top = 1238.0
+offset_right = 376.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("22_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordTrophy02" type="TextureRect" parent="." unique_id=287382592]
+z_index = 112
+layout_mode = 0
+offset_left = 410.0
+offset_top = 1238.0
+offset_right = 496.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("22_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordTrophy03" type="TextureRect" parent="." unique_id=1849084130]
+z_index = 112
+layout_mode = 0
+offset_left = 530.0
+offset_top = 1238.0
+offset_right = 616.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("22_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordTrophy04" type="TextureRect" parent="." unique_id=2105542177]
+z_index = 112
+layout_mode = 0
+offset_left = 650.0
+offset_top = 1238.0
+offset_right = 736.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("22_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordTrophy05" type="TextureRect" parent="." unique_id=115419502]
+z_index = 112
+layout_mode = 0
+offset_left = 770.0
+offset_top = 1238.0
+offset_right = 856.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("22_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart01" type="TextureRect" parent="." unique_id=1096422414]
+z_index = 112
+layout_mode = 0
+offset_left = 298.0
+offset_top = 1304.0
+offset_right = 370.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("23_record_heart")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart02" type="TextureRect" parent="." unique_id=16765733]
+z_index = 112
+layout_mode = 0
+offset_left = 418.0
+offset_top = 1304.0
+offset_right = 490.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("23_record_heart")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart03" type="TextureRect" parent="." unique_id=1379026055]
+z_index = 112
+layout_mode = 0
+offset_left = 538.0
+offset_top = 1304.0
+offset_right = 610.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("23_record_heart")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart04" type="TextureRect" parent="." unique_id=1228617631]
+z_index = 112
+layout_mode = 0
+offset_left = 658.0
+offset_top = 1304.0
+offset_right = 730.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("23_record_heart")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart05" type="TextureRect" parent="." unique_id=1492559167]
+z_index = 112
+layout_mode = 0
+offset_left = 778.0
+offset_top = 1304.0
+offset_right = 850.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("23_record_heart")
+expand_mode = 1
+
+[node name="CombatResultContinueButton" type="TextureRect" parent="." unique_id=895281383]
+z_index = 120
+layout_mode = 0
+offset_left = 430.0
+offset_top = 1378.0
+offset_right = 850.0
+offset_bottom = 1500.0
+mouse_filter = 2
+texture = ExtResource("18_result_button")
+expand_mode = 1
+
+[node name="CombatResultContinueArrowLabel" type="Label" parent="." unique_id=559386625]
+z_index = 130
+layout_mode = 0
+offset_left = 470.0
+offset_top = 1396.0
+offset_right = 570.0
+offset_bottom = 1476.0
+text = "<"
+label_settings = SubResource("LabelSettings_9")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultContinueLabel" type="Label" parent="." unique_id=86406241]
+z_index = 130
+layout_mode = 0
+offset_left = 558.0
+offset_top = 1396.0
+offset_right = 810.0
+offset_bottom = 1476.0
+text = "继续"
+label_settings = SubResource("LabelSettings_9")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultContinueHotspot" type="Control" parent="." unique_id=837521150]
+z_index = 140
+anchors_preset = 0
+offset_left = 380.0
+offset_top = 1360.0
+offset_right = 900.0
+offset_bottom = 1507.0
+mouse_filter = 1

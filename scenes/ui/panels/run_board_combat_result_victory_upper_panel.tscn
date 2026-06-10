@@ -1,0 +1,277 @@
+[gd_scene format=3 uid="uid://combat_result_victory_upper"]
+
+[ext_resource type="Texture2D" uid="uid://oiivbmju5hli" path="res://assets/ui/components/start_camp/ui_start_camp_card_title_banner_light.png" id="2_title_banner"]
+[ext_resource type="Texture2D" uid="uid://bq2xwt5cxcyr0" path="res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png" id="3_action_button"]
+[ext_resource type="Texture2D" uid="uid://t8jbv5lud5jj" path="res://assets/ui/components/combat_result/ui_combat_result_victory_ribbon_light.png" id="4_victory_ribbon"]
+[ext_resource type="Texture2D" uid="uid://df6avrydiqhml" path="res://assets/ui/components/combat_result/ui_combat_result_victory_light_rays_light.png" id="5_victory_rays"]
+[ext_resource type="Texture2D" uid="uid://cw5l7hmnrc6ko" path="res://assets/ui/components/combat_result/ui_combat_result_record_divider_light.png" id="6_record_divider"]
+[ext_resource type="Texture2D" uid="uid://bgpbm08tpr0yb" path="res://assets/ui/components/combat_result/ui_combat_result_record_trophy_light.png" id="7_record_trophy"]
+[ext_resource type="Texture2D" uid="uid://cj67ct8e8vcxe" path="res://assets/ui/components/combat_result/ui_combat_result_record_heart_light.png" id="8_record_heart"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_victory_title"]
+font_size = 76
+font_color = Color(1, 0.870588, 0.454902, 1)
+outline_size = 4
+outline_color = Color(0.231373, 0.152941, 0.054902, 0.86)
+shadow_size = 3
+shadow_color = Color(0.231373, 0.152941, 0.054902, 0.5)
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_victory_subtitle"]
+font_size = 30
+font_color = Color(0.862745, 0.752941, 0.541176, 0.92)
+outline_size = 2
+outline_color = Color(0.145098, 0.101961, 0.066667, 0.72)
+
+[sub_resource type="LabelSettings" id="LabelSettings_record_title"]
+font_size = 38
+font_color = Color(0.890196, 0.827451, 0.705882, 0.96)
+outline_size = 2
+outline_color = Color(0.141176, 0.105882, 0.078431, 0.76)
+
+[sub_resource type="LabelSettings" id="LabelSettings_button"]
+font_size = 42
+font_color = Color(0.960784, 0.92549, 0.823529, 1)
+outline_size = 3
+outline_color = Color(0.231373, 0.054902, 0.043137, 0.88)
+
+[node name="RunBoardCombatResultVictoryUpperPanel" type="Control"]
+custom_minimum_size = Vector2(1280, 1507)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 1507.0
+
+[node name="CombatResultUpperOverlayDim" type="ColorRect" parent="."]
+z_index = 80
+layout_mode = 0
+offset_top = 108.0
+offset_right = 1280.0
+offset_bottom = 1507.0
+mouse_filter = 2
+color = Color(0.070588, 0.047059, 0.035294, 0.54)
+
+[node name="CombatResultVictoryLightRays" type="TextureRect" parent="."]
+z_index = 86
+layout_mode = 0
+offset_left = 120.0
+offset_top = 420.0
+offset_right = 1160.0
+offset_bottom = 1040.0
+mouse_filter = 2
+texture = ExtResource("5_victory_rays")
+expand_mode = 1
+
+[node name="CombatResultVictoryRibbon" type="TextureRect" parent="."]
+z_index = 100
+layout_mode = 0
+offset_left = 210.0
+offset_top = 600.0
+offset_right = 1070.0
+offset_bottom = 960.0
+mouse_filter = 2
+texture = ExtResource("4_victory_ribbon")
+expand_mode = 1
+
+[node name="CombatResultVictoryTitlePlate" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 0.870588, 0.541176, 0.55)
+z_index = 100
+layout_mode = 0
+offset_left = 314.0
+offset_top = 760.0
+offset_right = 966.0
+offset_bottom = 908.0
+mouse_filter = 2
+texture = ExtResource("2_title_banner")
+expand_mode = 1
+
+[node name="CombatResultVictoryTitleLabel" type="Label" parent="."]
+z_index = 110
+layout_mode = 0
+offset_left = 390.0
+offset_top = 700.0
+offset_right = 890.0
+offset_bottom = 835.0
+text = "胜利"
+label_settings = SubResource("LabelSettings_victory_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="CombatResultVictorySubtitleLabel" type="Label" parent="."]
+z_index = 110
+layout_mode = 0
+offset_left = 390.0
+offset_top = 930.0
+offset_right = 890.0
+offset_bottom = 994.0
+text = "奖励已结算"
+label_settings = SubResource("LabelSettings_victory_subtitle")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultRecordDivider" type="TextureRect" parent="."]
+z_index = 92
+layout_mode = 0
+offset_left = 230.0
+offset_top = 1148.0
+offset_right = 1050.0
+offset_bottom = 1238.0
+mouse_filter = 2
+texture = ExtResource("6_record_divider")
+expand_mode = 1
+
+[node name="CombatResultRecordTitleLabel" type="Label" parent="."]
+z_index = 110
+layout_mode = 0
+offset_left = 458.0
+offset_top = 1134.0
+offset_right = 822.0
+offset_bottom = 1222.0
+text = "本回合战绩"
+label_settings = SubResource("LabelSettings_record_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultRecordTrophy01" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 290.0
+offset_top = 1238.0
+offset_right = 376.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("7_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordTrophy02" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 410.0
+offset_top = 1238.0
+offset_right = 496.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("7_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordTrophy03" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 530.0
+offset_top = 1238.0
+offset_right = 616.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("7_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordTrophy04" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 650.0
+offset_top = 1238.0
+offset_right = 736.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("7_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordTrophy05" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 770.0
+offset_top = 1238.0
+offset_right = 856.0
+offset_bottom = 1324.0
+mouse_filter = 2
+texture = ExtResource("7_record_trophy")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart01" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 298.0
+offset_top = 1304.0
+offset_right = 370.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("8_record_heart")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart02" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 418.0
+offset_top = 1304.0
+offset_right = 490.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("8_record_heart")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart03" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 538.0
+offset_top = 1304.0
+offset_right = 610.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("8_record_heart")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart04" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 658.0
+offset_top = 1304.0
+offset_right = 730.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("8_record_heart")
+expand_mode = 1
+
+[node name="CombatResultRecordHeart05" type="TextureRect" parent="."]
+z_index = 112
+layout_mode = 0
+offset_left = 778.0
+offset_top = 1304.0
+offset_right = 850.0
+offset_bottom = 1376.0
+mouse_filter = 2
+texture = ExtResource("8_record_heart")
+expand_mode = 1
+
+[node name="CombatResultContinueButton" type="TextureRect" parent="."]
+z_index = 120
+layout_mode = 0
+offset_left = 430.0
+offset_top = 1378.0
+offset_right = 850.0
+offset_bottom = 1500.0
+mouse_filter = 2
+texture = ExtResource("3_action_button")
+expand_mode = 1
+
+[node name="CombatResultContinueLabel" type="Label" parent="."]
+z_index = 130
+layout_mode = 0
+offset_left = 500.0
+offset_top = 1396.0
+offset_right = 780.0
+offset_bottom = 1476.0
+text = "继续"
+label_settings = SubResource("LabelSettings_button")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CombatResultContinueHotspot" type="Control" parent="."]
+z_index = 140
+layout_mode = 0
+offset_left = 380.0
+offset_top = 1360.0
+offset_right = 900.0
+offset_bottom = 1507.0
+mouse_filter = 1

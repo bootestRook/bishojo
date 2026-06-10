@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "data_kind": "partner_card",
+  "template": false,
+  "template_files": {
+    "human_readable_template": "策划文档/02_战斗系统/03_卡牌数据/模板_伙伴卡牌阅读文件_v1.md",
+    "developer_data_template": "data/cards/templates/partner_card.template.v1.json"
+  },
+  "maintenance_rule": "每张卡牌必须拥有独立 Markdown 文件和独立 JSON 文件。当前角色 1 卡组的单卡 Markdown 放在 策划文档/02_战斗系统/03_卡牌数据/01_角色1卡组/。新增字段时必须同步更新两个模板文件以及所有已录入单卡文件。无法从截图确认的字段使用 null，不得按规律外推。",
+  "rarity_order": [
+    "green",
+    "blue",
+    "purple",
+    "yellow"
+  ],
+  "rarity_display_names": {
+    "green": "绿色",
+    "blue": "蓝色",
+    "purple": "紫色",
+    "yellow": "金色"
+  },
+  "damage_card_tag_rule": "只有卡牌自身主动/被动效果直接对敌人造成伤害时，is_damage_card 才为 true，并在 tags 中加入 damage_card；仅引用伤害伙伴或给其他卡牌 +X 点伤害不算伤害卡牌。",
+  "default_passive_stack_rule": "被动描述若写明“触发某事件时，获得/增加某数值”，则默认每次事件触发都叠加一次。",
+  "default_passive_duration_rule": "持续时间若没有特殊说明，则默认持续到本场战斗结束。",
+  "card_id": "blood_wolf",
+  "name": "嗜血狼",
+  "card_type": "partner",
+  "human_readable_file": "策划文档/02_战斗系统/03_卡牌数据/01_角色1卡组/内容_嗜血狼卡牌_v1.md",
+  "size_type": "small",
+  "size_label": "小型",
+  "initial_cooldown_ms": 3500,
+  "base_cooldown_ms": 3500,
+  "is_damage_card": true,
+  "tags": [
+    "damage_card",
+    "lifesteal"
+  ],
+  "tag_labels": [
+    "伤害卡牌",
+    "吸血"
+  ],
+  "keyword_definitions": [
+    {
+      "keyword_id": "lifesteal",
+      "keyword": "吸血",
+      "description": "恢复 100% 造成伤害的生命，被护盾抵挡的值不计算",
+      "lifesteal_bp": 10000,
+      "heal_target": "player_core",
+      "shield_absorbed_damage_counts": false
+    }
+  ],
+  "rarity_data": {
+    "green": {
+      "display_name": "绿色",
+      "sell_price": 1,
+      "portrait_top_value": 5,
+      "active_description": "对敌人造成 5 点伤害；吸血",
+      "passive_description": "无",
+      "unknown_fields": []
+    },
+    "blue": {
+      "display_name": "蓝色",
+      "sell_price": 2,
+      "portrait_top_value": 10,
+      "active_description": "对敌人造成 10 点伤害；吸血",
+      "passive_description": "无",
+      "unknown_fields": []
+    },
+    "purple": {
+      "display_name": "紫色",
+      "sell_price": 4,
+      "portrait_top_value": 15,
+      "active_description": "对敌人造成 15 点伤害；吸血",
+      "passive_description": "无",
+      "unknown_fields": []
+    },
+    "yellow": {
+      "display_name": "金色",
+      "sell_price": 8,
+      "portrait_top_value": 20,
+      "active_description": "对敌人造成 20 点伤害；吸血",
+      "passive_description": "无",
+      "unknown_fields": []
+    }
+  },
+  "active_skill": {
+    "trigger": "cooldown_ready",
+    "description_template": "对敌人造成 {damage} 点伤害；吸血",
+    "effects": [
+      {
+        "effect_id": "blood_wolf_active_damage",
+        "effect_type": "damage",
+        "target_rule": "enemy_single",
+        "damage_kind": "direct",
+        "damage_type": null,
+        "can_crit": null,
+        "can_trigger_lifesteal": true,
+        "value_by_rarity": {
+          "green": 5,
+          "blue": 10,
+          "purple": 15,
+          "yellow": 20
+        },
+        "description_by_rarity": {
+          "green": "对敌人造成 5 点伤害",
+          "blue": "对敌人造成 10 点伤害",
+          "purple": "对敌人造成 15 点伤害",
+          "yellow": "对敌人造成 20 点伤害"
+        }
+      },
+      {
+        "effect_id": "blood_wolf_active_lifesteal",
+        "effect_type": "lifesteal_from_damage",
+        "keyword_id": "lifesteal",
+        "source_effect_id": "blood_wolf_active_damage",
+        "target_rule": "player_core",
+        "lifesteal_bp": 10000,
+        "heal_target": "player_core",
+        "shield_absorbed_damage_counts": false,
+        "description": "恢复 100% 造成伤害的生命，被护盾抵挡的值不计算"
+      }
+    ]
+  },
+  "passive_skill": {
+    "trigger": null,
+    "description_template": null,
+    "effects": []
+  },
+  "implementation_notes": {
+    "active_skill_notes": "冷却触发描述已经确认；吸血按实际生命伤害的 100% 回复，护盾抵挡值不计算。damage_type、是否参与暴击未从截图明示，暂留 null，后续按战斗协议或实测补齐。",
+    "passive_skill_notes": "无被动触发效果。",
+    "pending_rules": [
+      "blood_wolf.active.damage_type",
+      "blood_wolf.active.can_crit"
+    ]
+  },
+  "source": {
+    "source_type": "user_screenshots",
+    "confidence": "confirmed_from_screenshots",
+    "files": [
+      {
+        "rarity": "green",
+        "file_name": "4c68fa1e4409bfba1db3153b291bd6f7.jpg"
+      },
+      {
+        "rarity": "blue",
+        "file_name": "8876e22d4278de1a36d7a693d7a874a4.jpg"
+      },
+      {
+        "rarity": "purple",
+        "file_name": "4d32b67ec5db7d9c4022dda313d670cb.jpg"
+      },
+      {
+        "rarity": "yellow",
+        "file_name": "cbba31c06bb18db02d599c8b0523202e.jpg"
+      }
+    ]
+  }
+}

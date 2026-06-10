@@ -1,0 +1,559 @@
+{
+  "state_id": "run_board_combat_defeat",
+  "page_type": "RUN_BOARD_PAGE",
+  "run_board_mode": "COMBAT_RESULT",
+  "result_variant": "defeat",
+  "state_scope": "full_page",
+  "source_scene": "res://scenes/ui/pages/run_board_combat_defeat_layout_page.tscn",
+  "reference_image": "res://UI_reference/战斗失败.jpg",
+  "design_width": 1280,
+  "design_height": 2769,
+  "safe_area": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 2769
+  },
+  "component_analysis": {
+    "page_name": "RunBoardPage / CombatResult / Defeat",
+    "reference_image_path": "res://UI_reference/战斗失败.jpg",
+    "main_visual_style": "参考图上半区是在既有战斗界面上叠加失败结算遮罩：敌方头像、敌方血条、敌方战斗槽位仍保留；中央用暗色遮罩、光束、横幅和“失败”标题强化结算状态。当前实现沿用项目轻量灰白组件与 ColorRect 状态层，不把参考图或整页生图作为运行时 UI。",
+    "canvas_ratio": "1280x2769 mobile portrait",
+    "major_regions": [
+      "top_left_resource_hud_reused",
+      "top_right_menu_hud_reused",
+      "upper_enemy_status_reused",
+      "upper_enemy_fixed_slot_grid_reused",
+      "combat_defeat_result_overlay_new",
+      "combat_result_confirm_button_new",
+      "bottom_player_formation_and_hud_reused"
+    ],
+    "component_list": [
+      {
+        "component": "enemy_status_core",
+        "function": "敌方头像、技能槽、血条和血量文字，沿用 combat_layout_page 的上半区骨架",
+        "independent_asset_required": false,
+        "reuse": "res://assets/ui/components/combat/ui_combat_frame_portrait_light.png, ui_combat_button_skill_round_light.png, ui_combat_bar_hp_frame_light.png"
+      },
+      {
+        "component": "enemy_slot_front_01_to_05 / enemy_slot_back_01_to_05",
+        "function": "敌方固定 2×5 战斗槽位，运行时只填充已有敌方数据，不按敌人数量重排",
+        "independent_asset_required": false,
+        "reuse": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png"
+      },
+      {
+        "component": "combat_defeat_scrim",
+        "function": "失败状态的暗色遮罩，只覆盖上半区，不影响下半区复用组件",
+        "independent_asset_required": false,
+        "reuse": "ColorRect"
+      },
+      {
+        "component": "combat_defeat_result_banner",
+        "function": "失败标题横幅与中央发光层，文字用 Label 绑定，不烘焙进图片",
+        "independent_asset_required": false,
+        "reuse": "ColorRect + Label"
+      },
+      {
+        "component": "combat_defeat_continue_button",
+        "function": "结算确认按钮，点击只发 combat_result_confirmed 事件",
+        "independent_asset_required": false,
+        "reuse": "res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png"
+      },
+      {
+        "component": "combat_result_data_button",
+        "function": "参考图中的战斗数据入口，可按运行时功能开关显示",
+        "independent_asset_required": false,
+        "reuse": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png"
+      }
+    ],
+    "components_to_reuse": [
+      "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "res://assets/ui/components/combat/ui_combat_frame_portrait_light.png",
+      "res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png",
+      "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png",
+      "res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png"
+    ],
+    "full_page_image_risk_checked": true,
+    "full_page_image_used_as_runtime_ui": false
+  },
+  "layout_rules": {
+    "full_page_image_used_as_runtime_ui": false,
+    "computed_layout_used": false,
+    "copied_scene": "res://scenes/ui/pages/combat_layout_page.tscn",
+    "fixed_slot_rule": "敌方槽位 enemy_slot_front_01 ~ enemy_slot_back_05 全部显式写入；enemy_units 只填充既有槽位，不根据数量计算坐标或重排。",
+    "unchanged_regions": [
+      "top_left_resource_hud",
+      "top_right_menu_hud",
+      "bottom_half_player_formation_and_hud"
+    ],
+    "new_regions": [
+      "combat_defeat_result_overlay",
+      "combat_result_confirm_button"
+    ],
+    "runtime_note": "本状态对应完整战斗失败页面。场景从 combat_layout_page.tscn 复制，保留下半区玩家回路、锁定覆盖、玩家血条和底部 HUD；上半区叠加失败结算组件。UI 只发 combat_result_confirmed，不直接修改 RunState。"
+  },
+  "generated_combat_result_assets": [
+    {
+      "asset_role": "combat_result_defeat_banner",
+      "recommended_path": "res://assets/ui/components/combat_result/ui_combat_result_banner_defeat_light.png",
+      "note": "已通过 gpt-image-2 组件 sheet 生成并切片为独立透明 PNG；文字仍由 Label 渲染，不烘焙进横幅。"
+    },
+    {
+      "asset_role": "combat_result_spotlight_beams",
+      "recommended_path": "res://assets/ui/components/combat_result/ui_combat_result_spotlight_defeat_light.png",
+      "note": "已通过 gpt-image-2 组件 sheet 生成并切片为独立透明装饰 PNG，不包含角色、按钮或文字。"
+    },
+    {
+      "asset_role": "combat_result_bat_decoration",
+      "recommended_path": "res://assets/ui/components/combat_result/ui_combat_result_bat_decoration_light.png",
+      "note": "已通过 gpt-image-2 组件 sheet 生成并切片为独立透明装饰 PNG。"
+    },
+    {
+      "asset_role": "enemy_core_character_art",
+      "recommended_path": "res://assets/ui/characters/combat/ui_enemy_core_silhouette_light.png",
+      "note": "已通过 gpt-image-2 组件 sheet 生成并切片为独立 CharacterArt 透明 PNG，不烘入背景或头像框。"
+    }
+  ],
+  "components": [
+    {
+      "component_id": "combat_defeat_upper_content_tint",
+      "component_role": "mode_content_background",
+      "prefab": "ColorRect",
+      "asset": "res://assets/ui/characters/combat/ui_enemy_core_silhouette_light.png",
+      "rect": { "x": 0, "y": 96, "w": 1280, "h": 1411 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 12,
+      "visible": true,
+      "variant": "combat_result_dim_wash"
+    },
+    {
+      "component_id": "enemy_skill_slot_left_01",
+      "component_role": "enemy_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 158, "y": 114, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive",
+      "data_binding": { "source": "enemy_skill_slots", "index": 0 }
+    },
+    {
+      "component_id": "enemy_skill_slot_left_02",
+      "component_role": "enemy_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 78, "y": 266, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "active",
+      "data_binding": { "source": "enemy_skill_slots", "index": 1 }
+    },
+    {
+      "component_id": "enemy_skill_slot_left_03",
+      "component_role": "enemy_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 248, "y": 266, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive",
+      "data_binding": { "source": "enemy_skill_slots", "index": 2 }
+    },
+    {
+      "component_id": "enemy_skill_slot_right_01",
+      "component_role": "enemy_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 982, "y": 114, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive",
+      "data_binding": { "source": "enemy_skill_slots", "index": 3 }
+    },
+    {
+      "component_id": "enemy_skill_slot_right_02",
+      "component_role": "enemy_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 892, "y": 266, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive",
+      "data_binding": { "source": "enemy_skill_slots", "index": 4 }
+    },
+    {
+      "component_id": "enemy_skill_slot_right_03",
+      "component_role": "enemy_skill_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 1062, "y": 266, "w": 140, "h": 140 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 20,
+      "visible": true,
+      "variant": "inactive",
+      "data_binding": { "source": "enemy_skill_slots", "index": 5 }
+    },
+    {
+      "component_id": "enemy_portrait_frame",
+      "component_role": "enemy_status_portrait_frame",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_frame_portrait_light.png",
+      "rect": { "x": 487, "y": 6, "w": 293, "h": 476 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 24,
+      "visible": true,
+      "variant": "light",
+      "binding": { "source": "enemy_status", "key": "portrait_frame" }
+    },
+    {
+      "component_id": "enemy_portrait_art_slot",
+      "component_role": "enemy_character_art_slot",
+      "prefab": "TextureRect",
+      "asset": "",
+      "rect": { "x": 522, "y": 90, "w": 222, "h": 264 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 23,
+      "visible": true,
+      "variant": "placeholder",
+      "binding": { "source": "enemy_status", "key": "portrait_asset" },
+      "runtime_asset_rule": "敌方头像或剪影必须作为独立 CharacterArt/Portrait 资源接入，不得烘进背景或头像框。"
+    },
+    {
+      "component_id": "enemy_hp_fill",
+      "component_role": "enemy_hp_fill",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 54, "y": 564, "w": 1172, "h": 18 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 26,
+      "visible": true,
+      "variant": "remaining_hp",
+      "binding": { "source": "enemy_status", "key": "hp_ratio" }
+    },
+    {
+      "component_id": "enemy_hp_bar_frame",
+      "component_role": "enemy_hp_display",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_bar_hp_frame_light.png",
+      "rect": { "x": 30, "y": 548, "w": 1220, "h": 50 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 28,
+      "visible": true,
+      "variant": "light",
+      "text": "1750",
+      "binding": { "source": "enemy_status", "key": "hp_text" }
+    },
+    {
+      "component_id": "enemy_slot_area_tint",
+      "component_role": "enemy_slot_area_background",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 0, "y": 598, "w": 1280, "h": 668 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 14,
+      "visible": true,
+      "variant": "slot_area_dim"
+    },
+    {
+      "component_id": "enemy_slot_front_01",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 26, "y": 600, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "occupied",
+      "data_binding": { "source": "enemy_units", "index": 0 }
+    },
+    {
+      "component_id": "enemy_slot_front_02",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 276, "y": 600, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": { "source": "enemy_units", "index": 1 }
+    },
+    {
+      "component_id": "enemy_slot_front_03",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 526, "y": 600, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "occupied",
+      "data_binding": { "source": "enemy_units", "index": 2 }
+    },
+    {
+      "component_id": "enemy_slot_front_04",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 776, "y": 600, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": { "source": "enemy_units", "index": 3 }
+    },
+    {
+      "component_id": "enemy_slot_front_05",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 1026, "y": 600, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "occupied",
+      "data_binding": { "source": "enemy_units", "index": 4 }
+    },
+    {
+      "component_id": "enemy_slot_back_01",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 26, "y": 948, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": { "source": "enemy_units", "index": 5 }
+    },
+    {
+      "component_id": "enemy_slot_back_02",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 276, "y": 948, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": { "source": "enemy_units", "index": 6 }
+    },
+    {
+      "component_id": "enemy_slot_back_03",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 526, "y": 948, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": { "source": "enemy_units", "index": 7 }
+    },
+    {
+      "component_id": "enemy_slot_back_04",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 776, "y": 948, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": { "source": "enemy_units", "index": 8 }
+    },
+    {
+      "component_id": "enemy_slot_back_05",
+      "component_role": "enemy_formation_slot",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat/ui_combat_slot_frame_empty_light.png",
+      "rect": { "x": 1026, "y": 948, "w": 228, "h": 318 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 30,
+      "visible": true,
+      "variant": "empty",
+      "data_binding": { "source": "enemy_units", "index": 9 }
+    },
+    {
+      "component_id": "enemy_unit_preview_front_01",
+      "component_role": "enemy_unit_card_preview",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png",
+      "rect": { "x": 38, "y": 624, "w": 204, "h": 270 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 36,
+      "visible": true,
+      "variant": "occupied_preview",
+      "data_binding": { "source": "enemy_units", "index": 0 },
+      "subcomponents": [
+        { "component_id": "enemy_unit_preview_front_01_art_slot", "prefab": "ColorRect+TextureRect", "rect": { "x": 64, "y": 665, "w": 152, "h": 172 }, "binding": { "source": "enemy_units", "index": 0, "key": "portrait_asset" } },
+        { "component_id": "enemy_unit_preview_front_01_cost_badge", "prefab": "Label", "rect": { "x": 90, "y": 626, "w": 100, "h": 54 }, "text": "10" }
+      ]
+    },
+    {
+      "component_id": "enemy_unit_preview_front_03",
+      "component_role": "enemy_unit_card_preview",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png",
+      "rect": { "x": 276, "y": 654, "w": 510, "h": 240 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 36,
+      "visible": true,
+      "variant": "occupied_preview_wide",
+      "data_binding": { "source": "enemy_units", "index": 2 },
+      "runtime_asset_rule": "多格敌方单位保留每个基础槽位逻辑组件，仅叠加宽预览框，不把整排槽位合成一张图。"
+    },
+    {
+      "component_id": "enemy_unit_preview_front_05",
+      "component_role": "enemy_unit_card_preview",
+      "prefab": "TextureRect cluster",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_card_base_frame_light.png",
+      "rect": { "x": 1038, "y": 624, "w": 204, "h": 270 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 36,
+      "visible": true,
+      "variant": "occupied_preview",
+      "data_binding": { "source": "enemy_units", "index": 4 }
+    },
+    {
+      "component_id": "combat_result_data_button",
+      "component_role": "combat_data_button",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/combat/ui_combat_button_skill_round_light.png",
+      "rect": { "x": 1082, "y": 640, "w": 128, "h": 128 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 80,
+      "visible": true,
+      "variant": "light",
+      "text": "数据",
+      "interactions": [
+        { "event": "pressed", "emit": "combat_data_requested" }
+      ]
+    },
+    {
+      "component_id": "combat_defeat_scrim",
+      "component_role": "combat_result_scrim",
+      "prefab": "ColorRect",
+      "asset": "",
+      "rect": { "x": 0, "y": 548, "w": 1280, "h": 959 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 70,
+      "visible": true,
+      "variant": "defeat_dim"
+    },
+    {
+      "component_id": "combat_defeat_spotlight_vertical",
+      "component_role": "combat_result_decoration",
+      "prefab": "ColorRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_spotlight_defeat_light.png",
+      "rect": { "x": 370, "y": 570, "w": 540, "h": 688 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 72,
+      "visible": true,
+      "variant": "soft_spotlight"
+    },
+    {
+      "component_id": "combat_defeat_glow_band",
+      "component_role": "combat_result_decoration",
+      "prefab": "ColorRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_banner_defeat_light.png",
+      "rect": { "x": 180, "y": 930, "w": 920, "h": 152 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 73,
+      "visible": true,
+      "variant": "cold_glow_band"
+    },
+    {
+      "component_id": "combat_defeat_result_banner",
+      "component_role": "combat_result_title_plate",
+      "prefab": "TextureRect+Label",
+      "asset": "",
+      "rect": { "x": 300, "y": 888, "w": 680, "h": 238 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 74,
+      "visible": true,
+      "variant": "defeat_banner",
+      "text": "失败",
+      "binding": { "source": "combat_result", "key": "result_title" }
+    },
+    {
+      "component_id": "combat_defeat_bat_decoration",
+      "component_role": "combat_result_decoration",
+      "prefab": "TextureRect",
+      "asset": "res://assets/ui/components/combat_result/ui_combat_result_bat_decoration_light.png",
+      "rect": { "x": 82, "y": 842, "w": 560, "h": 330 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 76,
+      "visible": true,
+      "variant": "defeat_bats"
+    },
+    {
+      "component_id": "combat_defeat_subtitle",
+      "component_role": "combat_result_summary_text",
+      "prefab": "Label",
+      "asset": "",
+      "rect": { "x": 330, "y": 1112, "w": 620, "h": 74 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 78,
+      "visible": true,
+      "variant": "muted",
+      "text": "本场战斗失败，局内耐久 -1",
+      "binding": { "source": "combat_result", "key": "summary_text" }
+    },
+    {
+      "component_id": "combat_defeat_continue_button",
+      "component_role": "combat_result_confirm_button",
+      "prefab": "TextureRect+Label",
+      "asset": "res://assets/ui/components/start_camp/ui_start_camp_button_action_red_normal.png",
+      "rect": { "x": 480, "y": 1368, "w": 320, "h": 102 },
+      "anchor": "top_left",
+      "pivot": "top_left",
+      "z_index": 90,
+      "visible": true,
+      "variant": "normal",
+      "text": "继续",
+      "icon_text": "<",
+      "interactions": [
+        { "event": "pressed", "emit": "combat_result_confirmed", "payload": { "result": "defeat" } }
+      ]
+    }
+  ]
+}

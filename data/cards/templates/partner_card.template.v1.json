@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "data_kind": "partner_card",
+  "template": true,
+  "template_files": {
+    "human_readable_template": "策划文档/02_战斗系统/03_卡牌数据/模板_伙伴卡牌阅读文件_v1.md",
+    "developer_data_template": "data/cards/templates/partner_card.template.v1.json"
+  },
+  "maintenance_rule": "每张卡牌必须拥有独立 Markdown 文件和独立 JSON 文件。当前角色 1 卡组的单卡 Markdown 放在 策划文档/02_战斗系统/03_卡牌数据/01_角色1卡组/。新增字段时必须同步更新两个模板文件以及所有已录入单卡文件。无法从截图确认的字段使用 null，不得按规律外推。",
+  "rarity_order": [
+    "green",
+    "blue",
+    "purple",
+    "yellow"
+  ],
+  "rarity_display_names": {
+    "green": "绿色",
+    "blue": "蓝色",
+    "purple": "紫色",
+    "yellow": "金色"
+  },
+  "damage_card_tag_rule": "只有卡牌自身主动/被动效果直接对敌人造成伤害时，is_damage_card 才为 true，并在 tags 中加入 damage_card；仅引用伤害伙伴或给其他卡牌 +X 点伤害不算伤害卡牌。",
+  "default_passive_stack_rule": "被动描述若写明“触发某事件时，获得/增加某数值”，则默认每次事件触发都叠加一次。",
+  "default_passive_duration_rule": "持续时间若没有特殊说明，则默认持续到本场战斗结束。",
+  "card_id": "template_card_id",
+  "name": "待填写",
+  "card_type": "partner",
+  "human_readable_file": null,
+  "size_type": null,
+  "size_label": null,
+  "initial_cooldown_ms": null,
+  "base_cooldown_ms": null,
+  "is_damage_card": null,
+  "tags": [],
+  "tag_labels": [],
+  "keyword_definitions": [],
+  "rarity_data": {
+    "green": {
+      "display_name": "绿色",
+      "sell_price": null,
+      "portrait_top_value": null,
+      "active_description": null,
+      "passive_description": null,
+      "unknown_fields": []
+    },
+    "blue": {
+      "display_name": "蓝色",
+      "sell_price": null,
+      "portrait_top_value": null,
+      "active_description": null,
+      "passive_description": null,
+      "unknown_fields": []
+    },
+    "purple": {
+      "display_name": "紫色",
+      "sell_price": null,
+      "portrait_top_value": null,
+      "active_description": null,
+      "passive_description": null,
+      "unknown_fields": []
+    },
+    "yellow": {
+      "display_name": "金色",
+      "sell_price": null,
+      "portrait_top_value": null,
+      "active_description": null,
+      "passive_description": null,
+      "unknown_fields": []
+    }
+  },
+  "active_skill": {
+    "trigger": "cooldown_ready",
+    "description_template": null,
+    "effects": []
+  },
+  "passive_skill": {
+    "trigger": null,
+    "description_template": null,
+    "effects": []
+  },
+  "implementation_notes": {
+    "active_skill_notes": null,
+    "passive_skill_notes": null,
+    "pending_rules": []
+  },
+  "source": {
+    "source_type": null,
+    "confidence": null,
+    "files": []
+  }
+}
